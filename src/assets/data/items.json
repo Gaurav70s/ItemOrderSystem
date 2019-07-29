@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "test1",
+    "price": "10",
+    "description": "This is a test item. please select the same",
+    "category": "Vegetarian"
+  },
+  {
+    "id": 2,
+    "name": "test2",
+    "price": "15",
+    "description": "This is a test item. please select the same",
+    "category": "Non-Vegetarian"
+  },
+  {
+    "id": 3,
+    "name": "test3",
+    "price": "20",
+    "description": "This is a test item. please select the same",
+    "category": "Vegetarian"
+  }
+]
