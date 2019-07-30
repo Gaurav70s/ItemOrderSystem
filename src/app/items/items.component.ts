@@ -11,8 +11,6 @@ import {ItemOnCart} from '../itemOnCart';
 export class ItemsComponent implements OnInit {
 
   items: Item[];
-  quantity = 0;
-
 
   constructor(private itemService: ItemService) { }
 

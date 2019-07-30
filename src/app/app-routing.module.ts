@@ -3,12 +3,15 @@ import {RouterModule, Routes} from '@angular/router';
 import {ItemDetailsComponent} from './item-details/item-details.component';
 import {CheckoutComponent} from './checkout/checkout.component';
 import {APP_BASE_HREF} from '@angular/common';
+import {CartComponent} from './cart/cart.component';
+import {ItemsComponent} from './items/items.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/', pathMatch: 'full'},
   {path: 'item/:id', component: ItemDetailsComponent},
-  {path: 'menu', component: ItemDetailsComponent},
-  {path: 'checkout', component: CheckoutComponent}
+  {path: 'menu', component: ItemsComponent},
+  {path: 'checkout', component: CheckoutComponent},
+  {path: 'cart', component: CartComponent}
 ];
 
 @NgModule({

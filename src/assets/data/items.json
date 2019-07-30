@@ -22,5 +22,21 @@
     "description": "This is a test item. please select the same",
     "category": "veg",
     "quantity": 0
+  },
+  {
+    "id": 4,
+    "name": "test4",
+    "price": "20",
+    "description": "This is a test item. please select the same",
+    "category": "nonveg",
+    "quantity": 0
+  },
+  {
+    "id": 5,
+    "name": "test5",
+    "price": "20",
+    "description": "This is a test item. please select the same",
+    "category": "veg",
+    "quantity": 0
   }
 ]

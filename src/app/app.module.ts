@@ -11,6 +11,7 @@ import {FormsModule} from '@angular/forms';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { BooktableComponent } from './booktable/booktable.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { BooktableComponent } from './booktable/booktable.component';
     CheckoutComponent,
     FooterComponent,
     HeaderComponent,
-    BooktableComponent
+    BooktableComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
