@@ -5,7 +5,7 @@ import {CheckoutComponent} from './checkout/checkout.component';
 import {APP_BASE_HREF} from '@angular/common';
 
 const routes: Routes = [
-  {path: '', redirectTo: '/menu', pathMatch: 'full'},
+  {path: '', redirectTo: '/', pathMatch: 'full'},
   {path: 'item/:id', component: ItemDetailsComponent},
   {path: 'menu', component: ItemDetailsComponent},
   {path: 'checkout', component: CheckoutComponent}

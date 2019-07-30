@@ -4,20 +4,23 @@
     "name": "test1",
     "price": "10",
     "description": "This is a test item. please select the same",
-    "category": "Vegetarian"
+    "category": "veg",
+    "quantity": 0
   },
   {
     "id": 2,
     "name": "test2",
     "price": "15",
     "description": "This is a test item. please select the same",
-    "category": "Non-Vegetarian"
+    "category": "nonveg",
+    "quantity": 0
   },
   {
     "id": 3,
     "name": "test3",
     "price": "20",
     "description": "This is a test item. please select the same",
-    "category": "Vegetarian"
+    "category": "veg",
+    "quantity": 0
   }
 ]

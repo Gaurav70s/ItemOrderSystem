@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {Item} from './item';
 import {catchError} from 'rxjs/operators';
+import {ItemOnCart} from './itemOnCart';
 
 @Injectable({
   providedIn: 'root'
@@ -21,5 +22,12 @@ export class ItemService {
       // Let the app keep running by returning an empty result.
       return of(result as T);
     };
+  }
+
+  public addToCart(item: Item): void {
+    console.log(item);
+
+    /*const blob = new Blob([JSON.stringify(item)], { type: 'application/json'});
+    fs.saveAs(blob, '/asset/data/cart.json');*/
   }
 }

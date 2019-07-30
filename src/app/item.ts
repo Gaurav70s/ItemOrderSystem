@@ -4,4 +4,5 @@ export class Item {
   price: number;
   category: string;
   description: string;
+  quantity = 0;
 }
