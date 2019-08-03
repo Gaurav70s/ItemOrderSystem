@@ -12,6 +12,8 @@ import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { BooktableComponent } from './booktable/booktable.component';
 import { CartComponent } from './cart/cart.component';
+import { LoginComponent } from './login/login.component';
+import { AppMenuComponent } from './app-menu/app-menu.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { CartComponent } from './cart/cart.component';
     FooterComponent,
     HeaderComponent,
     BooktableComponent,
-    CartComponent
+    CartComponent,
+    LoginComponent,
+    AppMenuComponent
   ],
   imports: [
     BrowserModule,

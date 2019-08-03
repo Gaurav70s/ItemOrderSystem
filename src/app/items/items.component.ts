@@ -34,4 +34,7 @@ export class ItemsComponent implements OnInit {
     console.log(item);
     this.itemService.addToCart(item);
   }
+  print(): void {
+    console.log('test the crap');
+  }
 }

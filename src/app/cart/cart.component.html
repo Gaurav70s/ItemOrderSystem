@@ -1,1 +1,85 @@
-<p>cart works!</p>
+
+<app-menu></app-menu>
+<!-- Banner Area Starts -->
+<section class="banner-area banner-area2 menu-bg text-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <h1><i>Our Menu</i></h1>
+        <p class="pt-2"><i>Beast kind form divide night above let moveth bearing darkness.</i></p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Banner Area End -->
+
+<div class="container-fluid" style="display: flex;flex-wrap: wrap">
+  <!-- Project-->
+  <div class="col-md-12 col-lg-6 col-xl-7">
+    <div class="project" *ngFor="let item of items">
+      <div class="row bg-white has-shadow">
+        <div class="left-col col-lg-12 d-flex align-items-center justify-content-between">
+          <div class="project-title d-flex align-items-center">
+            <img src="/assets/images/food{{item.id}}.jpg" class="img-fluid" alt="">
+            <div class="text">
+              <h3 class="h4">{{item.name}}</h3><small>{{item.description}}</small>
+            </div>
+          </div>
+          <div class="_33Hf_ _3L1X9">
+            <div class="_1ds9T" (click)="getNext(item)">+</div>
+            <div class="_29Y5Z" (click)="getPrevious(item)">-</div>
+            <div class="_2zAXs" id="qua">{{item.quantity}}</div>
+          </div>
+          <div class="_1mx0r">
+            <span class="_2W2U4">₹{{getTotalPrice(item)}}</span>
+          </div>
+          <span class="fa fa-close" style="cursor:pointer" (click)="deleteItem(item)"></span>
+        </div>
+      </div>
+    </div>
+    <div class="sc-subtotal a-text-right a-float-right sc-java-remote-feature" data-name="Active Items Subtotals">
+      <p class="a-spacing-none a-spacing-top-mini">
+      <span id="sc-subtotal-label-activecart" class="a-size-medium">Subtotal ({{totalQue}} item):
+        <span id="sc-subtotal-amount-activecart" class="a-color-price a-text-bold">
+          <span class="a-size-medium a-color-price sc-price sc-white-space-nowrap sc-price-sign"><span class="currencyINR">&nbsp;&nbsp;</span>₹{{subtotal}}</span>
+        </span>
+      </span>
+      </p>
+    </div>
+  </div>
+  <div class="col-md-12 col-lg-5 col-xl-5">
+    <div class="overdue card">
+      <div class="card-body">
+        <h3>Cart Total</h3><!--<small>Lorem ipsum dolor sit amet.</small>-->
+        <table class="table no-border mini-table m-t-20">
+          <tbody>
+          <tr>
+            <td class="text-muted">Subtotal Amount</td>
+            <td class="font-medium">{{subtotal}}</td>
+          </tr>
+          <tr>
+            <td class="text-muted">Vat</td>
+            <td class="font-medium">{{0.2 * subtotal}}</td>
+          </tr>
+          <tr>
+            <td class="text-muted">Service Charge</td>
+            <td class="font-medium">100</td>
+          </tr>
+          <tr>
+            <td class="text-muted">Amount Payable</td>
+            <td class="font-medium">{{subtotal + (0.2 * subtotal)+ 100}}</td>
+          </tr>
+          </tbody>
+        </table>
+        <div class="container border-top-generic" style="text-align: center;">
+          <div class="button-group-area">
+            <a href="#" class="genric-btn primary radius">Place Order</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-booktable></app-booktable>
+<app-footer></app-footer>
+
