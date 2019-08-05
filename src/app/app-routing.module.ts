@@ -6,6 +6,8 @@ import {APP_BASE_HREF} from '@angular/common';
 import {CartComponent} from './cart/cart.component';
 import {ItemsComponent} from './items/items.component';
 import {LoginComponent} from './login/login.component';
+import {ForgotPasswordComponent} from './forgot-password/forgot-password.component';
+import {SignupComponent} from './signup/signup.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -16,7 +18,9 @@ const routes: Routes = [
   },
   {path: 'checkout', component: CheckoutComponent},
   {path: 'cart', component: CartComponent},
-  {path: 'login', component: LoginComponent}
+  {path: 'login', component: LoginComponent},
+  {path: 'forgotPassword', component: ForgotPasswordComponent},
+  {path: 'signup', component: SignupComponent}
 ];
 
 @NgModule({

@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router} from '@angular/router';
+import {AuthService, FacebookLoginProvider, GoogleLoginProvider, LinkedInLoginProvider, SocialUser} from 'angularx-social-login';
+import {FormGroup, FormControl, FormBuilder, Validators} from '@angular/forms';
+// import { MustMatch } from './_helpers/must-match.validator';
 
-declare var FB: any;
+// declare var FB: any;
 
 @Component({
   selector: 'app-login',
@@ -10,45 +13,65 @@ declare var FB: any;
 })
 export class LoginComponent implements OnInit {
 
- constructor(private router: Router) {}
+  loginForm: FormGroup;
+
+  user: SocialUser;
+
+  isSubmitted  =  false;
+
+  constructor(private authService: AuthService, private router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    this.authService.authState.subscribe((user) => {
+      this.user = user;
+      console.log(user);
+    });
 
-    (window as any).fbAsyncInit = function() {
-      FB.init({
-        appId      : '464132267711853',
-        cookie     : true,
-        xfbml      : true,
-        version    : 'v1.0'
-      });
-      FB.AppEvents.logPageView();
-    };
-
-    ( function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) {return;}
-      js = d.createElement(s); js.id = id;
-      js.src = 'https://connect.facebook.net/en_US/sdk.js';
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-
+    this.verifyCredentials();
   }
 
-  fbLogin() {
-    console.log('submit login to facebook');
-    // FB.login();
-    FB.login((response) => {
-      console.log('submitLogin', response);
-      if (response.authResponse) {
-        console.log('User login successful');
-      } else {
-        console.log('User login failed');
-      }
-    });
+  signInWithGoogle(): void {
+    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(x => this.router.navigateByUrl('/item'));
+  }
+
+  signInWithFB(): void {
+    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then(x => this.router.navigateByUrl('/item'));
+  }
+
+  signInWithLinkedIn(): void {
+    this.authService.signIn(LinkedInLoginProvider.PROVIDER_ID).then(x => console.log(x));
+  }
+
+  signOut(): void {
+    this.authService.signOut();
   }
 
   verifyCredentials() {
     console.log('credentials Accepted');
-    this.router.navigateByUrl('item');
+    this.loginForm = this.formBuilder.group({
+      username: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.maxLength(8)]]
+    });
+
+    console.log(this.loginForm.valid);
+    console.log(this.loginForm);
+    if (this.loginForm.valid) {
+      this.router.navigateByUrl('item');
+    }
+
+    console.log(this.loginForm.getRawValue());
+
+  }
+
+  get formControls() { return this.loginForm.controls; }
+
+  login() {
+    console.log(this.loginForm.value);
+    this.isSubmitted = true;
+    if (this.loginForm.invalid) {
+      return;
+    }
+    // this.authService.login(this.loginForm.value);
+    this.router.navigateByUrl('/item');
   }
 }
