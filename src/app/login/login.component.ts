@@ -19,6 +19,8 @@ export class LoginComponent implements OnInit {
 
   isSubmitted  =  false;
 
+  endTime = new Date();
+
   constructor(private authService: AuthService, private router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
@@ -31,11 +33,17 @@ export class LoginComponent implements OnInit {
   }
 
   signInWithGoogle(): void {
-    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(x => this.router.navigateByUrl('/item'));
+    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(x => {
+      console.log(x);
+      this.router.navigateByUrl('/item');
+    });
   }
 
   signInWithFB(): void {
-    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then(x => this.router.navigateByUrl('/item'));
+    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then(x => {
+      console.log(x);
+      this.router.navigateByUrl('/item');
+    });
   }
 
   signInWithLinkedIn(): void {
@@ -50,7 +58,7 @@ export class LoginComponent implements OnInit {
     console.log('credentials Accepted');
     this.loginForm = this.formBuilder.group({
       username: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.maxLength(8)]]
+      password: ['', [Validators.required, Validators.minLength(8)]]
     });
 
     console.log(this.loginForm.valid);

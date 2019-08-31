@@ -1,16 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import {CartService} from '../cart.service';
 import {Item} from '../item';
+import {R3BaseRefDecoratorDetection} from '@angular/compiler-cli/src/ngtsc/annotations/src/base_def';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
+
 export class CartComponent implements OnInit {
   items: Item[];
   subtotal = 0;
   totalQue = 0;
+  orderStatus = false;
+  orderNumber = 0;
 
   constructor(private cartService: CartService) { }
 
@@ -49,5 +53,10 @@ export class CartComponent implements OnInit {
   }
   deleteItem(item: Item ): void {
     this.items = this.items.filter(h => h !== item);
+  }
+  placeOrder() {
+    console.log('Order Placed');
+    this.orderStatus = true;
+    this.orderNumber = this.orderNumber + 1;
   }
 }
