@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { ItemsComponent } from './items/items.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { ItemDetailsComponent } from './item-details/item-details.component';
 import { CheckoutComponent } from './checkout/checkout.component';
@@ -18,6 +18,10 @@ import { SocialLoginModule} from 'angularx-social-login';
 import { AuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider, LinkedInLoginProvider  } from 'angularx-social-login';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { SignupComponent } from './signup/signup.component';
+import { KitchenOrderDisplayComponent } from './kitchen-order-display/kitchen-order-display.component';
+import { KitchenCompletedOrderComponent } from './kitchen-completed-order/kitchen-completed-order.component';
+import { KitchenIncompletedOrderComponent } from './kitchen-incompleted-order/kitchen-incompleted-order.component';
+import { ErrorInterceptor, fakeBackendProvider, JwtInterceptor } from "./_helpers";
 
 
 const config = new AuthServiceConfig([
@@ -43,7 +47,10 @@ export function provideConfig() {
     LoginComponent,
     AppMenuComponent,
     ForgotPasswordComponent,
-    SignupComponent
+    SignupComponent,
+    KitchenOrderDisplayComponent,
+    KitchenCompletedOrderComponent,
+    KitchenIncompletedOrderComponent
   ],
   imports: [
     BrowserModule,
@@ -53,10 +60,14 @@ export function provideConfig() {
     SocialLoginModule,
     ReactiveFormsModule
   ],
-  providers: [{
-    provide: AuthServiceConfig,
-    useFactory: provideConfig
-  }],
+  providers: [
+    { provide: AuthServiceConfig, useFactory: provideConfig },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    // provider used to create fake backend
+    fakeBackendProvider
+  ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

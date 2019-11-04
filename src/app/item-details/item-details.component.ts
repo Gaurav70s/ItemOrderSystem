@@ -10,6 +10,7 @@ export class ItemDetailsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log("Hi..I have reached on Item details")
   }
 
 }

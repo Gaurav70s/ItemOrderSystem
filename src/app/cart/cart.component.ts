@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {CartService} from '../cart.service';
-import {Item} from '../item';
+import {CartService} from '../_services/cart.service';
+import {Item} from '../_models/item';
 import {R3BaseRefDecoratorDetection} from '@angular/compiler-cli/src/ngtsc/annotations/src/base_def';
 
 @Component({
@@ -20,18 +20,14 @@ export class CartComponent implements OnInit {
 
   ngOnInit() {
     this.getCartItems();
-
   }
 
   public getCartItems() {
-    this.cartService.getCartItems().subscribe(data => {
-      this.items = data;
-      for (const item of this.items) {
-        this.subtotal = this.subtotal + (item.price * item.quantity);
-        this.totalQue = this.totalQue + item.quantity;
-      }
-    });
-
+    this.items = JSON.parse(localStorage.getItem("cartItem"));
+    for (const item of this.items) {
+      this.subtotal = this.subtotal + (item.price * item.quantity);
+      this.totalQue = this.totalQue + item.quantity;
+    }
   }
   getNext(item: Item): void {
     item.quantity = item.quantity + 1;

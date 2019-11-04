@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {ItemService} from '../item.service';
-import {Item} from '../item';
-import {ItemOnCart} from '../itemOnCart';
+import {ItemService} from '../_services/item.service';
+import {Item} from '../_models/item';
+import {ItemOnCart} from '../_models/itemOnCart';
 
 @Component({
   selector: 'app-items',
@@ -12,7 +12,9 @@ export class ItemsComponent implements OnInit {
 
   items: Item[];
 
-  constructor(private itemService: ItemService) { }
+  constructor(private itemService: ItemService) {
+    localStorage.setItem(`cartItem`, "[]")
+  }
 
   ngOnInit() {
     this.getItems();

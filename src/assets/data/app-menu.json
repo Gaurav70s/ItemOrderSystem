@@ -10,5 +10,9 @@
   {
     "name": "login",
     "url": "/login"
+  },
+  {
+    "name": "KOT",
+    "url": "/kot"
   }
 ]

@@ -1,0 +1,58 @@
+{
+  "activeOrders": [
+    {
+      "id": 1,
+      "name": "test1",
+      "orders" : [
+        {
+          "tableNo": "TB01",
+          "orderNo": "001",
+          "quantity": 1
+        },
+        {
+          "tableNo": "TB02",
+          "orderNo": "002",
+          "quantity": 2
+        },
+        {
+          "tableNo": "TB03",
+          "orderNo": "003",
+          "quantity": 1
+        },
+        {
+          "tableNo": "TB04",
+          "orderNo": "004",
+          "quantity": 2
+        }
+      ]
+    }
+  ],
+  "notApprovedOrders": [
+    {
+      "orderNo": "100",
+      "tableNo": "TB10",
+      "items":[
+        {
+          "id": 2,
+          "name": "test2",
+          "quantity": 2
+        },
+        {
+          "id": 3,
+          "name": "test3",
+          "quantity": 2
+        },
+        {
+          "id": 4,
+          "name": "test4",
+          "quantity": 2
+        },
+        {
+          "id": 5,
+          "name": "test5",
+          "quantity": 2
+        }
+      ]
+    }
+  ]
+}
