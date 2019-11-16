@@ -39,4 +39,10 @@ export class ItemService {
     /*const blob = new Blob([JSON.stringify(item)], { type: 'application/json'});
     fs.saveAs(blob, '/asset/data/cart.json');*/
   }
+  public getKOT(){
+    return this.http.get<Item[]>('./assets/data/kot.json').pipe(
+      catchError(this.handleError<Item[]>('getItems', [])));
+
+
+  }
 }

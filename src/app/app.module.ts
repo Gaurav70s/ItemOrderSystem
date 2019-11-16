@@ -22,6 +22,7 @@ import { KitchenOrderDisplayComponent } from './kitchen-order-display/kitchen-or
 import { KitchenCompletedOrderComponent } from './kitchen-completed-order/kitchen-completed-order.component';
 import { KitchenIncompletedOrderComponent } from './kitchen-incompleted-order/kitchen-incompleted-order.component';
 import { ErrorInterceptor, fakeBackendProvider, JwtInterceptor } from "./_helpers";
+import { CounterDashboardComponent } from './counter-dashboard/counter-dashboard.component';
 
 
 const config = new AuthServiceConfig([
@@ -50,7 +51,8 @@ export function provideConfig() {
     SignupComponent,
     KitchenOrderDisplayComponent,
     KitchenCompletedOrderComponent,
-    KitchenIncompletedOrderComponent
+    KitchenIncompletedOrderComponent,
+    CounterDashboardComponent
   ],
   imports: [
     BrowserModule,
