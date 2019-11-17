@@ -1,0 +1,86 @@
+[
+  {
+    "tableNo": "TB01",
+    "orders":[
+      {
+        "orderNo": 100,
+        "status": "payed",
+        "items": [
+          {
+            "id": 1,
+            "name": "test1",
+            "price": "10",
+            "description": "This is a test item. please select the same",
+            "category": "veg",
+            "quantity": 1
+          },
+          {
+            "id": 2,
+            "name": "test2",
+            "price": "15",
+            "description": "This is a test item. please select the same",
+            "category": "nonveg",
+            "quantity": 1
+          }
+        ]
+      },{
+        "orderNo": 102,
+        "status": "new",
+        "items": [
+          {
+            "id": 1,
+            "name": "test1",
+            "price": "10",
+            "description": "This is a test item. please select the same",
+            "category": "veg",
+            "quantity": 1
+          },
+          {
+            "id": 2,
+            "name": "test2",
+            "price": "15",
+            "description": "This is a test item. please select the same",
+            "category": "nonveg",
+            "quantity": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "tableNo": "TB02",
+    "orders": [
+      {
+        "orderNo": 101,
+        "status": "payed",
+        "items": [
+          {
+            "id": 1,
+            "name": "test1",
+            "price": "10",
+            "description": "This is a test item. please select the same",
+            "category": "veg",
+            "quantity": 1
+          },
+          {
+            "id": 2,
+            "name": "test2",
+            "price": "15",
+            "description": "This is a test item. please select the same",
+            "category": "nonveg",
+            "quantity": 1
+          }
+        ]
+      }
+    ]
+  },{
+  "tableNo": "TB04",
+  "orders":[
+  ]
+},
+  {
+    "tableNo": "TB03",
+    "orders":[
+    ]
+  }
+]

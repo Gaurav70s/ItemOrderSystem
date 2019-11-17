@@ -12,6 +12,7 @@ import {Role} from "./_models/Role";
 import {KitchenCompletedOrderComponent} from "./kitchen-completed-order/kitchen-completed-order.component";
 import {KitchenIncompletedOrderComponent} from "./kitchen-incompleted-order/kitchen-incompleted-order.component";
 import {KitchenOrderDisplayComponent} from "./kitchen-order-display/kitchen-order-display.component";
+import {CounterDashboardComponent} from "./counter-dashboard/counter-dashboard.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -24,6 +25,7 @@ const routes: Routes = [
   {path: 'cart' , component: CartComponent, data: { roles: [Role.Admin]}},
   {path: 'login', component: LoginComponent},
   {path: 'forgotPassword', component: ForgotPasswordComponent},
+  {path: 'counter', component: CounterDashboardComponent},
   {path: 'signup', component: SignupComponent},
   {path: 'kot',component: KitchenOrderDisplayComponent ,children:[
       {path: 'completed', component: KitchenCompletedOrderComponent},
