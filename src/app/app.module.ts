@@ -15,13 +15,13 @@ import { CartComponent } from './cart/cart.component';
 import { LoginComponent } from './login/login.component';
 import { AppMenuComponent } from './app-menu/app-menu.component';
 import { SocialLoginModule} from 'angularx-social-login';
-import { AuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider, LinkedInLoginProvider  } from 'angularx-social-login';
+import { AuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider  } from 'angularx-social-login';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { SignupComponent } from './signup/signup.component';
 import { KitchenOrderDisplayComponent } from './kitchen-order-display/kitchen-order-display.component';
 import { KitchenCompletedOrderComponent } from './kitchen-completed-order/kitchen-completed-order.component';
 import { KitchenIncompletedOrderComponent } from './kitchen-incompleted-order/kitchen-incompleted-order.component';
-import { ErrorInterceptor, fakeBackendProvider, JwtInterceptor } from "./_helpers";
+import { ErrorInterceptor, fakeBackendProvider, JwtInterceptor } from './_helpers';
 import { CounterDashboardComponent } from './counter-dashboard/counter-dashboard.component';
 import { OrdersDashboardComponent } from './orders-dashboard/orders-dashboard.component';
 import { CreateItemComponent } from './create-item/create-item.component';
@@ -30,9 +30,10 @@ import { CreateItemImagesComponent } from './create-item-images/create-item-imag
 
 
 const config = new AuthServiceConfig([
+  // tslint:disable-next-line:max-line-length
   { id: GoogleLoginProvider.PROVIDER_ID, provider: new GoogleLoginProvider('85990489032-fu74pc0rnop2oq8rpmatgr1qd77o3k3v.apps.googleusercontent.com') },
-  { id: FacebookLoginProvider.PROVIDER_ID, provider: new FacebookLoginProvider('464132267711853') },
-  { id: LinkedInLoginProvider.PROVIDER_ID, provider: new LinkedInLoginProvider("78iqy5cu2e1fgr") }
+  { id: FacebookLoginProvider.PROVIDER_ID, provider: new FacebookLoginProvider('464132267711853') }/*,
+  { id: LinkedInLoginProvider.PROVIDER_ID, provider: new LinkedInLoginProvider('78iqy5cu2e1fgr') }*/
 ]);
 
 export function provideConfig() {

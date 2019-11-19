@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService, FacebookLoginProvider, GoogleLoginProvider, LinkedInLoginProvider, SocialUser } from 'angularx-social-login';
+/*import { AuthService, FacebookLoginProvider, GoogleLoginProvider, LinkedInLoginProvider, SocialUser } from 'angularx-social-login';*/
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { AuthenticationService } from "../_services/authentication.service";
-import {first} from "rxjs/operators";
+import { AuthenticationService } from '../_services/authentication.service';
+import {first} from 'rxjs/operators';
 
 
 // declare var FB: any;
@@ -16,16 +16,15 @@ import {first} from "rxjs/operators";
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
-  //user: SocialUser;
+  // user: SocialUser;
   loading = false;
   isSubmitted  =  false;
-  //endTime = new Date();
+  // endTime = new Date();
   returnUrl: string;
-  error= '';
-
+  error = '';
   constructor(
     private formBuilder: FormBuilder,
-    //private authService: AuthService,
+    // private authService: AuthService,
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticationService) {
@@ -100,7 +99,7 @@ export class LoginComponent implements OnInit {
     });
 
     // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
   }
 
   // convenience getter for easy access to form fields
