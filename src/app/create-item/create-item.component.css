@@ -85,27 +85,11 @@ h4 {
   border-color: #007bff;
 }
 
-.btn {
-  display: inline-block;
-  font-weight: 400;
-  color: #212529;
-  text-align: center;
-  vertical-align: middle;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  background-color: transparent;
-  border: 1px solid transparent;
-  padding: 0.375rem 0.75rem;
-  font-size: 1rem;
-  line-height: 1.5;
-  border-radius: 0.25rem;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-}
 
 
 
+
+/*
 .md-form input:not([type]).valid, .md-form input:not([type]):focus.valid, .md-form input[type="text"]:not(.browser-default).valid, .md-form input[type="text"]:not(.browser-default):focus.valid, .md-form input[type="password"]:not(.browser-default).valid, .md-form input[type="password"]:not(.browser-default):focus.valid, .md-form input[type="email"]:not(.browser-default).valid, .md-form input[type="email"]:not(.browser-default):focus.valid, .md-form input[type="url"]:not(.browser-default).valid, .md-form input[type="url"]:not(.browser-default):focus.valid, .md-form input[type="time"]:not(.browser-default).valid, .md-form input[type="time"]:not(.browser-default):focus.valid, .md-form input[type="date"]:not(.browser-default).valid, .md-form input[type="date"]:not(.browser-default):focus.valid, .md-form input[type="datetime"]:not(.browser-default).valid, .md-form input[type="datetime"]:not(.browser-default):focus.valid, .md-form input[type="datetime-local"]:not(.browser-default).valid, .md-form input[type="datetime-local"]:not(.browser-default):focus.valid, .md-form input[type="tel"]:not(.browser-default).valid, .md-form input[type="tel"]:not(.browser-default):focus.valid, .md-form input[type="number"]:not(.browser-default).valid, .md-form input[type="number"]:not(.browser-default):focus.valid, .md-form input[type="search"]:not(.browser-default).valid, .md-form input[type="search"]:not(.browser-default):focus.valid, .md-form input[type="search-md"].valid, .md-form input[type="search-md"]:focus.valid, .md-form textarea.md-textarea.valid, .md-form textarea.md-textarea:focus.valid {
   border-bottom: 1px solid #00c851;
   -webkit-box-shadow: 0 1px 0 0 #00c851;
@@ -143,3 +127,4 @@ input, button, select, optgroup, textarea {
   font-size: inherit;
   line-height: inherit;
 }
+*/

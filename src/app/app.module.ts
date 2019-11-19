@@ -27,6 +27,7 @@ import { OrdersDashboardComponent } from './orders-dashboard/orders-dashboard.co
 import { CreateItemComponent } from './create-item/create-item.component';
 import { CreateItemCategoryComponent } from './create-item-category/create-item-category.component';
 import { CreateItemImagesComponent } from './create-item-images/create-item-images.component';
+import { IngredientsComponent } from './ingredients/ingredients.component';
 
 
 const config = new AuthServiceConfig([
@@ -61,7 +62,8 @@ export function provideConfig() {
     OrdersDashboardComponent,
     CreateItemComponent,
     CreateItemCategoryComponent,
-    CreateItemImagesComponent
+    CreateItemImagesComponent,
+    IngredientsComponent
   ],
   imports: [
     BrowserModule,
