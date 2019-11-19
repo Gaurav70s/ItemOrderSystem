@@ -1,0 +1,50 @@
+<div class="container-fluid">
+  <!-- Page Header-->
+  <div class="row">
+    <div class="col-lg-6">
+
+      <div class="card">
+        <div class="card-header">
+          <h4>Create Item</h4>
+        </div>
+        <div class="card-body">
+          <form class="form-validate" novalidate="novalidate">
+            <div class="form-group">
+              <label>Item Name</label>
+              <input name="form2-name" type="text" required="" data-msg="Please enter your name" class="form-control">
+            </div>
+            <div class="form-group">
+              <label>Item Price</label>
+              <input name="form2-email" type="email" required="" data-msg="Please enter a valid email" class="form-control">
+            </div>
+            <div class="form-group">
+              <label>Item Description</label>
+              <input id="form2-password" name="form2-password" type="password" required="" data-msg="Please enter your password" data-rule-minlength="5" data-msg-minlength="Your password should have at least 5 characters." class="form-control">
+            </div>
+            <div class="form-group">
+              <label>Item Category</label>
+              <input id="form2-password2" name="form2-password2" type="password" required="" data-msg="Please confirm your password" data-rule-equalto="#form2-password" data-msg-equalto="Passwords do not match" class="form-control">
+            </div>
+            <!--<div class="file-field">
+              <div class="btn btn-primary btn-sm float-left waves-effect waves-light">
+                <span>Choose files</span>
+                <input type="file" multiple="">
+              </div>
+              <div class="file-path-wrapper">
+                <input class="file-path validate valid" type="text" placeholder="Upload one or more files">
+              </div>
+            </div>-->
+            <div class="form-group mt-3">
+              <label class="mr-2">Item Image</label>
+              <input type="file" name="file">
+            </div>
+
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

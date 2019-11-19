@@ -23,6 +23,7 @@
     "angularx-social-login": "^1.2.7",
     "bootstrap": "^4.3.1",
     "bootstrap-toggle": "^2.2.2",
+    "dropzone": "^5.5.1",
     "file-match": "^1.0.2",
     "file-server": "^2.1.0",
     "file-system": "^2.2.2",

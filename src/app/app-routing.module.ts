@@ -13,19 +13,25 @@ import {KitchenCompletedOrderComponent} from "./kitchen-completed-order/kitchen-
 import {KitchenIncompletedOrderComponent} from "./kitchen-incompleted-order/kitchen-incompleted-order.component";
 import {KitchenOrderDisplayComponent} from "./kitchen-order-display/kitchen-order-display.component";
 import {CounterDashboardComponent} from "./counter-dashboard/counter-dashboard.component";
+import {OrdersDashboardComponent} from "./orders-dashboard/orders-dashboard.component";
+import {CreateItemComponent} from "./create-item/create-item.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: 'item' , children: [
       { path: '', component: ItemsComponent },
-      { path: ':id', component: ItemDetailsComponent }
+      { path: ':id', component: ItemDetailsComponent },
+      { path: 'create', component: CreateItemComponent }
     ]
   },
   {path: 'checkout', component: CheckoutComponent, data: { roles: [Role.Admin]}},
   {path: 'cart' , component: CartComponent, data: { roles: [Role.Admin]}},
   {path: 'login', component: LoginComponent},
+  {path: 'create', component: CreateItemComponent},
   {path: 'forgotPassword', component: ForgotPasswordComponent},
   {path: 'counter', component: CounterDashboardComponent},
+  {path: 'orderlist', component: OrdersDashboardComponent},
+
   {path: 'signup', component: SignupComponent},
   {path: 'kot',component: KitchenOrderDisplayComponent ,children:[
       {path: 'completed', component: KitchenCompletedOrderComponent},
