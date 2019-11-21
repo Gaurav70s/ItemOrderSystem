@@ -1,6 +1,7 @@
 [
   {
     "tableNo": "TB01",
+    "status": "Reserved",
     "orders":[
       {
         "orderNo": 100,
@@ -49,6 +50,7 @@
   },
   {
     "tableNo": "TB02",
+    "status": "Not_Available",
     "orders": [
       {
         "orderNo": 101,
@@ -73,13 +75,76 @@
         ]
       }
     ]
-  },{
-  "tableNo": "TB04",
-  "orders":[
-  ]
-},
+  },
+  {
+    "tableNo": "TB04",
+    "status": "Reserved",
+    "orders":[
+    ]
+  },
   {
     "tableNo": "TB03",
+    "status": "Reserved",
+    "orders":[
+    ]
+  },
+  {
+    "tableNo": "TB04",
+    "status": "Not_Available",
+    "orders":[
+    ]
+  },
+  {
+    "tableNo": "TB03",
+    "status": "Empty",
+    "orders":[
+    ]
+  },
+  {
+    "tableNo": "TB04",
+    "status": "Settling",
+    "orders":[
+    ]
+  },
+  {
+    "tableNo": "TB03",
+    "status": "Reserved",
+    "orders":[
+    ]
+  },
+  {
+    "tableNo": "TB04",
+    "status": "Settling",
+    "orders":[
+    ]
+  },
+  {
+    "tableNo": "TB03",
+    "status": "Reserved",
+    "orders":[
+    ]
+  },
+  {
+    "tableNo": "TB04",
+    "status": "Empty",
+    "orders":[
+    ]
+  },
+  {
+    "tableNo": "TB03",
+    "status": "Not_Available",
+    "orders":[
+    ]
+  },
+  {
+    "tableNo": "TB04",
+    "status": "Empty",
+    "orders":[
+    ]
+  },
+  {
+    "tableNo": "TB03",
+    "status": "Reserved",
     "orders":[
     ]
   }

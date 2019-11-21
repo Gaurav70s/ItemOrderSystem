@@ -3,7 +3,7 @@
     "id": 1,
     "name": "test1",
     "price": "10",
-    "description": "This is a test item. please select the same",
+    "description": "This is a test item. please select the same This is a test item. please select the same  This is a test item. please select the same This is a test item. please select the same ",
     "category": "veg",
     "quantity": 0
   },

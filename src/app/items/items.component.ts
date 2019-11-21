@@ -13,7 +13,7 @@ export class ItemsComponent implements OnInit {
   items: Item[];
 
   constructor(private itemService: ItemService) {
-    localStorage.setItem(`cartItem`, "[]")
+    localStorage.setItem(`cartItem`, '[]');
   }
 
   ngOnInit() {

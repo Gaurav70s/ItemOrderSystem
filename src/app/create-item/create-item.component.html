@@ -1,30 +1,95 @@
-<div class="container-fluid">
+<app-header></app-header>
+<div class="container">
   <!-- Page Header-->
   <div class="row">
-    <div class="col-lg-6">
+    <div class="col-lg-12">
 
       <div class="card">
         <div class="card-header">
           <h4>Create Item</h4>
         </div>
         <div class="card-body">
-          <form class="form-validate" novalidate="novalidate">
+          <form class="form-validate" novalidate="novalidate" [formGroup]="itemForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
               <label>Item Name</label>
-              <input name="form2-name" type="text" required="" placeholder="Please specify Item name" class="form-control">
+              <input name="form2-name" type="text" required="" placeholder="Please specify Item name" class="form-control" formControlName="name" >
             </div>
+
+
             <div class="form-group">
               <label>Item Price</label>
-              <input name="form2-email" type="email" required="" placeholder="Please specify Item price" class="form-control">
+              <div class="input-group">
+                <div class="input-group-prepend"><span class="input-group-text">$</span></div>
+                <input name="form2-email" type="email" required="" placeholder="Please specify Item price" class="form-control" formControlName="price" >
+                <div class="input-group-append"><span class="input-group-text">.00</span></div>
+              </div>
+
             </div>
             <div class="form-group">
               <label>Item Description</label>
-              <input id="form2-password" name="form2-password" type="password" required="" placeholder="Please specify Item description" data-rule-minlength="5" data-msg-minlength="Your password should have at least 5 characters." class="form-control">
+              <input id="form2-password" name="form2-password" required="" placeholder="Please specify Item description" class="form-control" formControlName="description" >
             </div>
             <div class="form-group">
               <label>Item Category</label>
-              <input id="form2-password2" name="form2-password2" type="password" required="" placeholder="Please specify Item category" data-rule-equalto="#form2-password" data-msg-equalto="Passwords do not match" class="form-control">
+             <!-- <input id="form2-password2" name="form2-password2" required="" placeholder="Please specify Item category" class="form-control" formControlName="category" >-->
+              <select class="browser-default custom-select" formControlName="category">
+                <option selected>Open this select menu</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
             </div>
+
+            <div class="form-group">
+              <label>Item Property </label>
+              <div class="col-sm-10">
+                <div>
+                  <input id="optionsRadios1" type="radio" checked="" value="VEG" name="property" formControlName="property">
+                  <label for="optionsRadios1">Veg</label>
+                </div>
+                <div>
+                  <input id="optionsRadios2" type="radio" value="NONVEG" name="property" formControlName="property">
+                  <label for="optionsRadios2">Non Veg</label>
+                </div>
+              </div>
+            </div>
+
+
+
+           <!-- <div class="col-sm-9">
+              <div class="dropdown bootstrap-select"><select data-style="btn-outline-dark" title="Choose one of the following" class="selectpicker" tabindex="-98">
+                <option class="bs-title-option" value=""></option>
+                <option>Mustard</option>
+                <option>Ketchup</option>
+                <option>Relish</option>
+              </select>
+                <button type="button" class="btn dropdown-toggle bs-placeholder btn-outline-dark" data-toggle="dropdown" role="button" title="Choose one of the following" aria-expanded="false">
+                  <div class="filter-option">
+                    <div class="filter-option-inner">
+                      <div class="filter-option-inner-inner">Choose one of the following</div>
+                    </div>
+                  </div>
+                </button>
+                <div class="dropdown-menu" role="combobox" x-placement="bottom-start" style="max-height: 282.656px; overflow: hidden; min-height: 0px; position: absolute; transform: translate3d(0px, 37px, 0px); top: 0px; left: 0px; will-change: transform;">
+                  <div class="inner show" role="listbox" aria-expanded="false" tabindex="-1" style="max-height: 264.656px; overflow-y: auto; min-height: 0px;">
+                    <ul class="dropdown-menu inner show">
+                      <li>
+                        <a role="option" class="dropdown-item" aria-disabled="false" tabindex="0" aria-selected="false">
+                          <span class="text">Mustard</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a role="option" class="dropdown-item" aria-disabled="false" tabindex="0" aria-selected="false">
+                          <span class="text">Ketchup</span>
+                        </a>
+                      </li>
+                      <li><a role="option" class="dropdown-item" aria-disabled="false" tabindex="0" aria-selected="false"><span class="text">Relish</span></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>-->
+
             <!--<div class="file-field">
               <div class="btn btn-primary btn-sm float-left waves-effect waves-light">
                 <span>Choose files</span>
@@ -36,7 +101,7 @@
             </div>-->
             <div class="form-group mt-3">
               <label class="mr-2">Item Image</label>
-              <input type="file" name="file" placeholder="Please upload Item image">
+              <input type="file" name="file" placeholder="Please upload Item image" formControlName="itemImage" >
             </div>
 
             <div class="form-group">

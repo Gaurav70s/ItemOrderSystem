@@ -28,6 +28,8 @@ import { CreateItemComponent } from './create-item/create-item.component';
 import { CreateItemCategoryComponent } from './create-item-category/create-item-category.component';
 import { CreateItemImagesComponent } from './create-item-images/create-item-images.component';
 import { IngredientsComponent } from './ingredients/ingredients.component';
+import { CounterViewComponent } from './counter-view/counter-view.component';
+import { InvoiceComponent } from './invoice/invoice.component';
 
 
 const config = new AuthServiceConfig([
@@ -63,7 +65,9 @@ export function provideConfig() {
     CreateItemComponent,
     CreateItemCategoryComponent,
     CreateItemImagesComponent,
-    IngredientsComponent
+    IngredientsComponent,
+    CounterViewComponent,
+    InvoiceComponent
   ],
   imports: [
     BrowserModule,

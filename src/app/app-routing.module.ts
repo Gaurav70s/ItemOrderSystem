@@ -15,12 +15,18 @@ import {KitchenOrderDisplayComponent} from './kitchen-order-display/kitchen-orde
 import {CounterDashboardComponent} from './counter-dashboard/counter-dashboard.component';
 import {OrdersDashboardComponent} from './orders-dashboard/orders-dashboard.component';
 import {CreateItemComponent} from './create-item/create-item.component';
+import {CounterViewComponent} from './counter-view/counter-view.component';
+import {InvoiceComponent} from './invoice/invoice.component';
+import {CreateItemCategoryComponent} from './create-item-category/create-item-category.component';
+import {CreateItemImagesComponent} from './create-item-images/create-item-images.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: 'item' , children: [
       { path: '', component: ItemsComponent },
       { path: 'create', component: CreateItemComponent },
+      { path: 'category/create', component: CreateItemCategoryComponent },
+      { path: 'image/upload', component: CreateItemImagesComponent },
       { path: ':id', component: ItemDetailsComponent }
     ]
   },
@@ -30,6 +36,8 @@ const routes: Routes = [
   {path: 'create', component: CreateItemComponent},
   {path: 'forgotPassword', component: ForgotPasswordComponent},
   {path: 'counter', component: CounterDashboardComponent},
+  {path: 'counterview', component: CounterViewComponent},
+  {path: 'invoice', component: InvoiceComponent},
   {path: 'orderlist', component: OrdersDashboardComponent},
 
   {path: 'signup', component: SignupComponent},
