@@ -14,5 +14,22 @@
   {
     "name": "KOT",
     "url": "/kot"
+  },
+  {
+    "name": "Admin",
+    "child": [
+      {
+        "name": "Item",
+        "url": "/cart"
+      },
+      {
+        "name": "Ingredients",
+        "url": "/login"
+      },
+      {
+        "name": "KOT",
+        "url": "/kot"
+      }
+    ]
   }
 ]

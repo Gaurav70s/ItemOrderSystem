@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {CartService} from '../_services/cart.service';
+import {KotDashboard} from '../_models/KotDashboard';
 
 @Component({
   selector: 'app-kitchen-order-display',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class KitchenOrderDisplayComponent implements OnInit {
 
-  constructor() { }
+  kotDashboard: KotDashboard;
+  constructor(private cartService: CartService) { }
 
   ngOnInit() {
+    this.getKotDashboardData();
+    console.log('Kot Dashboard: ' + JSON.stringify(this.kotDashboard));
   }
 
+  getKotDashboardData() {
+    this.cartService.getKotDashboard().subscribe(data => this.kotDashboard = data);
+
+  }
 }

@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CartService} from '../_services/cart.service';
 import {Item} from '../_models/item';
-import {R3BaseRefDecoratorDetection} from '@angular/compiler-cli/src/ngtsc/annotations/src/base_def';
+import {ItemOnCart} from '../_models/itemOnCart';
 
 @Component({
   selector: 'app-cart',
@@ -10,7 +10,7 @@ import {R3BaseRefDecoratorDetection} from '@angular/compiler-cli/src/ngtsc/annot
 })
 
 export class CartComponent implements OnInit {
-  items: Item[];
+  items: ItemOnCart[];
   subtotal = 0;
   totalQue = 0;
   orderStatus = false;
@@ -23,36 +23,50 @@ export class CartComponent implements OnInit {
   }
 
   public getCartItems() {
-    this.items = JSON.parse(localStorage.getItem("cartItem"));
+    this.items = JSON.parse(localStorage.getItem('cartItem'));
     for (const item of this.items) {
-      this.subtotal = this.subtotal + (item.price * item.quantity);
+      this.subtotal = this.subtotal + (item.item.price * item.quantity);
       this.totalQue = this.totalQue + item.quantity;
     }
   }
-  getNext(item: Item): void {
+  getNext(item: ItemOnCart): void {
     item.quantity = item.quantity + 1;
   }
-  getPrevious(item: Item): void {
+  getPrevious(item: ItemOnCart): void {
     if (item.quantity > 0) {
       item.quantity = item.quantity - 1;
     }
   }
 
-  getTotalPrice(item: Item): number {
+  getTotalPrice(item: ItemOnCart): number {
     this.subtotal = 0;
     this.totalQue = 0;
+
     for (const item1 of this.items) {
-      this.subtotal = this.subtotal + (item1.price * item1.quantity);
+      this.subtotal = this.subtotal + (item1.item.price * item1.quantity);
       this.totalQue = this.totalQue + item1.quantity;
     }
-    return item.price * item.quantity;
+    return item.item.price * item.quantity;
   }
   deleteItem(item: Item ): void {
-    this.items = this.items.filter(h => h !== item);
+    this.items = this.items.filter(h => h.item !== item);
   }
   placeOrder() {
-    console.log('Order Placed');
+    this.cartService.placeOrder(this.items);
+    console.log('Order Placed with data : ' + JSON.stringify(this.items));
     this.orderStatus = true;
     this.orderNumber = this.orderNumber + 1;
+  }
+  getTotalAmount(subTotal: number) {
+ return subTotal + this.getCGST(subTotal) + this.getSGST(subTotal) + this.getServiceCharge(subTotal);
+  }
+  getCGST(subTotal: number) {
+    return 0.025 * subTotal;
+  }
+  getSGST(subTotal: number) {
+    return 0.025 * subTotal;
+  }
+  getServiceCharge(subTotal: number) {
+    return 0.05 * subTotal;
   }
 }

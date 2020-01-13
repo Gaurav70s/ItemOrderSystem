@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
+import {ItemService} from '../_services/item.service';
 
 @Component({
   selector: 'app-create-item',
@@ -18,6 +19,7 @@ export class CreateItemComponent implements OnInit {
 
   constructor( private formBuilder: FormBuilder,
                // private authService: AuthService,
+               private itemService: ItemService,
                private route: ActivatedRoute,
                private router: Router) { }
 
@@ -37,6 +39,7 @@ export class CreateItemComponent implements OnInit {
   }
 
   onSubmit() {
+    this.itemService.createItem(this.itemForm.value);
     console.log(this.itemForm.value);
   }
 }

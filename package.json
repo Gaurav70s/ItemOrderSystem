@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --proxy-config src/proxy.conf.json",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -25,6 +25,7 @@
     "animate.css": "^3.7.2",
     "bootstrap": "^4.3.1",
     "bootstrap-toggle": "^2.2.2",
+    "cors": "^2.8.5",
     "dropzone": "^5.5.1",
     "file-match": "^1.0.2",
     "file-server": "^2.1.0",

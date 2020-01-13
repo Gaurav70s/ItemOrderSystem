@@ -5,5 +5,4 @@ export class Item {
   category: string;
   description: string;
   quantity = 0;
-  totalprice: number;
 }

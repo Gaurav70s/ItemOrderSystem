@@ -15,7 +15,7 @@
     <div class="row">
       <div *ngFor="let item of items" class="col-md-4 col-sm-6">
         <div class="single-food">
-          <div class="{{item.category}}" >
+          <div class="{{item.category | lowercase}}" >
             <img src="/assets/images/Veg_nonVeg.png" class="img-category" alt="">
           </div>
           <div class="food-img">
@@ -32,7 +32,7 @@
         <div class="_33Hf_ _3L1X9">
           <div class="_1ds9T" (click)="getNext(item)">+</div>
           <div class="_29Y5Z" (click)="getPrevious(item)">-</div>
-          <div class="_2zAXs" id="qua">{{item.quantity}}</div>
+          <div class="_2zAXs" id="qua">{{item.quantity? item.quantity : 0}}</div>
           <div class="cart_icon1"><img class="cart_icon" src="/assets/images/cart_icon.png" (click)="addtocart(item)"></div>
         </div>
         <div class="_33HL_ _3L1X9">

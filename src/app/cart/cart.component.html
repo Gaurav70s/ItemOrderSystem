@@ -9,9 +9,9 @@
       <div class="row bg-white has-shadow">
         <div class="left-col col-lg-12 d-flex align-items-center justify-content-between">
           <div class="project-title d-flex align-items-center" style="width: 65%;">
-            <img src="/assets/images/food{{item.id}}.jpg" class="img-fluid" alt="">
+            <img src="/assets/images/food{{item.item.id}}.jpg" class="img-fluid" alt="">
             <div class="text">
-              <h3 class="h4">{{item.name}}</h3><small>{{item.description}}</small>
+              <h3 class="h4">{{item.item.name}}</h3><small>{{item.item.description}}</small>
             </div>
           </div>
          <!-- <div class="input-group" style="width: 20%;">
@@ -40,7 +40,7 @@
           <div class="_1mx0r" style="width: 10%;text-align: center">
             <span class="_2W2U4">₹{{getTotalPrice(item)}}</span>
           </div>
-          <span class="fa fa-close" style="cursor:pointer;width: 5%;text-align:right" (click)="deleteItem(item)"></span>
+          <span class="fa fa-close" style="cursor:pointer;width: 5%;text-align:right" (click)="deleteItem(item.item)"></span>
         </div>
       </div>
     </div>
@@ -62,25 +62,29 @@
           <tbody>
           <tr>
             <td class="text-muted">Subtotal Amount</td>
-            <td class="font-medium">{{subtotal}}</td>
+            <td class="font-medium float-right">{{subtotal | number : '1.2' }}</td>
           </tr>
           <tr>
-            <td class="text-muted">Vat</td>
-            <td class="font-medium">{{0.2 * subtotal}}</td>
+            <td class="text-muted">Service Charge @5%</td>
+            <td class="font-medium float-right">{{getServiceCharge(subtotal) | number : '1.2' }}</td>
           </tr>
           <tr>
-            <td class="text-muted">Service Charge</td>
-            <td class="font-medium">100</td>
+            <td class="text-muted">SGST@2.50%</td>
+            <td class="font-medium float-right">{{getSGST(subtotal) | number : '1.2' }}</td>
+          </tr>
+          <tr>
+            <td class="text-muted">CGST@2.50%</td>
+            <td class="font-medium float-right">{{getCGST(subtotal) | number : '1.2' }}</td>
           </tr>
           <tr>
             <td class="text-muted">Amount Payable</td>
-            <td class="font-medium">{{subtotal + (0.2 * subtotal)+ 100}}</td>
+            <td class="font-medium float-right">{{getTotalAmount(subtotal) | number : '1.2' }}</td>
           </tr>
           </tbody>
         </table>
         <div class="container border-top-generic" style="text-align: center;">
           <div class="button-group-area">
-            <a href="#" class="genric-btn primary radius" (click)="placeOrder()">Place Order</a>
+            <a class="genric-btn primary radius" (click)="placeOrder()">Place Order</a>
           </div>
         </div>
       </div>

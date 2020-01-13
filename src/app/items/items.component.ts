@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ItemService} from '../_services/item.service';
 import {Item} from '../_models/item';
-import {ItemOnCart} from '../_models/itemOnCart';
 
 @Component({
   selector: 'app-items',
@@ -20,6 +19,7 @@ export class ItemsComponent implements OnInit {
     this.getItems();
   }
   getNext(item: Item): void {
+    if (item.quantity === undefined) { item.quantity = 0; }
     item.quantity = item.quantity + 1;
   }
   getPrevious(item: Item): void {
@@ -30,11 +30,12 @@ export class ItemsComponent implements OnInit {
 
   getItems(): void {
     this.itemService.getItems().subscribe(data => this.items = data);
+
   }
 
   addtocart(item: Item): void {
     console.log(item);
-    this.itemService.addToCart(item);
+    this.itemService.addToCart(item, item.quantity);
   }
   print(): void {
     console.log('test the crap');

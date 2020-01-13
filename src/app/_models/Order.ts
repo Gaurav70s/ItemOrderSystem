@@ -1,7 +1,7 @@
-import {OrderStatus} from "./OrderStatus";
-import {Item} from "./item";
+import {OrderStatus} from './OrderStatus';
+import {Item} from './item';
 
-export class Order{
+export class Order {
   orderNo: number;
   status: OrderStatus;
   items: Item[];

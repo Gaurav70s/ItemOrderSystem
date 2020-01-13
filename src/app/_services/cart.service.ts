@@ -5,6 +5,7 @@ import {Item} from '../_models/item';
 import {catchError} from 'rxjs/operators';
 import {Order} from '../_models/Order';
 import {ItemOnCart} from '../_models/itemOnCart';
+import {KotDashboard} from '../_models/KotDashboard';
 
 @Injectable({
   providedIn: 'root'
@@ -31,5 +32,18 @@ export class CartService {
       console.error(error);
       return of(result as T);
     };
+  }
+
+  public getInvoice(): Observable<Item[]> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
+    const options = { headers, crossDomain: true, withCredentials: true };
+    return this.http.get<Item[]>('/rest/item_order_service/v1/Order/invoice', options).pipe(
+      catchError(this.handleError<Item[]>('getItems', [])));
+  }
+  public getKotDashboard(): Observable<KotDashboard> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
+    const options = { headers, crossDomain: true, withCredentials: true };
+    return this.http.get<KotDashboard>('/rest/item_order_service/v1/dashboard/kot', options).pipe(
+      catchError(this.handleError<KotDashboard>('getItems', new KotDashboard())));
   }
 }

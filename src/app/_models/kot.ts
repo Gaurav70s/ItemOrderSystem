@@ -1,7 +1,7 @@
 import {ActiveOrder} from './ActiveOrder';
 
-export class KOT{
-    id: number;
-    name: string;
+export class KOT {
+    item_id: number;
+    item_name: string;
     orders: ActiveOrder[];
 }
