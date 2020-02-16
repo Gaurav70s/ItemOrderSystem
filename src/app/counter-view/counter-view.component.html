@@ -4,7 +4,7 @@
     <!-- Column -->
     <div class="col-md-6 col-lg-3" *ngFor="let table of dashboards">
       <div class="card card-body" [ngClass]="{ 'badge-danger' : table.status == 'Reserved',
-                                               'badge-light' : table.status == 'Empty',
+                                               'badge-light' : table.status == 'available',
                                                'badge-primary' : table.status == 'Settling',
                                                'badge-dark' : table.status == 'Not_Available'
                                               }">
@@ -12,12 +12,12 @@
         <div class="row">
           <!-- Column -->
           <div class="col pr-0 align-self-center">
-            <div class="font-weight-light mb-0 " style="font-size: 30px;">{{table.tableNo}}</div>
+            <div class="font-weight-light mb-0 " style="font-size: 30px;">{{table.table_no}}</div>
             <div class="text-muted">{{table.status}}</div>
           </div>
           <!-- Column -->
           <div class="col text-right align-self-center">
-            <div class="font-weight-light mb-0" style="font-size: 20px;">${{table.tableNo}}</div>
+            <div class="font-weight-light mb-0" style="font-size: 20px;">${{table.table_no}}</div>
           </div>
         </div>
       </div>

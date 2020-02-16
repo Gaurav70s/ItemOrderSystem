@@ -5,21 +5,21 @@
 <section class="food-area section-padding">
   <div class="container">
     <div class="row">
-      <div class="col-md-5">
+      <div class="col-md-12">
         <div class="section-top">
-          <h3><span class="style-change">we serve</span> <br>delicious food</h3>
+          <h3><span class="style-change">We serve</span> <br>delicious food</h3>
           <p class="pt-3">They're fill divide i their yielding our after have him fish on there for greater man moveth, moved Won't together isn't for fly divide mids fish firmament on net.</p>
         </div>
       </div>
     </div>
     <div class="row">
-      <div *ngFor="let item of items" class="col-md-4 col-sm-6">
+      <div *ngFor="let item of items" class="col-md-4 col-sm-6 shadow p-3 mb-5 bg-white rounded">
         <div class="single-food">
           <div class="{{item.category | lowercase}}" >
             <img src="/assets/images/Veg_nonVeg.png" class="img-category" alt="">
           </div>
           <div class="food-img">
-            <img src="/assets/images/food{{item.id}}.jpg" class="img-fluid" alt="">
+            <img src="/assets/images/food{{item.id}}.jpg" class="img-fluid" onerror="this.src='/assets/images/not-available.jpg';" alt="">
           </div>
           <div class="food-content">
             <div class="d-flex justify-content-between">
@@ -30,10 +30,10 @@
           </div>
         </div>
         <div class="_33Hf_ _3L1X9">
-          <div class="_1ds9T" (click)="getNext(item)">+</div>
-          <div class="_29Y5Z" (click)="getPrevious(item)">-</div>
+          <div class="_1ds9T" title= "Add Quantity" (click)="getNext(item)">+</div>
+          <div class="_29Y5Z" title= "Remove Quantity" (click)="getPrevious(item)">-</div>
           <div class="_2zAXs" id="qua">{{item.quantity? item.quantity : 0}}</div>
-          <div class="cart_icon1"><img class="cart_icon" src="/assets/images/cart_icon.png" (click)="addtocart(item)"></div>
+          <div class="cart_icon1" title= "Add to cart"><img class="cart_icon" src="/assets/images/cart_icon.png" (click)="addtocart(item)"></div>
         </div>
         <div class="_33HL_ _3L1X9">
           <div class="kart" routerLink="/cart">Go to Cart</div>
@@ -43,5 +43,5 @@
   </div>
 </section>
 <!-- Food Area End -->
-<app-booktable></app-booktable>
+<!--<app-booktable></app-booktable>-->
 <app-footer></app-footer>

@@ -14,7 +14,7 @@ export class CartComponent implements OnInit {
   subtotal = 0;
   totalQue = 0;
   orderStatus = false;
-  orderNumber = 0;
+  orderNumber = '';
 
   constructor(private cartService: CartService) { }
 
@@ -52,10 +52,9 @@ export class CartComponent implements OnInit {
     this.items = this.items.filter(h => h.item !== item);
   }
   placeOrder() {
-    this.cartService.placeOrder(this.items);
+    this.cartService.placeOrder(this.items).subscribe(data => this.orderNumber = data);
     console.log('Order Placed with data : ' + JSON.stringify(this.items));
     this.orderStatus = true;
-    this.orderNumber = this.orderNumber + 1;
   }
   getTotalAmount(subTotal: number) {
  return subTotal + this.getCGST(subTotal) + this.getSGST(subTotal) + this.getServiceCharge(subTotal);

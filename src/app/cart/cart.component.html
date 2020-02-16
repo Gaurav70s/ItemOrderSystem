@@ -1,96 +1,102 @@
 
 <app-header></app-header>
 <!-- Banner Area End -->
-
-<div class="container-fluid" style="display: flex;flex-wrap: wrap" *ngIf="!orderStatus">
-  <!-- Project-->
-  <div class="col-md-12 col-lg-6 col-xl-7">
-    <div class="project" *ngFor="let item of items">
-      <div class="row bg-white has-shadow">
-        <div class="left-col col-lg-12 d-flex align-items-center justify-content-between">
-          <div class="project-title d-flex align-items-center" style="width: 65%;">
-            <img src="/assets/images/food{{item.item.id}}.jpg" class="img-fluid" alt="">
-            <div class="text">
-              <h3 class="h4">{{item.item.name}}</h3><small>{{item.item.description}}</small>
+<div *ngIf="items.length>0; else showMessage">
+  <div class="container-fluid" style="display: flex;flex-wrap: wrap" *ngIf="!orderStatus;">
+    <!-- Project-->
+    <div class="col-md-12 col-lg-6 col-xl-7">
+      <div class="project" *ngFor="let item of items">
+        <div class="row bg-white has-shadow">
+          <div class="left-col col-lg-12 d-flex align-items-center justify-content-between">
+            <div class="project-title d-flex align-items-center" style="width: 65%;">
+              <img src="/assets/images/food{{item.item.id}}.jpg" class="img-fluid" alt="">
+              <div class="text">
+                <h3 class="h4">{{item.item.name}}</h3><small>{{item.item.description}}</small>
+              </div>
             </div>
-          </div>
-         <!-- <div class="input-group" style="width: 20%;">
-                <span class="input-group-btn">
-              <button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">
-                  <span class="glyphicon glyphicon-minus"></span>
-                </button>
-                </span>
-            <input type="text" name="quant[1]" class="form-control input-number" value="1" min="1" max="10">
-            <span class="input-group-btn">
-              <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]">
-                  <span class="glyphicon glyphicon-plus"></span>
-                </button>
-                </span>
-          </div>-->
+            <!-- <div class="input-group" style="width: 20%;">
+                   <span class="input-group-btn">
+                 <button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">
+                     <span class="glyphicon glyphicon-minus"></span>
+                   </button>
+                   </span>
+               <input type="text" name="quant[1]" class="form-control input-number" value="1" min="1" max="10">
+               <span class="input-group-btn">
+                 <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]">
+                     <span class="glyphicon glyphicon-plus"></span>
+                   </button>
+                   </span>
+             </div>-->
 
 
 
-          <div style="width: 20%;">
-          <div class="_33Hf_ _3L1X9">
-            <div class="_1ds9T" (click)="getNext(item)">+</div>
-            <div class="_29Y5Z" (click)="getPrevious(item)">-</div>
-            <div class="_2zAXs" id="qua">{{item.quantity}}</div>
+            <div style="width: 20%;">
+              <div class="_33Hf_ _3L1X9">
+                <div class="_1ds9T" (click)="getNext(item)">+</div>
+                <div class="_29Y5Z" (click)="getPrevious(item)">-</div>
+                <div class="_2zAXs" id="qua">{{item.quantity}}</div>
+              </div>
+            </div>
+            <div class="_1mx0r" style="width: 10%;text-align: center">
+              <span class="_2W2U4">₹{{getTotalPrice(item)}}</span>
+            </div>
+            <span class="fa fa-close" style="cursor:pointer;width: 5%;text-align:right" (click)="deleteItem(item.item)"></span>
           </div>
-          </div>
-          <div class="_1mx0r" style="width: 10%;text-align: center">
-            <span class="_2W2U4">₹{{getTotalPrice(item)}}</span>
-          </div>
-          <span class="fa fa-close" style="cursor:pointer;width: 5%;text-align:right" (click)="deleteItem(item.item)"></span>
         </div>
       </div>
-    </div>
-    <div class="sc-subtotal a-text-right a-float-right sc-java-remote-feature" data-name="Active Items Subtotals">
-      <p class="a-spacing-none a-spacing-top-mini">
+      <div class="sc-subtotal a-text-right a-float-right sc-java-remote-feature" data-name="Active Items Subtotals">
+        <p class="a-spacing-none a-spacing-top-mini">
       <span id="sc-subtotal-label-activecart" class="a-size-medium">Subtotal ({{totalQue}} item):
         <span id="sc-subtotal-amount-activecart" class="a-color-price a-text-bold">
           <span class="a-size-medium a-color-price sc-price sc-white-space-nowrap sc-price-sign"><span class="currencyINR">&nbsp;&nbsp;</span>₹{{subtotal}}</span>
         </span>
       </span>
-      </p>
+        </p>
+      </div>
     </div>
-  </div>
-  <div class="col-md-12 col-lg-5 col-xl-5" *ngIf="items.length>0">
-    <div class="overdue card">
-      <div class="card-body">
-        <h3>Cart Total</h3><!--<small>Lorem ipsum dolor sit amet.</small>-->
-        <table class="table no-border mini-table m-t-20">
-          <tbody>
-          <tr>
-            <td class="text-muted">Subtotal Amount</td>
-            <td class="font-medium float-right">{{subtotal | number : '1.2' }}</td>
-          </tr>
-          <tr>
-            <td class="text-muted">Service Charge @5%</td>
-            <td class="font-medium float-right">{{getServiceCharge(subtotal) | number : '1.2' }}</td>
-          </tr>
-          <tr>
-            <td class="text-muted">SGST@2.50%</td>
-            <td class="font-medium float-right">{{getSGST(subtotal) | number : '1.2' }}</td>
-          </tr>
-          <tr>
-            <td class="text-muted">CGST@2.50%</td>
-            <td class="font-medium float-right">{{getCGST(subtotal) | number : '1.2' }}</td>
-          </tr>
-          <tr>
-            <td class="text-muted">Amount Payable</td>
-            <td class="font-medium float-right">{{getTotalAmount(subtotal) | number : '1.2' }}</td>
-          </tr>
-          </tbody>
-        </table>
-        <div class="container border-top-generic" style="text-align: center;">
-          <div class="button-group-area">
-            <a class="genric-btn primary radius" (click)="placeOrder()">Place Order</a>
+    <div class="col-md-12 col-lg-5 col-xl-5" *ngIf="items.length>0">
+      <div class="overdue card">
+        <div class="card-body">
+          <h3>Cart Total</h3><!--<small>Lorem ipsum dolor sit amet.</small>-->
+          <table class="table no-border mini-table m-t-20">
+            <tbody>
+            <tr>
+              <td class="text-muted">Subtotal Amount</td>
+              <td class="font-medium float-right">{{subtotal | number : '1.2' }}</td>
+            </tr>
+            <tr>
+              <td class="text-muted">Service Charge @5%</td>
+              <td class="font-medium float-right">{{getServiceCharge(subtotal) | number : '1.2' }}</td>
+            </tr>
+            <tr>
+              <td class="text-muted">SGST@2.50%</td>
+              <td class="font-medium float-right">{{getSGST(subtotal) | number : '1.2' }}</td>
+            </tr>
+            <tr>
+              <td class="text-muted">CGST@2.50%</td>
+              <td class="font-medium float-right">{{getCGST(subtotal) | number : '1.2' }}</td>
+            </tr>
+            <tr>
+              <td class="text-muted">Amount Payable</td>
+              <td class="font-medium float-right">{{getTotalAmount(subtotal) | number : '1.2' }}</td>
+            </tr>
+            </tbody>
+          </table>
+          <div class="container border-top-generic" style="text-align: center;">
+            <div class="button-group-area">
+              <a class="genric-btn primary radius" (click)="placeOrder()">Place Order</a>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+<ng-template #showMessage>
+  <p>
+    There are no Items in the Cart
+  </p>
+</ng-template>
 
 <section class="text-center" *ngIf="orderStatus">
   <div class="container">

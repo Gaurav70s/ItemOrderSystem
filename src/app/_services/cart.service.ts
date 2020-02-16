@@ -13,6 +13,7 @@ import {KotDashboard} from '../_models/KotDashboard';
 export class CartService {
 
   order: Order;
+  order_no: string;
   constructor(private http: HttpClient) {}
 
   public getCartItems(): Observable<Item[]> {
@@ -20,11 +21,11 @@ export class CartService {
       catchError(this.handleError<Item[]>('getCartItems', [])));
   }
 
-  public placeOrder(itemsOnCart: ItemOnCart[]): Order {
+  public placeOrder(itemsOnCart: ItemOnCart[]): Observable<string> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
     const options = { headers, crossDomain: true, withCredentials: true };
-    this.http.post('/rest/item_order_service/v1/cart', itemsOnCart, options).subscribe(data => this.order === data );
-    return this.order;
+    return this.http.post<string>('/rest/item_order_service/v1/cart', itemsOnCart, options)
+      .pipe(catchError(this.handleError<string>('placeOrder', null)));
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
@@ -38,12 +39,12 @@ export class CartService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
     const options = { headers, crossDomain: true, withCredentials: true };
     return this.http.get<Item[]>('/rest/item_order_service/v1/Order/invoice', options).pipe(
-      catchError(this.handleError<Item[]>('getItems', [])));
+      catchError(this.handleError<Item[]>('getInvoice', [])));
   }
   public getKotDashboard(): Observable<KotDashboard> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
     const options = { headers, crossDomain: true, withCredentials: true };
     return this.http.get<KotDashboard>('/rest/item_order_service/v1/dashboard/kot', options).pipe(
-      catchError(this.handleError<KotDashboard>('getItems', new KotDashboard())));
+      catchError(this.handleError<KotDashboard>('getKotDashboard', new KotDashboard())));
   }
 }

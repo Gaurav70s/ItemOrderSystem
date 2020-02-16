@@ -1,7 +1,8 @@
 import { Order } from './Order';
 
 export class CounterDashboard {
-  tableNo: string;
+  table_no: string;
   orders: Order[];
   status: string;
+  table_id: number;
 }
