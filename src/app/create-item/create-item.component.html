@@ -31,13 +31,21 @@
             </div>
             <div class="form-group">
               <label>Item Category</label>
-             <!-- <input id="form2-password2" name="form2-password2" required="" placeholder="Please specify Item category" class="form-control" formControlName="category" >-->
+              <!-- <input id="form2-password2" name="form2-password2" required="" placeholder="Please specify Item category" class="form-control" formControlName="category" >-->
               <select class="browser-default custom-select" formControlName="category">
                 <option selected>Open this select menu</option>
                 <option value="1">One</option>
                 <option value="2">Two</option>
                 <option value="3">Three</option>
               </select>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <label class="mdb-main-label">Label example</label>
+                <select class="selectpicker" multiple data-live-search="true">
+                  <option value="{{ingredient.id}}" *ngFor="let ingredient of getIngredients()">{{ingredient.name}}</option>
+                </select>
+              </div>
             </div>
 
             <div class="form-group">
@@ -56,39 +64,39 @@
 
 
 
-           <!-- <div class="col-sm-9">
-              <div class="dropdown bootstrap-select"><select data-style="btn-outline-dark" title="Choose one of the following" class="selectpicker" tabindex="-98">
-                <option class="bs-title-option" value=""></option>
-                <option>Mustard</option>
-                <option>Ketchup</option>
-                <option>Relish</option>
-              </select>
-                <button type="button" class="btn dropdown-toggle bs-placeholder btn-outline-dark" data-toggle="dropdown" role="button" title="Choose one of the following" aria-expanded="false">
-                  <div class="filter-option">
-                    <div class="filter-option-inner">
-                      <div class="filter-option-inner-inner">Choose one of the following</div>
-                    </div>
-                  </div>
-                </button>
-                <div class="dropdown-menu" role="combobox" x-placement="bottom-start" style="max-height: 282.656px; overflow: hidden; min-height: 0px; position: absolute; transform: translate3d(0px, 37px, 0px); top: 0px; left: 0px; will-change: transform;">
-                  <div class="inner show" role="listbox" aria-expanded="false" tabindex="-1" style="max-height: 264.656px; overflow-y: auto; min-height: 0px;">
-                    <ul class="dropdown-menu inner show">
-                      <li>
-                        <a role="option" class="dropdown-item" aria-disabled="false" tabindex="0" aria-selected="false">
-                          <span class="text">Mustard</span>
-                        </a>
-                      </li>
-                      <li>
-                        <a role="option" class="dropdown-item" aria-disabled="false" tabindex="0" aria-selected="false">
-                          <span class="text">Ketchup</span>
-                        </a>
-                      </li>
-                      <li><a role="option" class="dropdown-item" aria-disabled="false" tabindex="0" aria-selected="false"><span class="text">Relish</span></a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>-->
+            <!-- <div class="col-sm-9">
+               <div class="dropdown bootstrap-select"><select data-style="btn-outline-dark" title="Choose one of the following" class="selectpicker" tabindex="-98">
+                 <option class="bs-title-option" value=""></option>
+                 <option>Mustard</option>
+                 <option>Ketchup</option>
+                 <option>Relish</option>
+               </select>
+                 <button type="button" class="btn dropdown-toggle bs-placeholder btn-outline-dark" data-toggle="dropdown" role="button" title="Choose one of the following" aria-expanded="false">
+                   <div class="filter-option">
+                     <div class="filter-option-inner">
+                       <div class="filter-option-inner-inner">Choose one of the following</div>
+                     </div>
+                   </div>
+                 </button>
+                 <div class="dropdown-menu" role="combobox" x-placement="bottom-start" style="max-height: 282.656px; overflow: hidden; min-height: 0px; position: absolute; transform: translate3d(0px, 37px, 0px); top: 0px; left: 0px; will-change: transform;">
+                   <div class="inner show" role="listbox" aria-expanded="false" tabindex="-1" style="max-height: 264.656px; overflow-y: auto; min-height: 0px;">
+                     <ul class="dropdown-menu inner show">
+                       <li>
+                         <a role="option" class="dropdown-item" aria-disabled="false" tabindex="0" aria-selected="false">
+                           <span class="text">Mustard</span>
+                         </a>
+                       </li>
+                       <li>
+                         <a role="option" class="dropdown-item" aria-disabled="false" tabindex="0" aria-selected="false">
+                           <span class="text">Ketchup</span>
+                         </a>
+                       </li>
+                       <li><a role="option" class="dropdown-item" aria-disabled="false" tabindex="0" aria-selected="false"><span class="text">Relish</span></a></li>
+                     </ul>
+                   </div>
+                 </div>
+               </div>
+             </div>-->
 
             <!--<div class="file-field">
               <div class="btn btn-primary btn-sm float-left waves-effect waves-light">

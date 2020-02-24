@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
+import {IngredientService} from '../_services/ingredient.service';
 
 @Component({
   selector: 'app-ingredients',
@@ -10,6 +11,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 export class IngredientsComponent implements OnInit {
 
   ingredientsForm: FormGroup;
+  isSuccess = false;
   loading = false;
   isSubmitted  =  false;
   // endTime = new Date();
@@ -17,15 +19,14 @@ export class IngredientsComponent implements OnInit {
   error = '';
 
   constructor( private formBuilder: FormBuilder,
-               // private authService: AuthService,
                private route: ActivatedRoute,
-               private router: Router) { }
+               private router: Router,
+               private ingredientService: IngredientService) { }
 
 
   ngOnInit() {
     this.ingredientsForm = this.formBuilder.group({
-      name : ['', Validators.required],
-      image: new FormControl()
+      name : ['', Validators.required]
     });
 
     // get return url from route parameters or default to '/'
@@ -34,6 +35,7 @@ export class IngredientsComponent implements OnInit {
 
   onSubmit() {
     console.log(this.ingredientsForm.value);
+    this.ingredientService.createIngredient(this.ingredientsForm.value).subscribe(data => this.isSuccess = data );
   }
 
 }

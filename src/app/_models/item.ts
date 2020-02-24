@@ -1,3 +1,5 @@
+import {Ingredient} from './Ingredient';
+
 export class Item {
   id: number;
   name: string;
@@ -5,4 +7,5 @@ export class Item {
   category: string;
   description: string;
   quantity = 0;
+  ingredients: Ingredient[];
 }

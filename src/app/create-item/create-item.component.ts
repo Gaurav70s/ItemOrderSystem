@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ItemService} from '../_services/item.service';
+import {Ingredient} from '../_models/Ingredient';
+import {IngredientService} from '../_services/ingredient.service';
 
 @Component({
   selector: 'app-create-item',
@@ -16,10 +18,12 @@ export class CreateItemComponent implements OnInit {
   // endTime = new Date();
   returnUrl: string;
   error = '';
+  ingredients: Ingredient[];
 
   constructor( private formBuilder: FormBuilder,
                // private authService: AuthService,
                private itemService: ItemService,
+               private ingredientService: IngredientService,
                private route: ActivatedRoute,
                private router: Router) { }
 
@@ -34,6 +38,7 @@ export class CreateItemComponent implements OnInit {
       property: new FormControl()
     });
 
+    console.log(this.ingredients);
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
   }
@@ -41,5 +46,9 @@ export class CreateItemComponent implements OnInit {
   onSubmit() {
     this.itemService.createItem(this.itemForm.value);
     console.log(this.itemForm.value);
+  }
+  getIngredients() {
+    this.ingredientService.getAllIngredients().subscribe(data => this.ingredients = data);
+    return this.ingredients;
   }
 }

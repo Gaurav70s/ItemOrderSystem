@@ -42,7 +42,7 @@
 ._3L1X9{
   display:inline-block;
   height:30px;
-  width:120px;
+  width:100px;
   border:1px solid #d4d5d9;
   color:#60b246;
   font-size:.9rem;
@@ -59,7 +59,7 @@
   position:absolute;
   right:30px;
   top:0;
-  width:30px;
+  width:25%;
   display:inline-block;
   opacity:1;
   transform:translateZ(0);
@@ -76,7 +76,7 @@
   position:absolute;
   left:0;
   top:0;
-  width:30px;
+  width:25%;
   display:inline-block;
   opacity:1;
   transform:translateZ(0);
@@ -92,9 +92,9 @@
 
 ._2zAXs{
   position:absolute;
-  left: 30px;
+  left: 22.5%;
   top:0;
-  width:30px;
+  width:25px;
   display:inline-block;
   opacity:1;
   transform:translateZ(0);

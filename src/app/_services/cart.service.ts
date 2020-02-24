@@ -13,6 +13,7 @@ import {KotDashboard} from '../_models/KotDashboard';
 export class CartService {
 
   order: Order;
+  // tslint:disable-next-line:variable-name
   order_no: string;
   constructor(private http: HttpClient) {}
 

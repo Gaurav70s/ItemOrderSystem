@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ItemService} from '../_services/item.service';
 import {Item} from '../_models/item';
+import {Ingredient} from '../_models/Ingredient';
 
 @Component({
   selector: 'app-items',
@@ -10,6 +11,7 @@ import {Item} from '../_models/item';
 export class ItemsComponent implements OnInit {
 
   items: Item[];
+  ingredientString = '';
 
   constructor(private itemService: ItemService) {
     localStorage.setItem(`cartItem`, '[]');
@@ -31,6 +33,14 @@ export class ItemsComponent implements OnInit {
   getItems(): void {
     this.itemService.getItems().subscribe(data => this.items = data);
 
+  }
+  getIngredientsList(ingredients: Ingredient[] ) {
+    this.ingredientString = '';
+    ingredients.forEach((ingredient, index) => {
+      this.ingredientString = this.ingredientString + ingredient.name + ' ';
+    });
+    console.log('Ingredient String : ' + this.ingredientString);
+    return this.ingredientString;
   }
 
   addtocart(item: Item): void {

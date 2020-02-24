@@ -9,9 +9,9 @@
         <div class="row bg-white has-shadow">
           <div class="left-col col-lg-12 d-flex align-items-center justify-content-between">
             <div class="project-title d-flex align-items-center" style="width: 65%;">
-              <img src="/assets/images/food{{item.item.id}}.jpg" class="img-fluid" alt="">
+              <img src="/assets/images/food{{item.item.id}}.jpg" onerror="this.src='/assets/images/not-available.jpg';" class="img-fluid" alt="">
               <div class="text">
-                <h3 class="h4">{{item.item.name}}</h3><small>{{item.item.description}}</small>
+                <h4 class="h4">{{item.item.name}}</h4><small>{{item.item.description}}</small>
               </div>
             </div>
             <!-- <div class="input-group" style="width: 20%;">
@@ -106,15 +106,12 @@
         <p class="pt-2"><i>Your Order Number is {{orderNumber}}.</i></p>
         <p class="pt-2"><i>Order will be deliverd in 15 min</i></p>
       </div>
+      <div class="button-group-area">
+        <a routerLink="/invoice" class="genric-btn primary radius">CheckOut</a>
+      </div>
       <!--<countdown-timer style="font-size:30px;color:white;padding:30px;font-family:Roboto;" [end]="'{{endTime}}'"></countdown-timer>-->
     </div>
   </div>
 </section>
-
-
-
-
-
-<app-booktable></app-booktable>
 <app-footer></app-footer>
 

@@ -1,15 +1,17 @@
 FROM node:latest
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
-COPY package.json ./
+ENV PATH /app/node_modules/.bin:$PATH
+
+COPY package.json /app/package.json
 
 RUN npm install
+RUN npm install -g @angular/cli
 
-COPY . .
+COPY . /app
 
-ENV SERVER_PORT 4200
 EXPOSE 4200
 
-CMD npm run build
-CMD npm start
+CMD ng serve --port 4200 --host 0.0.0.0
+

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {CartService} from '../_services/cart.service';
 import {Item} from '../_models/item';
 import {ItemOnCart} from '../_models/itemOnCart';
+import {Route, Router} from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -16,7 +17,8 @@ export class CartComponent implements OnInit {
   orderStatus = false;
   orderNumber = '';
 
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService,
+              private router: Router) { }
 
   ngOnInit() {
     this.getCartItems();
@@ -68,4 +70,5 @@ export class CartComponent implements OnInit {
   getServiceCharge(subTotal: number) {
     return 0.05 * subTotal;
   }
+
 }
