@@ -1,7 +1,7 @@
-import {OrderDetail} from './OrderDetails';
+import {Item} from "./Item";
+import {KotOrder} from "./KotOrder";
 
 export class ActiveOrder {
-  item_id: number;
-  item_name: string;
-  order: OrderDetail[];
+  item: Item;
+  kotOrder: KotOrder[];
 }

@@ -1,15 +1,15 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
-import {Item} from '../_models/item';
+import {Item} from '../_models/Item';
 import {catchError} from 'rxjs/operators';
-import {ItemOnCart} from '../_models/itemOnCart';
+import {ItemsOnCart} from '../_models/ItemsOnCart';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ItemService {
-  private items: ItemOnCart[];
+  private items: ItemsOnCart[];
   constructor(private http: HttpClient) {
     this.items = JSON.parse(localStorage.getItem('cartItem'));
   }
@@ -29,13 +29,13 @@ export class ItemService {
     };
   }
 
-  public addToCart(item: Item, quantity: number): void {
+  public addToCart(itemOnCart: ItemsOnCart): void {
     // console.log(item);
     // localStorage.setItem(`cartItem`, JSON.stringify("[]"))
-    if (this.items.findIndex(value => value.item.id === item.id) !== -1) {
-      this.items = this.items.filter(value => value.item.id !== item.id);
+    if (this.items.findIndex(value => value.item.id === itemOnCart.item.id) !== -1) {
+      this.items = this.items.filter(value => value.item.id !== itemOnCart.item.id);
     }
-    this.items.push(new ItemOnCart(item, quantity));
+    this.items.push(itemOnCart);
     localStorage.setItem(`cartItem`, JSON.stringify(this.items));
     console.log(this.items);
     /*const blob = new Blob([JSON.stringify(item)], { type: 'application/json'});

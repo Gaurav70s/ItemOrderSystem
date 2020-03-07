@@ -1,6 +1,6 @@
-import {Item} from './item';
+import {Item} from './Item';
 
-export class ItemOnCart {
+export class ItemsOnCart {
   item: Item;
   quantity: number;
 

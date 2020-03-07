@@ -24,7 +24,11 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css",
+              {
+                "input": "node_modules/@progress/kendo-theme-default/dist/all.css"
+              },
+              "node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "src/assets/css/style.css",
               "node_modules/bootstrap-toggle/css/bootstrap-toggle.min.css",
               "node_modules/font-awesome/css/font-awesome.min.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
@@ -34,9 +38,12 @@
               "node_modules/dropzone/dist/dropzone.css",
               "node_modules/animate.css/animate.min.css",
               "node_modules/material-design-iconic-font/dist/css/material-design-iconic-font.min.css"
+
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/owl.carousel/dist/owl.carousel.min.js",
+              "node_modules/wowjs/dist/wow.js",
               "node_modules/popper.js/dist/umd/popper.min.js",
               "node_modules/bootstrap-toggle/js/bootstrap-toggle.min.js",
               "node_modules/bootstrap-select/dist/js/bootstrap-select.js",
@@ -44,8 +51,8 @@
               "node_modules/jquery-datetimepicker/build/jquery.datetimepicker.full.min.js",
               "node_modules/jquery-nice-select/js/jquery.nice-select.min.js",
               "node_modules/dropzone/dist/dropzone.js",
-              "node_modules/owl.carousel/dist/owl.carousel.min.js",
-              "node_modules/wowjs/dist/wow.min.js"
+              "node_modules/wowjs/dist/wow.min.js",
+             "src/assets/js/main.js"
             ]
           },
           "configurations": {
@@ -105,6 +112,9 @@
               "src/assets"
             ],
             "styles": [
+              {
+                "input": "node_modules/@progress/kendo-theme-default/dist/all.css"
+              },
               "src/styles.css"
             ],
             "scripts": []

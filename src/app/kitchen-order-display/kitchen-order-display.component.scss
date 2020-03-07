@@ -1,6 +1,45 @@
-.card {
-  Font-size:0.8125rem ;
+.alert{
+  margin-bottom: 0;
 }
+
+.scroll-container {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+
+  &.hide-scrollbar {
+    overflow: auto;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &.show-scroll {
+    overflow: auto;
+  }
+}
+
+.scroll-container div {
+  white-space: nowrap;
+  background: #efefef;
+  border: 1px solid #000000;
+  margin: .1rem;
+  padding: 1px 8px;
+  &:hover {
+    cursor: pointer;
+    background: #000000;
+    color: #ffffff;
+    border-color: #ffffff;
+  }
+  &:hover div{
+    cursor: pointer;
+    background: #000000;
+    color: #ffffff;
+    border-color: #ffffff;
+  }
+
+}
+
 
 td {
   vertical-align: middle;
@@ -84,7 +123,7 @@ b {
 
 
 
-.alpha-primary{background-color:#e3f2fd}
+/*.alpha-primary{background-color:#e3f2fd}
 .text-primary{color:#2196f3}
 .text-primary[href]:focus, .text-primary[href]:hover{color:#0c83e2}
 .bg-primary{background-color:#2196f3}
@@ -217,3 +256,4 @@ b {
 
 
 
+*/

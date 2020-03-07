@@ -1,59 +1,87 @@
 
 <app-header></app-header>
-npm <div class="content">
+<div class="content">
   <div class="row">
-    <div class="col-md-6" *ngFor="let activeOrder of activeOrders">
+    <div class="col-md-8 shadow" >
+      <div class="mb-3">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Active Orders</li>
+        </ul>
+        <div class="row">
+          <div class="col-md-4 pt-3" *ngFor="let activeOrder of activeOrders">
 
-      <!-- Marketing campaigns -->
-      <div class="card">
-        <div class="table-responsive">
-          <table class="table text-nowrap">
-            <thead>
-            <tr>
-              <th>Item</th>
-              <th>Quantity</th>
-              <th><div class="btn-group" role="group" style="width: 300px;">
-                <button type="button" class="btn btn-default waves-effect text-right"><span class="badge bg-grey text-white">Tbl No</span></button>
-                <button type="button" class="btn btn-default waves-effect text-right"><b>Que</b></button>
-                <button type="button" class="btn btn-default waves-effect text-right"><b>Odr No</b></button>
-                <button type="button" class="btn btn-default waves-effect"></button>
-              </div></th>
+            <!-- Marketing campaigns -->
+            <div class="card">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">{{activeOrder.item.name}}</li>
+              </ul>
+              <div class="card-body">
+                <h1 class="card-title text-md-center text-dark">{{getTotalQuentity(activeOrder.kotOrder)}}</h1>
 
-              <th>Status</th>
-              <th class="text-center" style="width: 20px;"><i class="icon-arrow-down12"></i></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <td>
-                <div class="d-flex align-items-center">
-                  {{activeOrder.item_name}}
-                </div>
-              </td>
-              <td><span class="font-weight-semibold mb-0">{{getTotalQuentity(activeOrder.order)}}</span></td>
-              <td>
-                <div *ngFor="let order of activeOrder.order">
-                  <div class="btn-group" role="group" style="width: 300px;">
-                    <button type="button" class="btn btn-default waves-effect text-right"><span class="badge bg-grey text-white">{{order.table_no}}</span></button>
-                    <button type="button" class="btn btn-default waves-effect text-right"><b>{{order.quantity}}</b></button>
-                    <button type="button" class="btn btn-default waves-effect text-right"><b>{{order.order_no}}</b></button>
-                    <button type="button" class="btn btn-default waves-effect">
-                      <label><input type="checkbox" checked data-toggle="toggle" data-on="Not Ready" data-off="Ready" data-onstyle="danger" data-offstyle="success"></label>
-                    </button>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  <div class="scroll-container hide-scrollbar">
+                    <div class="title text-md-center" *ngFor="let odr of activeOrder.kotOrder">
+                      {{ odr.table.tableNo }}<div class="subtitle text-md-center">{{ odr.quantity}}</div>
+                    </div>
                   </div>
-                  <br>
-                </div>
-                <!-- <div class="icon-button-demo">
-                    <button type="button" class="btn btn-default btn-circle waves-effect waves-circle waves-float">2</button></div>--><br>
-              </td>
-              <td><span class="badge bg-blue">Active</span></td>
-            </tr>
-            </tbody>
-          </table>
+                </li>
+              </ul>
+            </div>
+            <!-- /marketing campaigns -->
+          </div>
         </div>
       </div>
-      <!-- /marketing campaigns -->
+    </div>
+    <div class="col-md-4 shadow">
+      <div class="mb-3">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">New Orders</li>
+        </ul>
 
+        <ngb-accordion [closeOthers]="true" #acc="ngbAccordion" activeIds="ngb-panel-0">
+          <ngb-panel *ngFor="let order of orders">
+            <ng-template ngbPanelTitle>
+              <span>New Orders : {{order.order.orderNo}} on table no : {{order.table.tableNo}}</span>
+            </ng-template>
+            <ng-template ngbPanelContent>
+              <table class="table">
+                <thead class="thead-dark">
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Quantity</th>
+                  <!--<th scope="col">Handle</th>-->
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let itemsOnCart of order.itemsOnCart; let i=index">
+                  <th scope="row">{{i +1}}</th>
+                  <td>{{itemsOnCart.item.name}}</td>
+                  <td>{{itemsOnCart.quantity}}</td>
+                  <!--<td>@mdo</td>-->
+                </tr>
+                </tbody>
+              </table>
+              <div class="text-md-center">
+              <button type="button" class="btn btn-success" (click)="approveOrder(order.order)">Approve</button>
+              <button type="button" class="btn btn-danger ml-3" (click)="rejectOrder(order.order)">Reject</button>
+              </div>
+            </ng-template>
+          </ngb-panel>
+        </ngb-accordion>
+
+        <!--<div class="sbp-preview-content pt-3" *ngFor="let order of orders">
+          <div class="alert-info" data-toggle="collapse" data- data-target="#collapse{{order.order.orderNo}}">
+            <div role="alert" class="alert alert-info">New Orders : {{order.order.orderNo}} on table no : {{order.table.tableNo}}</div>
+          </div>
+          <div id="collapse{{order.order.orderNo}}" class="panel-collapse collapse">
+            <div class="panel-body">Panel Body</div>
+            <div class="panel-footer">Panel Footer</div>
+          </div>
+        </div>-->
+      </div>
     </div>
   </div>
 </div>

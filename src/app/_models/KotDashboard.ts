@@ -1,8 +1,8 @@
 import {ActiveOrder} from './ActiveOrder';
-import {NewOrder} from './NewOrder';
+import {OrderDetail} from "./OrderDetails";
 
 export class KotDashboard {
   activeOrders: ActiveOrder[];
-  newOrders: NewOrder[];
+  newOrders: OrderDetail[];
 
 }

@@ -1,6 +1,7 @@
 export enum OrderStatus{
-  NEW = "new",
-  ACCEPTED = "accepted",
-  COMPLETED = "completed",
-  PAYED = "payed"
+  NEW = "New",
+  ACCEPTED = "Accepted",
+  COMPLETED = "Completed",
+  PAYED = "Payed",
+  REJECTED= "Rejected"
 }

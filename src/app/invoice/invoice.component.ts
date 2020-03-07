@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {CartService} from '../_services/cart.service';
-import {ItemOnCart} from '../_models/itemOnCart';
+import {Component, OnInit} from '@angular/core';
+import {OrderService} from '../_services/order.service';
+import {ItemsOnCart} from '../_models/ItemsOnCart';
 import html2canvas from 'html2canvas';
 import * as jspdf from 'jspdf';
 
@@ -11,11 +11,12 @@ import * as jspdf from 'jspdf';
   styleUrls: ['./invoice.component.css']
 })
 export class InvoiceComponent implements OnInit {
- items: ItemOnCart[];
+ items: ItemsOnCart[];
   subtotal = 0;
   totalQue = 0;
+  todayDate: Date = new Date();
 
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: OrderService) { }
 
   ngOnInit() {
     this.items = JSON.parse(localStorage.getItem('cartItem'));
@@ -41,7 +42,7 @@ export class InvoiceComponent implements OnInit {
   getServiceCharge(subTotal: number) {
     return 0.05 * subTotal;
   }
-  getTotalPrice(item: ItemOnCart): number {
+  getTotalPrice(item: ItemsOnCart): number {
     this.subtotal = 0;
     this.totalQue = 0;
 
@@ -62,7 +63,7 @@ export class InvoiceComponent implements OnInit {
       const heightLeft = imgHeight;
 
       const contentDataURL = canvas.toDataURL('image/png');
-      const pdf = new jspdf('p', 'mm', 'a4'); // A4 size page of PDF
+      const pdf = new jspdf('p', 'mm', 'a2'); // A4 size page of PDF
       const position = 0;
       pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
       pdf.save('MYPdf.pdf'); // Generated PDF

@@ -1,8 +1,12 @@
 import {OrderStatus} from './OrderStatus';
-import {Item} from './item';
 
 export class Order {
   orderNo: number;
-  status: OrderStatus;
-  items: Item[];
+  orderStatus: OrderStatus;
+  orderId: string;
+  constructor(orderNo: number, status: OrderStatus, orderId:string ) {
+    this.orderNo = orderNo;
+    this.orderStatus=status;
+    this.orderId = orderId;
+  }
 }

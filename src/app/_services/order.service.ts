@@ -1,32 +1,39 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
-import {Item} from '../_models/item';
+import {Item} from '../_models/Item';
 import {catchError} from 'rxjs/operators';
 import {Order} from '../_models/Order';
-import {ItemOnCart} from '../_models/itemOnCart';
 import {KotDashboard} from '../_models/KotDashboard';
+import {OrderDetail} from "../_models/OrderDetails";
 
 @Injectable({
   providedIn: 'root'
 })
-export class CartService {
+export class OrderService {
 
   order: Order;
   // tslint:disable-next-line:variable-name
   order_no: string;
   constructor(private http: HttpClient) {}
 
-  public getCartItems(): Observable<Item[]> {
+  /*public getCartItems(): Observable<Item[]> {
     return this.http.get<Item[]>('./assets/data/cart.json').pipe(
       catchError(this.handleError<Item[]>('getCartItems', [])));
-  }
+  }*/
 
-  public placeOrder(itemsOnCart: ItemOnCart[]): Observable<string> {
+  public placeOrder(orderDetail: OrderDetail): Observable<OrderDetail> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
     const options = { headers, crossDomain: true, withCredentials: true };
-    return this.http.post<string>('/rest/item_order_service/v1/cart', itemsOnCart, options)
-      .pipe(catchError(this.handleError<string>('placeOrder', null)));
+    return this.http.post<OrderDetail>('/rest/item_order_service/v1/order', orderDetail, options)
+      .pipe(catchError(this.handleError<OrderDetail>('placeOrder', null)));
+  }
+
+  public updateStatus(order: Order): Observable<Order> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
+    const options = { headers, crossDomain: true, withCredentials: true };
+    return this.http.put<Order>('/rest/item_order_service/v1/order/status', order, options)
+      .pipe(catchError(this.handleError<Order>('updateStatus', null)));
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

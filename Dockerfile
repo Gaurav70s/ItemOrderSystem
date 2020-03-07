@@ -1,17 +1,13 @@
-FROM node:latest
-
+# Stage 0, "build-stage", based on Node.js, to build and compile the frontend
+FROM tiangolo/node-frontend:10 as build-stage
 WORKDIR /app
-
-ENV PATH /app/node_modules/.bin:$PATH
-
-COPY package.json /app/package.json
-
+COPY package*.json /app/
 RUN npm install
-RUN npm install -g @angular/cli
-
-COPY . /app
-
-EXPOSE 4200
-
-CMD ng serve --port 4200 --host 0.0.0.0
-
+COPY ./ /app/
+ARG configuration=dev
+RUN npm run build -- --output-path=./dist/out --configuration $configuration
+# Stage 1, based on Nginx, to have only the compiled app, ready for production with Nginx
+FROM nginx:1.15
+COPY --from=build-stage /app/dist/out/ /usr/share/nginx/html
+# Copy the default nginx.conf provided by tiangolo/node-frontend
+COPY --from=build-stage /nginx.conf /etc/nginx/conf.d/default.conf

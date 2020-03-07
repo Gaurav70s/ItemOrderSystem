@@ -85,6 +85,7 @@
           <div class="container border-top-generic" style="text-align: center;">
             <div class="button-group-area">
               <a class="genric-btn primary radius" (click)="placeOrder()">Place Order</a>
+              <a class="genric-btn primary radius" (click)="openDialog()">Check Subscription</a>
             </div>
           </div>
         </div>
@@ -103,7 +104,7 @@
     <div class="row">
       <div class="col-lg-12">
         <h1><i>Thanks for the Order</i></h1>
-        <p class="pt-2"><i>Your Order Number is {{orderNumber}}.</i></p>
+        <p class="pt-2"><i>Your Order Number is {{orderDetail.order.orderNo}}.</i></p>
         <p class="pt-2"><i>Order will be deliverd in 15 min</i></p>
       </div>
       <div class="button-group-area">

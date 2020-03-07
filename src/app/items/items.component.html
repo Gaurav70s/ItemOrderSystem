@@ -13,27 +13,36 @@
       </div>
     </div>
     <div class="row">
-      <div *ngFor="let item of items" class="col-md-4 col-sm-6 shadow p-3 mb-5 bg-white rounded">
+      <div *ngFor="let itemsOnCart of itemsOnCarts" class="col-md-4 col-sm-6 shadow p-3 mb-5 bg-white rounded">
         <div class="single-food">
-          <div class="{{item.category | lowercase}}" >
+          <div class="{{itemsOnCart.item.category | lowercase}}" >
             <img src="/assets/images/Veg_nonVeg.png" class="img-category" alt="">
           </div>
           <div class="food-img">
-            <img src="/assets/images/food{{item.id}}.jpg" class="img-fluid" onerror="this.src='/assets/images/not-available.jpg';" alt="">
+            <img src="/assets/images/food{{itemsOnCart.item.id}}.jpg" class="img-fluid" onerror="this.src='/assets/images/not-available.jpg';" alt="">
           </div>
           <div class="food-content">
             <div class="d-flex justify-content-between">
-              <h5>{{item.name}}</h5>
-              <span class="style-change">₹{{item.price}}</span>
+              <h5>{{itemsOnCart.item.name}}</h5>
+              <span class="style-change">₹{{itemsOnCart.item.price}}</span>
             </div>
-            <p class="pt-3">{{getIngredientsList(item.ingredients)}}</p>
+            <p class="pt-3">{{getIngredientsList(itemsOnCart.item.ingredients)}}</p>
           </div>
         </div>
-        <div class="_33Hf_ _3L1X9">
-          <div class="_1ds9T" title= "Add Quantity" (click)="getNext(item)">+</div>
-          <div class="_29Y5Z" title= "Remove Quantity" (click)="getPrevious(item)">-</div>
-          <div class="_2zAXs" id="qua">{{item.quantity? item.quantity : 0}}</div>
-          <div class="cart_icon1" title= "Add to cart"><img class="cart_icon" src="/assets/images/cart_icon.png" (click)="addtocart(item)"></div>
+        <div class="_33Hf_ _3L1X9 ">
+          <div class="_1ds9T" title= "Add Quantity" (click)="getNext(itemsOnCart)"><i class="material-icons">
+            add
+          </i></div>
+          <div class="_29Y5Z" title= "Remove Quantity" (click)="getPrevious(itemsOnCart)"><i class="material-icons">
+            remove
+          </i></div>
+          <div class="_2zAXs" id="qua">{{itemsOnCart.quantity? itemsOnCart.quantity : 0}}</div>
+          <div class="cart_icon1" title= "Add to cart">
+            <i class="material-icons cart_icon" (click)="addtocart(itemsOnCart)">
+              shopping_cart
+            </i>
+            <!--<img class="cart_icon" src="/assets/images/cart_icon.png"  alt="">-->
+          </div>
         </div>
         <div class="_33HL_ _3L1X9">
           <div class="kart" routerLink="/cart">Go to Cart</div>

@@ -3,7 +3,7 @@
     <div class="card shadow mb-4">
       <!-- Card Header - Dropdown -->
       <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Table No : {{dashboard.tableNo}}</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Table No : {{dashboard.table_no}}</h6>
       </div>
       <!-- Card Body -->
       <div id="accordion" class="accordion-wrapper mb-3">
@@ -16,12 +16,12 @@
                   <td class="text-center text-muted" style="width:15%;">#{{order.orderNo}}</td>
                   <td class="text-center"style="width:30%;">Micro Electronics</td>
                   <td class="text-center"style="width:15%;">
-                    <div class="badge badge-pill badge-danger" *ngIf="order.status === 'new'">{{order.status}}</div>
-                    <div class="badge badge-pill badge-primary" *ngIf="order.status === 'accepted'">{{order.status}}</div>
-                    <div class="badge badge-pill badge-warning" *ngIf="order.status === 'delivered'">{{order.status}}</div>
-                    <div class="badge badge-pill badge-success" *ngIf="order.status === 'payed'">{{order.status}}</div>
+                    <div class="badge badge-pill badge-danger" *ngIf="order.orderStatus === 'new'">{{order.orderStatus}}</div>
+                    <div class="badge badge-pill badge-primary" *ngIf="order.orderStatus === 'accepted'">{{order.orderStatus}}</div>
+                    <div class="badge badge-pill badge-warning" *ngIf="order.orderStatus === 'delivered'">{{order.orderStatus}}</div>
+                    <div class="badge badge-pill badge-success" *ngIf="order.orderStatus === 'payed'">{{order.orderStatus}}</div>
                   </td>
-                  <td class="text-center" style="width:40%;" *ngIf="order.status==='new' else blank" >
+                  <td class="text-center" style="width:40%;" *ngIf="order.orderStatus==='new' else blank" >
                     <div role="group" class="btn-group-sm btn-group">
                       <button class="btn-shadow btn btn-primary">Accept</button>
                       <button class="btn-shadow btn btn-primary">Decline</button>
@@ -36,25 +36,7 @@
               </table>
             </button>
           </div>
-          <div data-parent="#accordion" [id]="'collapseOne'+order.orderNo" aria-labelledby="headingOne" class="collapse" style="">
-            <div class="card-body">
-              <div class="dataTables_scroll">
-                <div class="dataTables_scrollBody" style="position: relative; overflow: auto; max-height: 292px; width: 100%;">
-                  <table style="width: 100%;" id="example2" class="table table-hover table-striped table-bordered dataTable" role="grid">
-                    <tbody>
-                    <tr role="row" class="odd" *ngFor="let item of order.items">
-                      <td class="sorting_1">{{item.id}}</td>
-                      <td>{{item.name}}</td>
-                      <td>{{item.price}}</td>
-                      <td>{{item.quantity}}</td>
-                      <td>{{item.totalprice}}</td>
-                    </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
+
         </div>
       </div>
     </div>

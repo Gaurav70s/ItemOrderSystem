@@ -29,7 +29,15 @@ import { CreateItemCategoryComponent } from './create-item-category/create-item-
 import { CreateItemImagesComponent } from './create-item-images/create-item-images.component';
 import { IngredientsComponent } from './ingredients/ingredients.component';
 import { CounterViewComponent } from './counter-view/counter-view.component';
+import { MaterialModule } from './material.module';
 import { InvoiceComponent } from './invoice/invoice.component';
+import { PDFExportModule } from '@progress/kendo-angular-pdf-export';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SunscriptionModalComponent } from './sunscription-modal/sunscription-modal.component';
+import { OrderSnackbarComponent} from './order.snackbar/order.snackbar.component';
+import {NgbAccordionModule} from "@ng-bootstrap/ng-bootstrap";
+
+
 
 
 /*const config = new AuthServiceConfig([
@@ -67,15 +75,21 @@ export function provideConfig() {
     CreateItemImagesComponent,
     IngredientsComponent,
     CounterViewComponent,
-    InvoiceComponent
+    InvoiceComponent,
+    SunscriptionModalComponent,
+    OrderSnackbarComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
-   // SocialLoginModule,
-    ReactiveFormsModule
+    // SocialLoginModule,
+    ReactiveFormsModule,
+    PDFExportModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+    NgbAccordionModule
   ],
   providers: [
     //{ provide: AuthServiceConfig, useFactory: provideConfig },

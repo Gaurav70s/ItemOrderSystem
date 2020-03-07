@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 /*import { AuthService, FacebookLoginProvider, GoogleLoginProvider, LinkedInLoginProvider, SocialUser } from 'angularx-social-login';*/
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { AuthenticationService } from '../_services/authentication.service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AuthenticationService} from '../_services/authentication.service';
 import {first} from 'rxjs/operators';
 
 
@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
     private authenticationService: AuthenticationService) {
     if (this.authenticationService.currentUserValue) {
       this.router.navigate(['/']);
+
     }
   }
 

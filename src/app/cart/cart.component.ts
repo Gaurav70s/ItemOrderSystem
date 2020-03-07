@@ -1,8 +1,20 @@
 import {Component, OnInit} from '@angular/core';
-import {CartService} from '../_services/cart.service';
-import {Item} from '../_models/item';
-import {ItemOnCart} from '../_models/itemOnCart';
-import {Route, Router} from '@angular/router';
+import {OrderService} from '../_services/order.service';
+import {Item} from '../_models/Item';
+import {ItemsOnCart} from '../_models/ItemsOnCart';
+import {Router} from '@angular/router';
+import {OrderDetail} from "../_models/OrderDetails";
+import {Table} from "../_models/Table";
+import {User} from "../_models/User";
+import {Role} from "../_models/Role";
+
+import {SunscriptionModalComponent} from "../sunscription-modal/sunscription-modal.component";
+import {MatDialog} from "@angular/material/dialog";
+
+interface DialogData {
+  email: string;
+  phNumber: String;
+}
 
 @Component({
   selector: 'app-cart',
@@ -11,17 +23,34 @@ import {Route, Router} from '@angular/router';
 })
 
 export class CartComponent implements OnInit {
-  items: ItemOnCart[];
+  email:string;
+  phNumber:string;
+  items: ItemsOnCart[];
+  orderDetail: OrderDetail;
   subtotal = 0;
   totalQue = 0;
   orderStatus = false;
   orderNumber = '';
 
-  constructor(private cartService: CartService,
-              private router: Router) { }
+  constructor(private cartService: OrderService,
+              private router: Router,
+              private dialog: MatDialog) { }
+
+
 
   ngOnInit() {
     this.getCartItems();
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(SunscriptionModalComponent, {
+      width: '300px',
+      data: {}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log("Dialog Data: "+ result)
+    });
   }
 
   public getCartItems() {
@@ -31,16 +60,16 @@ export class CartComponent implements OnInit {
       this.totalQue = this.totalQue + item.quantity;
     }
   }
-  getNext(item: ItemOnCart): void {
+  getNext(item: ItemsOnCart): void {
     item.quantity = item.quantity + 1;
   }
-  getPrevious(item: ItemOnCart): void {
+  getPrevious(item: ItemsOnCart): void {
     if (item.quantity > 0) {
       item.quantity = item.quantity - 1;
     }
   }
 
-  getTotalPrice(item: ItemOnCart): number {
+  getTotalPrice(item: ItemsOnCart): number {
     this.subtotal = 0;
     this.totalQue = 0;
 
@@ -54,8 +83,13 @@ export class CartComponent implements OnInit {
     this.items = this.items.filter(h => h.item !== item);
   }
   placeOrder() {
-    this.cartService.placeOrder(this.items).subscribe(data => this.orderNumber = data);
-    console.log('Order Placed with data : ' + JSON.stringify(this.items));
+    this.orderDetail = new OrderDetail(
+      [new User("", "test@test.com", Role.Waiter)],
+      this.items,
+      null,
+      new Table("TB01"));
+    console.log('Order Placed with data : ' + JSON.stringify(this.orderDetail));
+    this.cartService.placeOrder(this.orderDetail).subscribe(data => this.orderDetail = data);
     this.orderStatus = true;
   }
   getTotalAmount(subTotal: number) {

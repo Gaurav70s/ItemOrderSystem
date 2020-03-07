@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ItemService} from '../_services/item.service';
-import {Item} from '../_models/item';
+import {Item} from '../_models/Item';
 import {Ingredient} from '../_models/Ingredient';
+import {ItemsOnCart} from "../_models/ItemsOnCart";
 
 @Component({
   selector: 'app-items',
@@ -9,8 +10,8 @@ import {Ingredient} from '../_models/Ingredient';
   styleUrls: ['./items.component.css']
 })
 export class ItemsComponent implements OnInit {
-
   items: Item[];
+  itemsOnCarts: ItemsOnCart[];
   ingredientString = '';
 
   constructor(private itemService: ItemService) {
@@ -20,32 +21,37 @@ export class ItemsComponent implements OnInit {
   ngOnInit() {
     this.getItems();
   }
-  getNext(item: Item): void {
-    if (item.quantity === undefined) { item.quantity = 0; }
-    item.quantity = item.quantity + 1;
+  getNext(itemsOnCart: ItemsOnCart): void {
+    if (itemsOnCart.quantity === undefined) { itemsOnCart.quantity= 0; }
+    itemsOnCart.quantity = itemsOnCart.quantity + 1;
   }
-  getPrevious(item: Item): void {
-    if (item.quantity > 0) {
-      item.quantity = item.quantity - 1;
+  getPrevious(itemsOnCart: ItemsOnCart): void {
+    if (itemsOnCart.quantity > 0) {
+      itemsOnCart.quantity = itemsOnCart.quantity - 1;
     }
   }
 
   getItems(): void {
-    this.itemService.getItems().subscribe(data => this.items = data);
+    const itemsOnCart = [];
+    this.itemService.getItems().subscribe(data => {
+      this.items = data;
+      this.items.forEach((data:Item) => itemsOnCart.push(new ItemsOnCart(data,0)))
+      this.itemsOnCarts = itemsOnCart;
+    });
+
 
   }
   getIngredientsList(ingredients: Ingredient[] ) {
     this.ingredientString = '';
-    ingredients.forEach((ingredient, index) => {
+    ingredients.forEach((ingredient) => {
       this.ingredientString = this.ingredientString + ingredient.name + ' ';
     });
     console.log('Ingredient String : ' + this.ingredientString);
     return this.ingredientString;
   }
 
-  addtocart(item: Item): void {
-    console.log(item);
-    this.itemService.addToCart(item, item.quantity);
+  addtocart(itemOnCart): void {
+    this.itemService.addToCart(itemOnCart);
   }
   print(): void {
     console.log('test the crap');
