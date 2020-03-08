@@ -33,10 +33,10 @@ import { MaterialModule } from './material.module';
 import { InvoiceComponent } from './invoice/invoice.component';
 import { PDFExportModule } from '@progress/kendo-angular-pdf-export';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SunscriptionModalComponent } from './sunscription-modal/sunscription-modal.component';
+import { SubscriptionModalComponent } from './subscription-modal/subscription-modal.component';
 import { OrderSnackbarComponent} from './order.snackbar/order.snackbar.component';
-import {NgbAccordionModule} from "@ng-bootstrap/ng-bootstrap";
-
+import { NgbAccordionModule } from "@ng-bootstrap/ng-bootstrap";
+import { NgHttpLoaderModule } from 'ng-http-loader';
 
 
 
@@ -76,7 +76,7 @@ export function provideConfig() {
     IngredientsComponent,
     CounterViewComponent,
     InvoiceComponent,
-    SunscriptionModalComponent,
+    SubscriptionModalComponent,
     OrderSnackbarComponent
   ],
   imports: [
@@ -89,7 +89,8 @@ export function provideConfig() {
     PDFExportModule,
     BrowserAnimationsModule,
     MaterialModule,
-    NgbAccordionModule
+    NgbAccordionModule,
+    NgHttpLoaderModule.forRoot()
   ],
   providers: [
     //{ provide: AuthServiceConfig, useFactory: provideConfig },

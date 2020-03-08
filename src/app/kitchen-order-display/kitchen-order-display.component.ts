@@ -6,6 +6,8 @@ import {OrderDetail} from '../_models/OrderDetails';
 import {Order} from "../_models/Order";
 import {KotOrder} from "../_models/KotOrder";
 import {OrderStatus} from "../_models/OrderStatus";
+import {Item} from "../_models/Item";
+import {OrderItem} from "../_models/OrderItem";
 
 @Component({
   selector: 'app-kitchen-order-display',
@@ -43,13 +45,13 @@ export class KitchenOrderDisplayComponent implements OnInit {
   }*/
   approveOrder(order:Order){
     const updatedOrder = new Order(order.orderNo,OrderStatus.ACCEPTED, order.orderId );
-    this.orderService.updateStatus(updatedOrder).subscribe();
+    this.orderService.updateOrderStatus(updatedOrder).subscribe();
 
   }
 
   rejectOrder(order:Order){
     const updatedOrder = new Order(order.orderNo,OrderStatus.REJECTED, order.orderId );
-    this.orderService.updateStatus(updatedOrder).subscribe();
+    this.orderService.updateOrderStatus(updatedOrder).subscribe();
 
   }
   /*openBottomSheet(message: string) {
@@ -78,4 +80,7 @@ export class KitchenOrderDisplayComponent implements OnInit {
       }
     });
   }*/
+  updateOrderItemStatus(order: Order, item: Item) {
+    this.orderService.updateOrderItemStatus(new OrderItem(order,item)).subscribe();
+  }
 }

@@ -22,7 +22,7 @@
               <ul class="list-group list-group-flush">
                 <li class="list-group-item">
                   <div class="scroll-container hide-scrollbar">
-                    <div class="title text-md-center" *ngFor="let odr of activeOrder.kotOrder">
+                    <div class="title text-md-center" (click)="updateOrderItemStatus(odr.order, activeOrder.item)" *ngFor="let odr of activeOrder.kotOrder">
                       {{ odr.table.tableNo }}<div class="subtitle text-md-center">{{ odr.quantity}}</div>
                     </div>
                   </div>
@@ -85,3 +85,5 @@
     </div>
   </div>
 </div>
+
+<ng-http-loader></ng-http-loader>

@@ -8,7 +8,7 @@ import {Table} from "../_models/Table";
 import {User} from "../_models/User";
 import {Role} from "../_models/Role";
 
-import {SunscriptionModalComponent} from "../sunscription-modal/sunscription-modal.component";
+import {SubscriptionModalComponent} from "../subscription-modal/subscription-modal.component";
 import {MatDialog} from "@angular/material/dialog";
 
 interface DialogData {
@@ -43,7 +43,7 @@ export class CartComponent implements OnInit {
   }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(SunscriptionModalComponent, {
+    const dialogRef = this.dialog.open(SubscriptionModalComponent, {
       width: '300px',
       data: {}
     });

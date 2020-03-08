@@ -6,6 +6,7 @@ import {catchError} from 'rxjs/operators';
 import {Order} from '../_models/Order';
 import {KotDashboard} from '../_models/KotDashboard';
 import {OrderDetail} from "../_models/OrderDetails";
+import {OrderItem} from "../_models/OrderItem";
 
 @Injectable({
   providedIn: 'root'
@@ -29,11 +30,17 @@ export class OrderService {
       .pipe(catchError(this.handleError<OrderDetail>('placeOrder', null)));
   }
 
-  public updateStatus(order: Order): Observable<Order> {
+  public updateOrderStatus(order: Order): Observable<Order> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
     const options = { headers, crossDomain: true, withCredentials: true };
     return this.http.put<Order>('/rest/item_order_service/v1/order/status', order, options)
       .pipe(catchError(this.handleError<Order>('updateStatus', null)));
+  }
+  public updateOrderItemStatus(orderItem: OrderItem): Observable<Boolean> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
+    const options = { headers, crossDomain: true, withCredentials: true };
+    return this.http.put<Boolean>('/rest/item_order_service/v1/order/item/status', orderItem, options)
+      .pipe(catchError(this.handleError<Boolean>('updateOrderItemStatus', false)));
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

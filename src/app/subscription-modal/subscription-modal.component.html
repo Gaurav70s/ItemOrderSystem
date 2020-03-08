@@ -1,0 +1,17 @@
+<div mat-dialog-content>
+
+  <mat-form-field>
+    <label>Email :</label>
+    <input matInput [(ngModel)]="data.email">
+  </mat-form-field>
+
+  <mat-form-field>
+    <label>Ph. Number</label>
+    <input matInput [(ngModel)]="data.phNumber">
+  </mat-form-field>
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Yes</button>
+</div>
