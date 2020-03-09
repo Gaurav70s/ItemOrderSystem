@@ -45,13 +45,13 @@ export class KitchenOrderDisplayComponent implements OnInit {
   }*/
   approveOrder(order:Order){
     const updatedOrder = new Order(order.orderNo,OrderStatus.ACCEPTED, order.orderId );
-    this.orderService.updateOrderStatus(updatedOrder).subscribe();
+    this.orderService.updateOrderStatus(updatedOrder).subscribe(data=>this.getKotDashboardData());
 
   }
 
   rejectOrder(order:Order){
     const updatedOrder = new Order(order.orderNo,OrderStatus.REJECTED, order.orderId );
-    this.orderService.updateOrderStatus(updatedOrder).subscribe();
+    this.orderService.updateOrderStatus(updatedOrder).subscribe(data=> this.getKotDashboardData());
 
   }
   /*openBottomSheet(message: string) {
@@ -81,6 +81,6 @@ export class KitchenOrderDisplayComponent implements OnInit {
     });
   }*/
   updateOrderItemStatus(order: Order, item: Item) {
-    this.orderService.updateOrderItemStatus(new OrderItem(order,item)).subscribe();
+    this.orderService.updateOrderItemStatus(new OrderItem(order,item)).subscribe(data => this.getKotDashboardData());
   }
 }

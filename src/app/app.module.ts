@@ -29,7 +29,6 @@ import { CreateItemCategoryComponent } from './create-item-category/create-item-
 import { CreateItemImagesComponent } from './create-item-images/create-item-images.component';
 import { IngredientsComponent } from './ingredients/ingredients.component';
 import { CounterViewComponent } from './counter-view/counter-view.component';
-import { MaterialModule } from './material.module';
 import { InvoiceComponent } from './invoice/invoice.component';
 import { PDFExportModule } from '@progress/kendo-angular-pdf-export';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -88,7 +87,6 @@ export function provideConfig() {
     ReactiveFormsModule,
     PDFExportModule,
     BrowserAnimationsModule,
-    MaterialModule,
     NgbAccordionModule,
     NgHttpLoaderModule.forRoot()
   ],
