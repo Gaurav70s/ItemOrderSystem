@@ -9,6 +9,9 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
+  "browserslist": [
+    "last 2 Chrome versions"
+  ],
   "private": true,
   "dependencies": {
     "@angular/animations": "^9.0.5",
