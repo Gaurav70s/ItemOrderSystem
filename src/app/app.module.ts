@@ -21,8 +21,7 @@ import { SignupComponent } from './signup/signup.component';
 import { KitchenOrderDisplayComponent } from './kitchen-order-display/kitchen-order-display.component';
 import { KitchenCompletedOrderComponent } from './kitchen-completed-order/kitchen-completed-order.component';
 import { KitchenIncompletedOrderComponent } from './kitchen-incompleted-order/kitchen-incompleted-order.component';
-import { ErrorInterceptor, fakeBackendProvider, JwtInterceptor } from './_helpers';
-import { CounterDashboardComponent } from './counter-dashboard/counter-dashboard.component';
+import { ErrorInterceptor, JwtInterceptor } from './_helpers';
 import { OrdersDashboardComponent } from './orders-dashboard/orders-dashboard.component';
 import { CreateItemComponent } from './create-item/create-item.component';
 import { CreateItemCategoryComponent } from './create-item-category/create-item-category.component';
@@ -36,6 +35,13 @@ import { SubscriptionModalComponent } from './subscription-modal/subscription-mo
 import { OrderSnackbarComponent} from './order.snackbar/order.snackbar.component';
 import { NgbAccordionModule } from "@ng-bootstrap/ng-bootstrap";
 import { NgHttpLoaderModule } from 'ng-http-loader';
+import {MatDialog, MatDialogModule} from "@angular/material/dialog";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatButtonModule} from "@angular/material/button";
+import {MatInputModule} from "@angular/material/input";
+import {MatCardModule} from "@angular/material/card";
+import {CookieService} from "ngx-cookie-service";
+import { TableSelectComponent } from './table-select/table-select.component';
 
 
 
@@ -67,7 +73,6 @@ export function provideConfig() {
     KitchenOrderDisplayComponent,
     KitchenCompletedOrderComponent,
     KitchenIncompletedOrderComponent,
-    CounterDashboardComponent,
     OrdersDashboardComponent,
     CreateItemComponent,
     CreateItemCategoryComponent,
@@ -76,7 +81,8 @@ export function provideConfig() {
     CounterViewComponent,
     InvoiceComponent,
     SubscriptionModalComponent,
-    OrderSnackbarComponent
+    OrderSnackbarComponent,
+    TableSelectComponent
   ],
   imports: [
     BrowserModule,
@@ -88,14 +94,19 @@ export function provideConfig() {
     PDFExportModule,
     BrowserAnimationsModule,
     NgbAccordionModule,
-    NgHttpLoaderModule.forRoot()
+    MatDialogModule,
+    NgHttpLoaderModule.forRoot(),
+    MatFormFieldModule,
+    MatButtonModule,
+    MatInputModule,
+    MatCardModule
   ],
   providers: [
     //{ provide: AuthServiceConfig, useFactory: provideConfig },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     // provider used to create fake backend
-    fakeBackendProvider
+    CookieService
   ],
   bootstrap: [AppComponent]
 })

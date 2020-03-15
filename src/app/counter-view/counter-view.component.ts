@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {CounterDashboard} from '../_models/CounterDashboard';
 import {CounterServiceService} from '../_services/counter-service.service';
+import {Table} from "../_models/Table";
 
 @Component({
   selector: 'app-counter-view',
@@ -8,7 +9,7 @@ import {CounterServiceService} from '../_services/counter-service.service';
   styleUrls: ['./counter-view.component.css']
 })
 export class CounterViewComponent implements OnInit {
-  private dashboards: CounterDashboard[];
+  private dashboards: Table[];
   constructor(private counterService: CounterServiceService) { }
 
   ngOnInit() {

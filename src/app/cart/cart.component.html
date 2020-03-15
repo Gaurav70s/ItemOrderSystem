@@ -80,6 +80,10 @@
               <td class="text-muted">Amount Payable</td>
               <td class="font-medium float-right">{{getTotalAmount(subtotal) | number : '1.2' }}</td>
             </tr>
+            <tr *ngIf="subscription">
+              <td class="text-muted">Subscription Points<small><br/>@{{subscription.subscriptionId}}</small></td>
+              <td class="font-medium float-right">{{subscription.points | number : '1.2' }}</td>
+            </tr>
             </tbody>
           </table>
           <div class="container border-top-generic" style="text-align: center;">

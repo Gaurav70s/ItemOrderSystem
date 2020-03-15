@@ -9,11 +9,12 @@ import {User} from "../_models/User";
 import {Role} from "../_models/Role";
 
 import {SubscriptionModalComponent} from "../subscription-modal/subscription-modal.component";
-import {MatDialog} from "@angular/material/dialog";
+import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
+import {Subscriptions} from "../_models/Subscriptions";
 
 interface DialogData {
   email: string;
-  phNumber: String;
+  phNumber: string;
 }
 
 @Component({
@@ -30,7 +31,8 @@ export class CartComponent implements OnInit {
   subtotal = 0;
   totalQue = 0;
   orderStatus = false;
-  orderNumber = '';
+  subscription : Subscriptions;
+  users: User[]= [];
 
   constructor(private cartService: OrderService,
               private router: Router,
@@ -43,14 +45,25 @@ export class CartComponent implements OnInit {
   }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(SubscriptionModalComponent, {
-      width: '300px',
-      data: {}
-    });
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+      email: '',
+      phNumner: ''
+    };
+    dialogConfig.width ='300px';
+    const dialogRef = this.dialog.open(SubscriptionModalComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log("Dialog Data: "+ result)
+      const data = (<DialogData>result);
+      const user = new User( data.phNumber,data.email, Role.Customer);
+      this.checkSubscription(user);
     });
+  }
+  private checkSubscription(user:User){
+    this.cartService.checkSubscription(user).subscribe(data=> this.subscription= data);
   }
 
   public getCartItems() {
@@ -83,14 +96,19 @@ export class CartComponent implements OnInit {
     this.items = this.items.filter(h => h.item !== item);
   }
   placeOrder() {
+    this.users.push(new User("", "test@test.com", Role.Waiter));
+    if(this.subscription != undefined) this.users.push(this.subscription.user);
     this.orderDetail = new OrderDetail(
-      [new User("", "test@test.com", Role.Waiter)],
+      this.users,
       this.items,
       null,
       new Table("TB01"));
     console.log('Order Placed with data : ' + JSON.stringify(this.orderDetail));
-    this.cartService.placeOrder(this.orderDetail).subscribe(data => this.orderDetail = data);
-    this.orderStatus = true;
+    this.cartService.placeOrder(this.orderDetail).subscribe(data => {
+      this.orderDetail = data;
+      this.orderStatus = true;
+      localStorage.setItem('cartItem','[]');
+    });
   }
   getTotalAmount(subTotal: number) {
  return subTotal + this.getCGST(subTotal) + this.getSGST(subTotal) + this.getServiceCharge(subTotal);

@@ -11,7 +11,7 @@ import {Role} from './_models/Role';
 import {KitchenCompletedOrderComponent} from './kitchen-completed-order/kitchen-completed-order.component';
 import {KitchenIncompletedOrderComponent} from './kitchen-incompleted-order/kitchen-incompleted-order.component';
 import {KitchenOrderDisplayComponent} from './kitchen-order-display/kitchen-order-display.component';
-import {CounterDashboardComponent} from './counter-dashboard/counter-dashboard.component';
+
 import {OrdersDashboardComponent} from './orders-dashboard/orders-dashboard.component';
 import {CreateItemComponent} from './create-item/create-item.component';
 import {CounterViewComponent} from './counter-view/counter-view.component';
@@ -19,6 +19,7 @@ import {InvoiceComponent} from './invoice/invoice.component';
 import {CreateItemCategoryComponent} from './create-item-category/create-item-category.component';
 import {CreateItemImagesComponent} from './create-item-images/create-item-images.component';
 import {IngredientsComponent} from './ingredients/ingredients.component';
+import {AuthGuard} from "./_helpers/auth-guard";
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -28,17 +29,16 @@ const routes: Routes = [
 /*      { path: 'category/create', component: CreateItemCategoryComponent },
       { path: 'image/upload', component: CreateItemImagesComponent },*/
       { path: ':id', component: ItemDetailsComponent }
-    ]
+    ], canActivate:[AuthGuard]
   },
-  {path: 'checkout', component: CheckoutComponent, data: { roles: [Role.Admin]}},
-  {path: 'cart' , component: CartComponent, data: { roles: [Role.Admin]}},
+  {path: 'checkout', component: CheckoutComponent ,canActivate:[AuthGuard],data: { roles: [Role.Waiter]}},
+  {path: 'cart' , component: CartComponent,canActivate:[AuthGuard], data: { roles: [Role.Waiter]}},
   {path: 'login', component: LoginComponent},
-  {path: 'create', component: CreateItemComponent},
-  {path: 'forgotPassword', component: ForgotPasswordComponent},
-  {path: 'counter', component: CounterDashboardComponent},
-  {path: 'counterview', component: CounterViewComponent},
-  {path: 'invoice', component: InvoiceComponent},
-  {path: 'orderlist', component: OrdersDashboardComponent},
+  {path: 'create', component: CreateItemComponent,canActivate:[AuthGuard]},
+  {path: 'forgotPassword', component: ForgotPasswordComponent,canActivate:[AuthGuard]},
+  {path: 'counterview', component: CounterViewComponent,canActivate:[AuthGuard]},
+  {path: 'invoice', component: InvoiceComponent,canActivate:[AuthGuard]},
+  {path: 'orderlist', component: OrdersDashboardComponent,canActivate:[AuthGuard]},
   {path: 'admin' , children: [
       { path: 'item' , children: [
           { path: 'create', component: CreateItemComponent },
@@ -50,13 +50,10 @@ const routes: Routes = [
           { path: 'create', component: IngredientsComponent }
         ]
       }
-    ]
+    ],canActivate:[AuthGuard]
   },
-  {path: 'signup', component: SignupComponent},
-  {path: 'kot', component: KitchenOrderDisplayComponent , children: [
-      {path: 'completed', component: KitchenCompletedOrderComponent},
-      {path: 'incompleted', component: KitchenIncompletedOrderComponent}
-    ]},
+  {path: 'signup', component: SignupComponent,canActivate:[AuthGuard]},
+  {path: 'kot', component: KitchenOrderDisplayComponent ,canActivate:[AuthGuard]},
   {path: '**', redirectTo: '/login' }
 ];
 

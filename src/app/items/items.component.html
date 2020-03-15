@@ -37,8 +37,8 @@
             remove
           </i></div>
           <div class="_2zAXs" id="qua">{{itemsOnCart.quantity? itemsOnCart.quantity : 0}}</div>
-          <div class="cart_icon1" title= "Add to cart">
-            <i class="material-icons cart_icon" (click)="addtocart(itemsOnCart)">
+          <div class="cart_icon1" title="Add to cart" [attr.disabled] = "itemsOnCart.quantity > 0">
+            <i class="material-icons cart_icon" (click)="addtocart(itemsOnCart)" >
               shopping_cart
             </i>
             <!--<img class="cart_icon" src="/assets/images/cart_icon.png"  alt="">-->
@@ -54,4 +54,4 @@
 <!-- Food Area End -->
 <!--<app-booktable></app-booktable>-->
 <app-footer></app-footer>
-<ng-http-loader></ng-http-loader>
+<ng-http-loader backgroundColor="#ffb606" spinner="skDoubleBounce"></ng-http-loader>

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {MenuServiceService} from '../_services/menu-service.service';
 import {Menu} from '../_models/Menu';
+import {AuthenticationService} from "../_services/authentication.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-menu',
@@ -10,7 +12,9 @@ import {Menu} from '../_models/Menu';
 export class AppMenuComponent implements OnInit {
   menus: Menu[];
 
-  constructor(private menuService: MenuServiceService) { }
+  constructor(private menuService: MenuServiceService,
+              private authService: AuthenticationService,
+              private router: Router) { }
 
   ngOnInit() {
     this.getMenu();
@@ -18,5 +22,10 @@ export class AppMenuComponent implements OnInit {
 
   getMenu() {
     this.menuService.getMenus().subscribe(data => this.menus = data);
+  }
+  logout(){
+    this.authService.logout();
+    this.router.navigate(['/login'])
+
   }
 }

@@ -1,6 +1,6 @@
 {
   "/rest/item_order_service/v1/*": {
-    "target": "http://localhost:1000",
+    "target": "http://localhost:1001",
     "secure": false,
     "logLevel": "debug"
   }

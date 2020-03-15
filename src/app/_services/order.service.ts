@@ -7,6 +7,8 @@ import {Order} from '../_models/Order';
 import {KotDashboard} from '../_models/KotDashboard';
 import {OrderDetail} from "../_models/OrderDetails";
 import {OrderItem} from "../_models/OrderItem";
+import {Subscriptions} from "../_models/Subscriptions";
+import {User} from "../_models/User";
 
 @Injectable({
   providedIn: 'root'
@@ -61,5 +63,11 @@ export class OrderService {
     const options = { headers, crossDomain: true, withCredentials: true };
     return this.http.get<KotDashboard>('/rest/item_order_service/v1/dashboard/kot', options).pipe(
       catchError(this.handleError<KotDashboard>('getKotDashboard', new KotDashboard())));
+  }
+  public checkSubscription(user: User): Observable<Subscriptions> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
+    const options = { headers, crossDomain: true, withCredentials: true };
+    return this.http.post<Subscriptions>('/rest/item_order_service/v1/subscription/check',user , options).pipe(
+      catchError(this.handleError<Subscriptions>('getKotDashboard', new Subscriptions())));
   }
 }

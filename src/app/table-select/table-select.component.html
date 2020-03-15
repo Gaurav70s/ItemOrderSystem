@@ -1,9 +1,9 @@
 <div class="row">
-  <div class="col-xl-4 col-lg-5" *ngFor="let dashboard of dashboards">
+  <div class="col-xl-4 col-lg-5" *ngFor="let table of tables">
     <div class="card shadow mb-4">
       <!-- Card Header - Dropdown -->
       <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Table No : {{dashboard.table_no}}</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Table No : {{table.tableNo}}</h6>
       </div>
       <!-- Card Body -->
       <div id="accordion" class="accordion-wrapper mb-3">
@@ -14,8 +14,8 @@
                 <tbody>
                 <tr>
                   <td class="text-center text-muted" style="width:15%;">#{{order.orderNo}}</td>
-                  <td class="text-center"style="width:30%;">Micro Electronics</td>
-                  <td class="text-center"style="width:15%;">
+                  <td class="text-center" style="width:30%;">Micro Electronics</td>
+                  <td class="text-center" style="width:15%;">
                     <div class="badge badge-pill badge-danger" *ngIf="order.orderStatus === 'new'">{{order.orderStatus}}</div>
                     <div class="badge badge-pill badge-primary" *ngIf="order.orderStatus === 'accepted'">{{order.orderStatus}}</div>
                     <div class="badge badge-pill badge-warning" *ngIf="order.orderStatus === 'delivered'">{{order.orderStatus}}</div>
@@ -42,6 +42,7 @@
     </div>
   </div>
 </div>
+
 
 
 

@@ -1,11 +1,6 @@
-import {Role} from "./Role";
+import {User} from "./User";
 
 export class LoginUser{
-  id: number;
-  username: string;
-  password: string;
-  firstName: string;
-  lastName: string;
-  role: Role;
+  user: User;
   token?: string;
 }

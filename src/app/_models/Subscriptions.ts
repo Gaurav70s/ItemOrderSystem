@@ -1,4 +1,9 @@
+import {User} from "./User";
+
 export class Subscriptions{
+  subscriptionId: number;
   points: number;
-  lastVisted: Date;
+  isNewsletterAllowed: boolean;
+  isNotificationAllowed: boolean;
+  user: User;
 }
