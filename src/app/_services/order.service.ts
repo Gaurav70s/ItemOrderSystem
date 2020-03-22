@@ -9,6 +9,7 @@ import {OrderDetail} from "../_models/OrderDetails";
 import {OrderItem} from "../_models/OrderItem";
 import {Subscriptions} from "../_models/Subscriptions";
 import {User} from "../_models/User";
+import {Payment} from "../_models/Payment";
 
 @Injectable({
   providedIn: 'root'
@@ -69,5 +70,11 @@ export class OrderService {
     const options = { headers, crossDomain: true, withCredentials: true };
     return this.http.post<Subscriptions>('/rest/item_order_service/v1/subscription/check',user , options).pipe(
       catchError(this.handleError<Subscriptions>('getKotDashboard', new Subscriptions())));
+  }
+  public updatePayment(payment: Payment, order_id: string): Observable<boolean> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
+    const options = { headers, crossDomain: true, withCredentials: true };
+    return this.http.put<boolean>('/rest/item_order_service/v1/subscription/check',payment , options).pipe(
+      catchError(this.handleError<boolean>('getKotDashboard', false)));
   }
 }

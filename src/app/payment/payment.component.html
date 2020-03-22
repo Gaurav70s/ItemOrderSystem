@@ -1,0 +1,128 @@
+<app-header></app-header>
+<div class="container">
+  <div class="row">
+    <div class="col-6 p-2">
+      <div class="card pl-2 pr-2">
+        <mat-card-title class="border-bottom">Payment Options</mat-card-title>
+        <mat-action-list>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <input class="form-check-input" type="radio" name="exampleRadios" value="card" (change)="selected('card')">
+              <div class="pl-2">Pay by Debit / Credit / ATM Card</div>
+              <div class="col-6">
+                <img src="assets/images/cards.jpeg" class="rounded img-thumbnail" alt="">
+              </div>
+              <div *ngIf="paymentMethod=='CARD'"><label>Please Provide last four digit of Card number</label>
+                <br/><small>XXXX-XXXX-XXXX-<input type="number"></small></div>
+            </li>
+            <li class="list-group-item">
+              <input class="form-check-input" name="exampleRadios" type="radio" value="upi" (change)="selected('upi')">
+              <div class="pl-2">Pay by UPI</div>
+              <div class="col-3">
+                <img src="assets/images/UPI.png" class="rounded img-thumbnail" alt="">
+              </div>
+              <div *ngIf="paymentMethod=='UPI'"><label>Please Provide your UPI id</label>
+                <br/><small><input type="text"></small></div>
+            </li>
+            <li class="list-group-item">
+              <input class="form-check-input" name="exampleRadios" type="radio" value="cash" (change)="selected('cash')">
+              <div class="pl-2">Pay by Cash</div>
+              <div class="col-9">
+                <img src="assets/images/cash_payment.png" class="rounded img-thumbnail" style="width: 15%" alt="">
+              </div>
+              <div *ngIf="paymentMethod=='CASH'"><label>Please Provide your UPI id</label>
+                <br/><small><input type="number" [(ngModel)]="value"> Balance : {{totalAmount - value}}</small></div>
+            </li>
+          </ul>
+        </mat-action-list>
+      </div>
+    </div>
+    <div class="col-6 p-2">
+      <div class="card">
+        <div class="row">
+          <div class="col text-center">
+            <!-- Logo--><img src="assets/images/logo/logo.png" alt="..." style="max-width: 6rem;" class="img-fluid">
+            <!-- Heading-->
+            <p class="mb-0">(A Unit Of SAM Hospitality)</p>
+            <h6 class="text-uppercase text-muted"> </h6>
+            <p class="text-muted mb-0">GSTIN: 08ADMFS1179B1ZO</p>
+            <p class="text-muted mb-6">Invoice #{{20190204}}</p>
+          </div>
+        </div>
+        <div class="row ml-2 mr-2">
+          <div class="col-xl-6">
+            <strong>Payment Method:</strong><br>
+            Payed by {{paymentMethod}}
+            <br>**** **** **** 4242<br>
+            jsmith@email.com
+          </div>
+          <div class="col-xl-6 text-right">
+            <strong>Order Date:</strong><br>
+            {{todayDate | date:'medium':'IST'}}<br>
+            <strong>Table No: </strong><br>
+            TB01
+          </div>
+        </div>
+        <div class="row mr-2 ml-2">
+          <div class="col-md-12">
+            <div class="panel panel-default">
+              <div class="panel-heading pt-3">
+                <strong>Order summary</strong>
+              </div>
+              <div class="panel-body">
+                <div class="table-responsive">
+                  <table class="table my-3">
+                    <thead>
+                    <tr>
+                      <th class="px-0 bg-transparent" style="width: 50%"><span class="h6">Item</span></th>
+                      <th class="px-0 bg-transparent text-right" style="width: 15%"><span class="h6">#</span></th>
+                      <th class="px-0 bg-transparent text-right" style="width: 20%"><span class="h6">Price</span></th>
+                      <th class="px-0 bg-transparent text-right" style="width: 15%"><span class="h6">Total</span></th>
+                    </tr>
+                    </thead>
+                    <tbody class="border-bottom">
+                    <tr *ngFor="let item of items">
+                      <td class="px-0 border-0 small">{{item.item.name}}</td>
+                      <td class="px-0 border-0 small text-right">{{item.quantity}}</td>
+                      <td class="px-0 border-0 small text-right">{{item.item.price}}</td>
+                      <td class="px-0 border-0 small text-right">{{getTotalPrice(item)| number : '1.2'}}</td>
+                    </tr>
+                    </tbody>
+                    <tfoot class="border-bottom">
+                    <tr>
+                      <td colspan="3" class="text-muted border-0 small text-right">Subtotal Amount</td>
+                      <td class="font-medium border-0 float-right small">{{subtotal | number : '1.2' }}</td>
+                    </tr>
+                    <tr>
+                      <td colspan="3" class="text-muted border-0 small text-right">Service Charge @5%</td>
+                      <td class="font-medium border-0 float-right small">{{getServiceCharge(subtotal) | number : '1.2' }}</td>
+                    </tr>
+                    <tr>
+                      <td colspan="3" class="text-muted border-0 small text-right">SGST@2.50%</td>
+                      <td class="font-medium border-0 float-right small">{{getSGST(subtotal) | number : '1.2' }}</td>
+                    </tr>
+                    <tr>
+                      <td colspan="3" class="text-muted border-0 small text-right">CGST@2.50%</td>
+                      <td class="font-medium border-0 float-right small">{{getCGST(subtotal) | number : '1.2' }}</td>
+                    </tr>
+                    <tr class="border-top">
+                      <td colspan="3" class="border-0 text-right">Amount Payable</td>
+                      <td class="font-medium border-0 float-right ">{{getTotalAmount(subtotal) | number : '1.2' }}</td>
+                    </tr>
+                    </tfoot>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col text-center py-5">
+          <!-- Heading-->
+          <p class="mb-0 font-weight-bold text-md-center">www.stepoutcafe.in</p>
+          <p class="mb-0"><i class="fa fa-facebook"></i> : @stepoutjaipur</p>
+          <p class="mb-0"><i class="fa fa-instagram"></i> : @stepoutjaipur</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

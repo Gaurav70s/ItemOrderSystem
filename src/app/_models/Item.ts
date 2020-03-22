@@ -7,4 +7,5 @@ export class Item {
   category: string;
   description: string;
   ingredients: Ingredient[];
+  itemImageUri: string[];
 }

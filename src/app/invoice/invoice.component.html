@@ -51,39 +51,33 @@
               </thead>
               <tbody>
               <tr *ngFor="let item of items">
-                <td class="px-0 border-0">{{item.item.name}}</td>
+                <td class="px-0 border-0 small">{{item.item.name}}</td>
                 <td class="px-0 border-0 text-right">{{item.quantity}}</td>
                 <td class="px-0 border-0 text-right">{{item.item.price}}</td>
-                <td class="px-0 border-0 text-right">{{getTotalPrice(item)}}</td>
+                <td class="px-0 border-0 text-right">{{getTotalPrice(item) | number : '1.2'}}</td>
               </tr>
               <tr>
-                <td class="border-0"></td>
-                <td class="border-0"></td>
-                <td class="text-muted border-0 small text-right">Subtotal Amount</td>
+                <td colspan="3" class="text-muted border-0 small text-right">Subtotal Amount</td>
                 <td class="font-medium border-0 float-right small">{{subtotal | number : '1.2' }}</td>
               </tr>
               <tr>
-                <td class="border-0"></td>
-                <td class="border-0"></td>
-                <td class="text-muted border-0 small text-right">Service Charge @5%</td>
+
+                <td colspan="3" class="text-muted border-0 small text-right">Service Charge @5%</td>
                 <td class="font-medium border-0 float-right small">{{getServiceCharge(subtotal) | number : '1.2' }}</td>
               </tr>
               <tr>
-                <td class="border-0"></td>
-                <td class="border-0"></td>
-                <td class="text-muted border-0 small text-right">SGST@2.50%</td>
+
+                <td colspan="3" class="text-muted border-0 small text-right">SGST@2.50%</td>
                 <td class="font-medium border-0 float-right small">{{getSGST(subtotal) | number : '1.2' }}</td>
               </tr>
               <tr>
-                <td class="border-0"></td>
-                <td class="border-0"></td>
-                <td class="text-muted border-0 small text-right">CGST@2.50%</td>
+
+                <td colspan="3" class="text-muted border-0 small text-right">CGST@2.50%</td>
                 <td class="font-medium border-0 float-right small">{{getCGST(subtotal) | number : '1.2' }}</td>
               </tr>
               <tr>
-                <td class="border-0"></td>
-                <td class="border-0"></td>
-                <td class="border-0 text-right">Amount Payable</td>
+
+                <td colspan="3" class="border-0 text-right">Amount Payable</td>
                 <td class="font-medium border-0 float-right ">{{getTotalAmount(subtotal) | number : '1.2' }}</td>
               </tr>
               </tbody>

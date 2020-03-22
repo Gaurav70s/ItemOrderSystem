@@ -19,8 +19,6 @@ import { AppMenuComponent } from './app-menu/app-menu.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { SignupComponent } from './signup/signup.component';
 import { KitchenOrderDisplayComponent } from './kitchen-order-display/kitchen-order-display.component';
-import { KitchenCompletedOrderComponent } from './kitchen-completed-order/kitchen-completed-order.component';
-import { KitchenIncompletedOrderComponent } from './kitchen-incompleted-order/kitchen-incompleted-order.component';
 import { ErrorInterceptor, JwtInterceptor } from './_helpers';
 import { OrdersDashboardComponent } from './orders-dashboard/orders-dashboard.component';
 import { CreateItemComponent } from './create-item/create-item.component';
@@ -42,6 +40,9 @@ import {MatInputModule} from "@angular/material/input";
 import {MatCardModule} from "@angular/material/card";
 import {CookieService} from "ngx-cookie-service";
 import { TableSelectComponent } from './table-select/table-select.component';
+import {MatMenuModule} from "@angular/material/menu";
+import { PaymentComponent } from './payment/payment.component';
+import {MatListModule} from "@angular/material/list";
 
 
 
@@ -71,8 +72,6 @@ export function provideConfig() {
     ForgotPasswordComponent,
     SignupComponent,
     KitchenOrderDisplayComponent,
-    KitchenCompletedOrderComponent,
-    KitchenIncompletedOrderComponent,
     OrdersDashboardComponent,
     CreateItemComponent,
     CreateItemCategoryComponent,
@@ -82,7 +81,8 @@ export function provideConfig() {
     InvoiceComponent,
     SubscriptionModalComponent,
     OrderSnackbarComponent,
-    TableSelectComponent
+    TableSelectComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,
@@ -99,7 +99,9 @@ export function provideConfig() {
     MatFormFieldModule,
     MatButtonModule,
     MatInputModule,
-    MatCardModule
+    MatCardModule,
+    MatMenuModule,
+    MatListModule
   ],
   providers: [
     //{ provide: AuthServiceConfig, useFactory: provideConfig },

@@ -8,8 +8,6 @@ import {LoginComponent} from './login/login.component';
 import {ForgotPasswordComponent} from './forgot-password/forgot-password.component';
 import {SignupComponent} from './signup/signup.component';
 import {Role} from './_models/Role';
-import {KitchenCompletedOrderComponent} from './kitchen-completed-order/kitchen-completed-order.component';
-import {KitchenIncompletedOrderComponent} from './kitchen-incompleted-order/kitchen-incompleted-order.component';
 import {KitchenOrderDisplayComponent} from './kitchen-order-display/kitchen-order-display.component';
 
 import {OrdersDashboardComponent} from './orders-dashboard/orders-dashboard.component';
@@ -20,6 +18,8 @@ import {CreateItemCategoryComponent} from './create-item-category/create-item-ca
 import {CreateItemImagesComponent} from './create-item-images/create-item-images.component';
 import {IngredientsComponent} from './ingredients/ingredients.component';
 import {AuthGuard} from "./_helpers/auth-guard";
+import {TableSelectComponent} from "./table-select/table-select.component";
+import {PaymentComponent} from "./payment/payment.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -38,6 +38,8 @@ const routes: Routes = [
   {path: 'forgotPassword', component: ForgotPasswordComponent,canActivate:[AuthGuard]},
   {path: 'counterview', component: CounterViewComponent,canActivate:[AuthGuard]},
   {path: 'invoice', component: InvoiceComponent,canActivate:[AuthGuard]},
+  {path: 'payment', component: PaymentComponent,canActivate:[AuthGuard]},
+  {path: 'table', component: TableSelectComponent,canActivate:[AuthGuard]},
   {path: 'orderlist', component: OrdersDashboardComponent,canActivate:[AuthGuard]},
   {path: 'admin' , children: [
       { path: 'item' , children: [

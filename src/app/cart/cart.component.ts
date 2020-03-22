@@ -96,13 +96,14 @@ export class CartComponent implements OnInit {
     this.items = this.items.filter(h => h.item !== item);
   }
   placeOrder() {
-    this.users.push(new User("", "test@test.com", Role.Waiter));
+    const table: Table  = JSON.parse(localStorage.getItem('table'));
+    this.users.push(JSON.parse(localStorage.getItem('currentUser')).user);
     if(this.subscription != undefined) this.users.push(this.subscription.user);
     this.orderDetail = new OrderDetail(
       this.users,
       this.items,
-      null,
-      new Table("TB01"));
+      this.subscription,
+      table);
     console.log('Order Placed with data : ' + JSON.stringify(this.orderDetail));
     this.cartService.placeOrder(this.orderDetail).subscribe(data => {
       this.orderDetail = data;

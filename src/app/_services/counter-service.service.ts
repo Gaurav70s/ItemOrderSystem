@@ -22,7 +22,7 @@ export class CounterServiceService {
   public getAvailableTables() {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
     const options = { headers, crossDomain: true, withCredentials: true };
-    return this.http.get<Table[]>('/rest/item_order_service/v1/table/status/available', options)
+    return this.http.get<Table[]>('/rest/item_order_service/v1/table/search/status/Available', options)
       .pipe(catchError(this.handleError<Table[]>('getCounterDashboard', null)));
 
   }
