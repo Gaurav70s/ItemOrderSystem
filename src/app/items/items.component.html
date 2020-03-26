@@ -3,7 +3,7 @@
 
 <!-- Food Area starts -->
 <section class="food-area section-padding">
-  <div class="container">
+  <div class="container-fluid">
     <div class="row">
       <div class="col-md-12">
         <div class="section-top">
@@ -13,7 +13,7 @@
       </div>
     </div>
     <div class="row">
-      <div *ngFor="let itemsOnCart of itemsOnCarts" class="col-md-4 col-sm-6 shadow p-3 mb-5 bg-white rounded">
+      <div *ngFor="let itemsOnCart of itemsOnCarts" class="col-md-3 shadow p-3 bg-white rounded m-1">
         <div class="single-food">
           <div class="{{itemsOnCart.item.category | lowercase}}" >
             <img src="/assets/images/Veg_nonVeg.png" class="img-category" alt="">
@@ -36,8 +36,8 @@
           <div class="_29Y5Z" title= "Remove Quantity" (click)="getPrevious(itemsOnCart)"><i class="material-icons">
             remove
           </i></div>
-          <div class="_2zAXs" id="qua">{{itemsOnCart.quantity? itemsOnCart.quantity : 0}}</div>
-          <div class="cart_icon1" title="Add to cart" [attr.disabled] = "itemsOnCart.quantity > 0">
+          <div class="_2zAXs" id="qua">{{itemsOnCart.quantity ? itemsOnCart.quantity : 0}}</div>
+          <div class="cart_icon1" title="Add to cart">
             <i class="material-icons cart_icon" (click)="addtocart(itemsOnCart)" >
               shopping_cart
             </i>

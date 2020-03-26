@@ -1,0 +1,42 @@
+<app-header></app-header>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-6 col-sm-6" *ngFor="let orderDetail of orderDetails ">
+      <div class="card shadow m-1">
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+          <h6 class="m-0 text-primary">Order Number : {{orderDetail.order.orderNo}}</h6>
+        </div>
+        <p><ngb-progressbar type="success" textType="white" [value]="getPercentageCompletion(orderDetail)| number : '1.2'" [showValue]="true"></ngb-progressbar></p>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table" *ngIf="orderDetail.itemsOnCart">
+              <thead>
+              <tr>
+                <th class="px-0 bg-transparent" style="width: 50%"><span class="h6">Item</span></th>
+                <th class="px-0 bg-transparent text-right" style="width: 15%"><span class="h6">#</span></th>
+                <th class="px-0 bg-transparent text-right" style="width: 20%"><span class="h6">Price</span></th>
+                <th class="px-0 bg-transparent text-right" style="width: 15%"><span class="h6">Total</span></th>
+              </tr>
+              </thead>
+              <tbody class="border-bottom">
+              <tr *ngFor="let itemsOnCart of orderDetail.itemsOnCart">
+                <td class="px-0 border-0 small">{{itemsOnCart.item.name}}</td>
+                <td class="px-0 border-0 small text-right">{{itemsOnCart.quantity}}</td>
+                <td class="px-0 border-0 small text-right">{{itemsOnCart.item.price}}</td>
+                <td class="px-0 border-0 small text-right">{{getTotalPrice(itemsOnCart)| number : '1.2'}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="container border-top-generic" style="text-align: center;">
+      <div class="button-group-area">
+        <a class="genric-btn primary radius" href="/payment">Payment</a>
+      </div>
+    </div>
+  </div>
+</div>

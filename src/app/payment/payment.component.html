@@ -13,7 +13,7 @@
                 <img src="assets/images/cards.jpeg" class="rounded img-thumbnail" alt="">
               </div>
               <div *ngIf="paymentMethod=='CARD'"><label>Please Provide last four digit of Card number</label>
-                <br/><small>XXXX-XXXX-XXXX-<input type="number"></small></div>
+                <br/><small>XXXX-XXXX-XXXX-<input [(ngModel)]="value" class="border" type="number"></small></div>
             </li>
             <li class="list-group-item">
               <input class="form-check-input" name="exampleRadios" type="radio" value="upi" (change)="selected('upi')">
@@ -22,7 +22,7 @@
                 <img src="assets/images/UPI.png" class="rounded img-thumbnail" alt="">
               </div>
               <div *ngIf="paymentMethod=='UPI'"><label>Please Provide your UPI id</label>
-                <br/><small><input type="text"></small></div>
+                <br/><small><input [(ngModel)]="value" type="text"></small></div>
             </li>
             <li class="list-group-item">
               <input class="form-check-input" name="exampleRadios" type="radio" value="cash" (change)="selected('cash')">
@@ -32,6 +32,15 @@
               </div>
               <div *ngIf="paymentMethod=='CASH'"><label>Please Provide your UPI id</label>
                 <br/><small><input type="number" [(ngModel)]="value"> Balance : {{totalAmount - value}}</small></div>
+            </li>
+            <li class="list-group-item">
+              <input class="form-check-input" name="exampleRadios" type="checkbox" value="points" [disabled]="subscription!=undefined && subscription.points < 1000">
+              <div class="pl-2">Pay by Subscription Points</div>
+              <div *ngIf="subscription"><small class="text-muted">Available Points : {{subscription.points}}</small></div>
+              <div *ngIf="subscription && subscription.points < 1000"><small class="text-muted">*Points can be used once membership has more than 1000 points</small></div>
+              <div class="button-group-area">
+                <a class="genric-btn primary radius" (click)="openDialog()">Check Membership</a>
+              </div>
             </li>
           </ul>
         </mat-action-list>
@@ -51,27 +60,28 @@
         </div>
         <div class="row ml-2 mr-2">
           <div class="col-xl-6">
-            <strong>Payment Method:</strong><br>
-            Payed by {{paymentMethod}}
-            <br>**** **** **** 4242<br>
-            jsmith@email.com
+            <strong *ngIf="value">Payment Method:</strong><br>
+            <div *ngIf="value">Payed by {{paymentMethod}}
+              <br><small *ngIf="paymentMethod=='CARD'">XXXX-XXXX-XXXX-</small>{{value}}<br>
+            </div>
+            <div *ngIf="subscription">{{subscription.user.email}}</div>
           </div>
           <div class="col-xl-6 text-right">
             <strong>Order Date:</strong><br>
             {{todayDate | date:'medium':'IST'}}<br>
             <strong>Table No: </strong><br>
-            TB01
+            {{table.tableNo}}
           </div>
         </div>
         <div class="row mr-2 ml-2">
-          <div class="col-md-12">
+          <div class="col-md-12" *ngIf="items">
             <div class="panel panel-default">
-              <div class="panel-heading pt-3">
+              <div class="panel-heading">
                 <strong>Order summary</strong>
               </div>
               <div class="panel-body">
                 <div class="table-responsive">
-                  <table class="table my-3">
+                  <table class="table" >
                     <thead>
                     <tr>
                       <th class="px-0 bg-transparent" style="width: 50%"><span class="h6">Item</span></th>

@@ -1,5 +1,4 @@
-import { Injectable } from '@angular/core';
-import {CounterDashboard} from '../_models/CounterDashboard';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {catchError} from 'rxjs/operators';
@@ -22,7 +21,7 @@ export class CounterServiceService {
   public getAvailableTables() {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
     const options = { headers, crossDomain: true, withCredentials: true };
-    return this.http.get<Table[]>('/rest/item_order_service/v1/table/search/status/Available', options)
+    return this.http.get<Table[]>('/rest/item_order_service/v1/table/all', options)
       .pipe(catchError(this.handleError<Table[]>('getCounterDashboard', null)));
 
   }

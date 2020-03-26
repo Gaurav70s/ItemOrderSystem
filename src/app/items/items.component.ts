@@ -35,7 +35,7 @@ export class ItemsComponent implements OnInit {
     const itemsOnCart = [];
     this.itemService.getItems().subscribe(data => {
       this.items = data;
-      this.items.forEach((data:Item) => itemsOnCart.push(new ItemsOnCart(data,0)))
+      this.items.forEach((data:Item) => itemsOnCart.push(new ItemsOnCart(data,0)));
       this.itemsOnCarts = itemsOnCart;
     });
 
@@ -51,7 +51,8 @@ export class ItemsComponent implements OnInit {
   }
 
   addtocart(itemOnCart): void {
-    this.itemService.addToCart(itemOnCart);
+    if(itemOnCart.quantity != 0)
+      this.itemService.addToCart(itemOnCart);
   }
   print(): void {
     console.log('test the crap');

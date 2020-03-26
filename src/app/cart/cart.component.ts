@@ -109,6 +109,7 @@ export class CartComponent implements OnInit {
       this.orderDetail = data;
       this.orderStatus = true;
       localStorage.setItem('cartItem','[]');
+      this.router.navigate(["/table_order"])
     });
   }
   getTotalAmount(subTotal: number) {

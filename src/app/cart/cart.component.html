@@ -48,7 +48,7 @@
         <p class="a-spacing-none a-spacing-top-mini">
       <span id="sc-subtotal-label-activecart" class="a-size-medium">Subtotal ({{totalQue}} item):
         <span id="sc-subtotal-amount-activecart" class="a-color-price a-text-bold">
-          <span class="a-size-medium a-color-price sc-price sc-white-space-nowrap sc-price-sign"><span class="currencyINR">&nbsp;&nbsp;</span>₹{{subtotal}}</span>
+          <span class="a-size-medium a-color-price sc-price sc-white-space-nowrap sc-price-sign"><span class="currencyINR"></span>₹{{subtotal | number : '1.2' }}</span>
         </span>
       </span>
         </p>
@@ -103,7 +103,7 @@
   </p>
 </ng-template>
 
-<section class="text-center" *ngIf="orderStatus">
+<!--<section class="text-center" *ngIf="orderStatus">
   <div class="container">
     <div class="row">
       <div class="col-lg-12">
@@ -114,10 +114,10 @@
       <div class="button-group-area">
         <a routerLink="/invoice" class="genric-btn primary radius">CheckOut</a>
       </div>
-      <!--<countdown-timer style="font-size:30px;color:white;padding:30px;font-family:Roboto;" [end]="'{{endTime}}'"></countdown-timer>-->
+      &lt;!&ndash;<countdown-timer style="font-size:30px;color:white;padding:30px;font-family:Roboto;" [end]="'{{endTime}}'"></countdown-timer>&ndash;&gt;
     </div>
   </div>
-</section>
+</section>-->
 <app-footer></app-footer>
 <ng-http-loader></ng-http-loader>
 

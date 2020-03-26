@@ -20,6 +20,7 @@ import {IngredientsComponent} from './ingredients/ingredients.component';
 import {AuthGuard} from "./_helpers/auth-guard";
 import {TableSelectComponent} from "./table-select/table-select.component";
 import {PaymentComponent} from "./payment/payment.component";
+import {CompletedOrderOnTableComponent} from "./completed-order-on-table/completed-order-on-table.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -36,6 +37,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'create', component: CreateItemComponent,canActivate:[AuthGuard]},
   {path: 'forgotPassword', component: ForgotPasswordComponent,canActivate:[AuthGuard]},
+  {path: 'table_order', component: CompletedOrderOnTableComponent,canActivate:[AuthGuard]},
   {path: 'counterview', component: CounterViewComponent,canActivate:[AuthGuard]},
   {path: 'invoice', component: InvoiceComponent,canActivate:[AuthGuard]},
   {path: 'payment', component: PaymentComponent,canActivate:[AuthGuard]},

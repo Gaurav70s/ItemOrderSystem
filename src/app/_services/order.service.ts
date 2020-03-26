@@ -77,4 +77,11 @@ export class OrderService {
     return this.http.put<boolean>('/rest/item_order_service/v1/subscription/check',payment , options).pipe(
       catchError(this.handleError<boolean>('getKotDashboard', false)));
   }
+
+  public getOrdersByTable( tableNo: string): Observable<OrderDetail[]> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
+    const options = { headers, crossDomain: true, withCredentials: true };
+    return this.http.get<OrderDetail[]>('/rest/item_order_service/v1/order/table/'+ tableNo, options).pipe(
+      catchError(this.handleError<OrderDetail[]>('getKotDashboard', [])));
+  }
 }

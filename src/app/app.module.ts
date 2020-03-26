@@ -31,7 +31,7 @@ import { PDFExportModule } from '@progress/kendo-angular-pdf-export';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SubscriptionModalComponent } from './subscription-modal/subscription-modal.component';
 import { OrderSnackbarComponent} from './order.snackbar/order.snackbar.component';
-import { NgbAccordionModule } from "@ng-bootstrap/ng-bootstrap";
+import {NgbAccordionModule, NgbProgressbarModule} from "@ng-bootstrap/ng-bootstrap";
 import { NgHttpLoaderModule } from 'ng-http-loader';
 import {MatDialog, MatDialogModule} from "@angular/material/dialog";
 import {MatFormFieldModule} from "@angular/material/form-field";
@@ -43,6 +43,7 @@ import { TableSelectComponent } from './table-select/table-select.component';
 import {MatMenuModule} from "@angular/material/menu";
 import { PaymentComponent } from './payment/payment.component';
 import {MatListModule} from "@angular/material/list";
+import { CompletedOrderOnTableComponent } from './completed-order-on-table/completed-order-on-table.component';
 
 
 
@@ -82,27 +83,30 @@ export function provideConfig() {
     SubscriptionModalComponent,
     OrderSnackbarComponent,
     TableSelectComponent,
-    PaymentComponent
+    PaymentComponent,
+    CompletedOrderOnTableComponent
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    AppRoutingModule,
-    FormsModule,
-    // SocialLoginModule,
-    ReactiveFormsModule,
-    PDFExportModule,
-    BrowserAnimationsModule,
-    NgbAccordionModule,
-    MatDialogModule,
-    NgHttpLoaderModule.forRoot(),
-    MatFormFieldModule,
-    MatButtonModule,
-    MatInputModule,
-    MatCardModule,
-    MatMenuModule,
-    MatListModule
-  ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        AppRoutingModule,
+        FormsModule,
+        // SocialLoginModule,
+        ReactiveFormsModule,
+        PDFExportModule,
+        BrowserAnimationsModule,
+        NgbAccordionModule,
+        MatDialogModule,
+        NgHttpLoaderModule.forRoot(),
+        MatFormFieldModule,
+        MatButtonModule,
+        MatInputModule,
+        MatCardModule,
+        MatMenuModule,
+        MatListModule,
+        MatDialog,
+        NgbProgressbarModule
+    ],
   providers: [
     //{ provide: AuthServiceConfig, useFactory: provideConfig },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

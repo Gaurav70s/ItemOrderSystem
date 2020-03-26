@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import {CounterDashboard} from '../_models/CounterDashboard';
+import {Component, OnInit} from '@angular/core';
 import {CounterServiceService} from '../_services/counter-service.service';
 import {Table} from "../_models/Table";
 
@@ -13,7 +12,7 @@ export class CounterViewComponent implements OnInit {
   constructor(private counterService: CounterServiceService) { }
 
   ngOnInit() {
-    this.getDashboardData()
+    this.getDashboardData();
     console.log(this.dashboards);
   }
 
