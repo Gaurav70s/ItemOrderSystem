@@ -3,6 +3,7 @@ import {ItemService} from '../_services/item.service';
 import {Item} from '../_models/Item';
 import {Ingredient} from '../_models/Ingredient';
 import {ItemsOnCart} from "../_models/ItemsOnCart";
+import {CategoryWiseItem} from "../_models/CategoryWiseItem";
 
 @Component({
   selector: 'app-items',
@@ -13,6 +14,7 @@ export class ItemsComponent implements OnInit {
   items: Item[];
   itemsOnCarts: ItemsOnCart[];
   ingredientString = '';
+  categoryWiseItems: CategoryWiseItem[];
 
   constructor(private itemService: ItemService) {
     localStorage.setItem(`cartItem`, '[]');
@@ -33,10 +35,8 @@ export class ItemsComponent implements OnInit {
 
   getItems(): void {
     const itemsOnCart = [];
-    this.itemService.getItems().subscribe(data => {
-      this.items = data;
-      this.items.forEach((data:Item) => itemsOnCart.push(new ItemsOnCart(data,0)));
-      this.itemsOnCarts = itemsOnCart;
+    this.itemService.getCategoryWiseItems().subscribe(data => {
+      this.categoryWiseItems = data;
     });
 
 

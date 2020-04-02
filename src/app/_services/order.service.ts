@@ -17,7 +17,6 @@ import {Payment} from "../_models/Payment";
 export class OrderService {
 
   order: Order;
-  // tslint:disable-next-line:variable-name
   order_no: string;
   constructor(private http: HttpClient) {}
 
@@ -71,11 +70,11 @@ export class OrderService {
     return this.http.post<Subscriptions>('/rest/item_order_service/v1/subscription/check',user , options).pipe(
       catchError(this.handleError<Subscriptions>('getKotDashboard', new Subscriptions())));
   }
-  public updatePayment(payment: Payment, order_id: string): Observable<boolean> {
+  public updatePayment(payment: Payment, tableId: string): Observable<number> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
     const options = { headers, crossDomain: true, withCredentials: true };
-    return this.http.put<boolean>('/rest/item_order_service/v1/subscription/check',payment , options).pipe(
-      catchError(this.handleError<boolean>('getKotDashboard', false)));
+    return this.http.post<number>('/rest/item_order_service/v1/order/table/'+ tableId+'/payment',payment , options).pipe(
+      catchError(this.handleError<number>('getKotDashboard', null)));
   }
 
   public getOrdersByTable( tableNo: string): Observable<OrderDetail[]> {

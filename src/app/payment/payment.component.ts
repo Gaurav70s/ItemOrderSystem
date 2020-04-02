@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {ItemsOnCart} from "../_models/ItemsOnCart";
 import {OrderService} from "../_services/order.service";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
@@ -8,6 +8,7 @@ import {Subscriptions} from "../_models/Subscriptions";
 import {User} from "../_models/User";
 import {Table} from "../_models/Table";
 import {OrderDetail} from "../_models/OrderDetails";
+import {Payment} from "../_models/Payment";
 
 interface DialogData {
   email: string;
@@ -19,7 +20,7 @@ interface DialogData {
   templateUrl: './payment.component.html',
   styleUrls: ['./payment.component.css']
 })
-export class PaymentComponent implements OnInit {
+export class PaymentComponent implements OnInit{
 
   orderDetails : OrderDetail[];
   orderNos: String;
@@ -32,6 +33,9 @@ export class PaymentComponent implements OnInit {
   value: any =0;
   subscription : Subscriptions;
   table: Table;
+  isPointUsed : boolean;
+  pointUsed:number;
+  invoiceId:number;
 
   constructor(private orderService: OrderService,
               private dialog: MatDialog) { }
@@ -42,14 +46,10 @@ export class PaymentComponent implements OnInit {
       this.orderDetails= data;
       this.mergeAllOrders(this.orderDetails);
     });
-    if(this.items!=undefined){
-      for (const item of this.items) {
-        this.subtotal = this.subtotal + (item.item.price * item.quantity);
-        this.totalQue = this.totalQue + item.quantity;
-      }
-    }
 
   }
+
+
   mergeAllOrders(orderDetails: OrderDetail[]){
     let orderNos: string = '';
     for(let orderDetail of orderDetails ){
@@ -60,7 +60,14 @@ export class PaymentComponent implements OnInit {
     }
     console.log(orderNos);
     console.log(this.items);
+    if(this.items!=undefined){
+      for (const item of this.items) {
+        this.subtotal = this.subtotal + (item.item.price * item.quantity);
+        this.totalQue = this.totalQue + item.quantity;
+      }
+    }
     this.orderNos= orderNos;
+    this.getTotalAmount(this.subtotal)
   }
 
   openDialog(): void {
@@ -87,14 +94,11 @@ export class PaymentComponent implements OnInit {
     this.orderService.checkSubscription(user).subscribe(data=> this.subscription= data);
   }
 
-
-
-  getInvoice() {
-    return this.orderService.getInvoice();
-  }
-
   getTotalAmount(subTotal: number) {
-    this.totalAmount = subTotal + this.getCGST(subTotal) + this.getSGST(subTotal) + this.getServiceCharge(subTotal);
+    this.totalAmount = subTotal +
+      this.getCGST(subTotal) +
+      this.getSGST(subTotal) +
+      this.getServiceCharge(subTotal);
     return this.totalAmount;
   }
   getCGST(subTotal: number) {
@@ -123,5 +127,28 @@ export class PaymentComponent implements OnInit {
     else if(select == 'upi') this.paymentMethod = 'UPI';
 
 
+  }
+
+  completePayment() {
+    console.log("----->");
+    let payment = new Payment(this.paymentMethod, this.value, this.totalAmount, this.isPointUsed, this.pointUsed, this.subscription);
+    this.orderService.updatePayment(payment, this.table.tableNo ).subscribe(data=>this.invoiceId= data);
+  }
+
+  getPoint() {
+     if(this.subscription!= undefined){
+      this.pointUsed = (this.totalAmount > this.subscription.points) ? this.subscription.points : this.totalAmount
+       return this.pointUsed
+     }else return 0
+
+  }
+
+  enablePoints() {
+
+    this.getPoint();
+    if(this.isPointUsed)
+      this.totalAmount = this.totalAmount - this.pointUsed;
+    else
+      this.totalAmount = this.totalAmount + this.pointUsed;
   }
 }

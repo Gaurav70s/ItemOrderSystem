@@ -1,5 +1,5 @@
 <app-header></app-header>
-<div class="container">
+<div class="container mb-3">
   <div class="row">
     <div class="col-6 p-2">
       <div class="card pl-2 pr-2">
@@ -34,10 +34,14 @@
                 <br/><small><input type="number" [(ngModel)]="value"> Balance : {{totalAmount - value}}</small></div>
             </li>
             <li class="list-group-item">
-              <input class="form-check-input" name="exampleRadios" type="checkbox" value="points" [disabled]="subscription!=undefined && subscription.points < 1000">
+              <input class="form-check-input" name="exampleRadios" type="checkbox" value="points" [(ngModel)]="isPointUsed" (change)="enablePoints()" [disabled]="subscription==undefined || ( subscription!=undefined && subscription.points < 10)" disabled>
               <div class="pl-2">Pay by Subscription Points</div>
-              <div *ngIf="subscription"><small class="text-muted">Available Points : {{subscription.points}}</small></div>
-              <div *ngIf="subscription && subscription.points < 1000"><small class="text-muted">*Points can be used once membership has more than 1000 points</small></div>
+              <div *ngIf="subscription">
+                <small class="text-muted">Available Points : {{subscription.points}}</small>
+              </div>
+              <div *ngIf="subscription && subscription.points < 10">
+                <small class="text-muted">*Points can be used once membership has more than 1000 points</small>
+              </div>
               <div class="button-group-area">
                 <a class="genric-btn primary radius" (click)="openDialog()">Check Membership</a>
               </div>
@@ -115,9 +119,13 @@
                       <td colspan="3" class="text-muted border-0 small text-right">CGST@2.50%</td>
                       <td class="font-medium border-0 float-right small">{{getCGST(subtotal) | number : '1.2' }}</td>
                     </tr>
+                    <tr *ngIf="subscription!=undefined && isPointUsed">
+                      <td colspan="3" class="text-muted border-0 small text-right">Points</td>
+                      <td class="font-medium border-0 float-right small">{{getPoint() | number : '1.2' }}</td>
+                    </tr>
                     <tr class="border-top">
                       <td colspan="3" class="border-0 text-right">Amount Payable</td>
-                      <td class="font-medium border-0 float-right ">{{getTotalAmount(subtotal) | number : '1.2' }}</td>
+                      <td class="font-medium border-0 float-right ">{{totalAmount | number : '1.2' }}</td>
                     </tr>
                     </tfoot>
                   </table>
@@ -134,5 +142,10 @@
         </div>
       </div>
     </div>
+  </div>
+  <div class="row"></div>
+  <div class="button-group-area text-center">
+    <a class="genric-btn primary radius" (click)="completePayment()">Complete Payment</a>
+    <a class="genric-btn primary radius" (click)="openDialog()">Split Bill</a>
   </div>
 </div>

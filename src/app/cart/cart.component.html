@@ -32,9 +32,13 @@
 
             <div style="width: 20%;">
               <div class="_33Hf_ _3L1X9">
-                <div class="_1ds9T" (click)="getNext(item)">+</div>
-                <div class="_29Y5Z" (click)="getPrevious(item)">-</div>
-                <div class="_2zAXs" id="qua">{{item.quantity}}</div>
+                <div class="_1ds9T" title= "Add Quantity" (click)="getNext(item)"><i class="material-icons">
+                  keyboard_arrow_up
+                </i></div>
+                <div class="_29Y5Z" title= "Remove Quantity" (click)="getPrevious(item)"><i class="material-icons">
+                  keyboard_arrow_down
+                </i></div>
+                <div class="_2zAXs" id="qua">{{item.quantity ? item.quantity : 0}}</div>
               </div>
             </div>
             <div class="_1mx0r" style="width: 10%;text-align: center">

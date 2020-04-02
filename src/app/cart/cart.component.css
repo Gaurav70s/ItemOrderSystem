@@ -62,10 +62,10 @@ body{overflow-x:hidden}a,i,span{display:inline-block;text-decoration:none;-webki
 }
 ._3L1X9{
   display:inline-block;
-  height:30px;
-  width:90px;
-  border:1px solid #d4d5d9;
-  color:#60b246;
+  height:25px;
+  width:60px;
+  border:2px solid #000000;
+  color:#000000;
   font-size:.9rem;
   font-weight:600;
   line-height:30px;
@@ -77,61 +77,67 @@ body{overflow-x:hidden}a,i,span{display:inline-block;text-decoration:none;-webki
   animation:_1gckB .2s ease;
 }*/
 ._1ds9T{
-  position:absolute;
-  right:0px;
-  top:0;
-  width:30px;
-  display:inline-block;
-  opacity:1;
-  transform:translateZ(0);
-  cursor:pointer;
-  font-size:150%;
-  font-weight:600;
-}
-._1ds9T:hover{
-  background-color: #60b246;
-  color: #ffffff;
-}
-
-._29Y5Z{
-  position:absolute;
-  left:0;
-  top:0;
-  width:30px;
-  display:inline-block;
-  opacity:1;
-  transform:translateZ(0);
-  cursor:pointer;
-  font-weight:600;
-  font-size:1.5rem;
-}
-
-._29Y5Z:hover{
-  background-color: #60b246;
-  color: #ffffff;
-}
-
-._2zAXs{
-  position:absolute;
-  left: 30px;
-  top:0;
-  width:30px;
-  display:inline-block;
-  opacity:1;
-  transform:translateZ(0);
-}
-.cart_icon{
-  width: 27px;
+  font-size: 20px;
+  width:33.5%;
   position: initial;
   float: right;
   cursor:pointer;
   display:inline-block;
-  padding: 3px 3px 0px 1px;
+line-height: 0;
+
 }
-._29Y5Z:hover{
-  background-color: #60b246;
+._1ds9T:hover{
+  background-color: #000000;
   color: #ffffff;
 }
+
+._29Y5Z{
+  font-size: 20px;
+  position:absolute;
+  left:-2px;
+  top:0;
+  width:33.5%;
+  display:inline-block;
+  opacity:1;
+  transform:translateZ(0);
+  cursor:pointer;
+  font-weight:600;
+  line-height: 0;
+}
+
+._29Y5Z:hover{
+  background-color: #000000;
+  color: #ffffff;
+}
+
+._2zAXs{
+
+  position:absolute;
+  left: 33%;
+  top:-2px;
+  width:25px;
+  height:25px;
+  display:inline-block;
+  opacity:1;
+  transform:translateZ(0);
+  line-height: 25px;
+}
+.cart_icon{
+  font-size: 20px;
+  position: initial;
+  float: right;
+  cursor:pointer;
+  display:inline-block;
+}
+.cart_icon:hover{
+  background-color: #000000;
+  color: #ffffff;
+}
+._29Y5Z:hover{
+  background-color: #000000;
+  color: #ffffff;
+}
+
 
 .img-fluid{
   width: 130px;

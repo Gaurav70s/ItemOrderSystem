@@ -4,6 +4,7 @@ import {Observable, of} from 'rxjs';
 import {Item} from '../_models/Item';
 import {catchError} from 'rxjs/operators';
 import {ItemsOnCart} from '../_models/ItemsOnCart';
+import {CategoryWiseItem} from "../_models/CategoryWiseItem";
 
 @Injectable({
   providedIn: 'root'
@@ -14,11 +15,11 @@ export class ItemService {
     this.items = JSON.parse(localStorage.getItem('cartItem'));
   }
 
-  public getItems(): Observable<Item[]> {
+  public getCategoryWiseItems(): Observable<CategoryWiseItem[]> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
     const options = { headers, crossDomain: true, withCredentials: true };
-    return this.http.get<Item[]>('/rest/item_order_service/v1/item/all', options).pipe(
-    catchError(this.handleError<Item[]>('getItems', [])));
+    return this.http.get<CategoryWiseItem[]>('/rest/item_order_service/v1/item/all', options).pipe(
+    catchError(this.handleError<CategoryWiseItem[]>('getItems', [])));
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
