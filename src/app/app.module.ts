@@ -27,7 +27,6 @@ import {CreateItemImagesComponent} from './create-item-images/create-item-images
 import {IngredientsComponent} from './ingredients/ingredients.component';
 import {CounterViewComponent} from './counter-view/counter-view.component';
 import {InvoiceComponent} from './invoice/invoice.component';
-import {PDFExportModule} from '@progress/kendo-angular-pdf-export';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SubscriptionModalComponent} from './subscription-modal/subscription-modal.component';
 import {OrderSnackbarComponent} from './order.snackbar/order.snackbar.component';
@@ -44,6 +43,10 @@ import {MatMenuModule} from "@angular/material/menu";
 import {PaymentComponent} from './payment/payment.component';
 import {MatListModule} from "@angular/material/list";
 import {CompletedOrderOnTableComponent} from './completed-order-on-table/completed-order-on-table.component';
+import { RejectPopupComponent } from './reject-popup/reject-popup.component';
+import { SoftwareRatingComponent } from './software-rating/software-rating.component';
+import {MatIconModule} from "@angular/material/icon";
+import {MatTableModule} from "@angular/material/table";
 
 
 /*const config = new AuthServiceConfig([
@@ -83,7 +86,9 @@ export function provideConfig() {
     OrderSnackbarComponent,
     TableSelectComponent,
     PaymentComponent,
-    CompletedOrderOnTableComponent
+    CompletedOrderOnTableComponent,
+    RejectPopupComponent,
+    SoftwareRatingComponent
   ],
     imports: [
         BrowserModule,
@@ -92,7 +97,6 @@ export function provideConfig() {
         FormsModule,
         // SocialLoginModule,
         ReactiveFormsModule,
-        PDFExportModule,
         BrowserAnimationsModule,
         NgbAccordionModule,
         MatDialogModule,
@@ -103,7 +107,9 @@ export function provideConfig() {
         MatCardModule,
         MatMenuModule,
         MatListModule,
-        NgbProgressbarModule
+        NgbProgressbarModule,
+        MatIconModule,
+        MatTableModule
     ],
   providers: [
     //{ provide: AuthServiceConfig, useFactory: provideConfig },

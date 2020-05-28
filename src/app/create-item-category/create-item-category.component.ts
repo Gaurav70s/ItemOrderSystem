@@ -1,6 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
+import {ItemCategory} from "../_models/ItemCategory";
+import {ItemService} from "../_services/item.service";
+const ELEMENT_DATA: ItemCategory[] = [
+  {categoryId: 1, categoryName: 'Hydrogen'},
+  {categoryId: 2, categoryName: 'Helium'},
+  {categoryId: 3, categoryName: 'Lithium'}
+];
 
 @Component({
   selector: 'app-create-item-category',
@@ -15,10 +22,15 @@ export class CreateItemCategoryComponent implements OnInit {
   // endTime = new Date();
   returnUrl: string;
   error = '';
+  categories: ItemCategory[] =[];
+  displayedColumns: string[] = ['categoryId', 'categoryName', 'action'];
+  isSearchActive: boolean = false;
+  isCreateActive: boolean = false;
+
 
   constructor( private formBuilder: FormBuilder,
-               // private authService: AuthService,
                private route: ActivatedRoute,
+               private itemService: ItemService,
                private router: Router) { }
 
 
@@ -37,7 +49,30 @@ export class CreateItemCategoryComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.itemCatForm.value);
+    console.log('test test');
   }
 
+  search() {
+    this.isSearchActive= true;
+    this.isCreateActive=false;
+    this.itemService.getAllItemCategory().subscribe(data => this.categories=data)
+  }
+
+  createAndUpdate(itemCategory: ItemCategory) {
+    this.isSearchActive= false;
+    this.isCreateActive=false;
+    if(itemCategory.categoryId == undefined){
+      this.itemService.cerateCategory(itemCategory).subscribe()
+    } else {
+      this.itemService.updateCategory(itemCategory).subscribe()
+    }
+
+    console.log('searched');
+
+  }
+
+  prepareForCreate() {
+    this.isSearchActive= false;
+    this.isCreateActive= true;
+  }
 }

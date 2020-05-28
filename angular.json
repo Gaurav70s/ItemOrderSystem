@@ -24,9 +24,6 @@
               "src/assets"
             ],
             "styles": [
-              {
-                "input": "node_modules/@progress/kendo-theme-default/dist/all.css"
-              },
               "node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/assets/css/style.css",
               "node_modules/bootstrap-toggle/css/bootstrap-toggle.min.css",
@@ -49,7 +46,6 @@
               "node_modules/bootstrap-select/dist/js/bootstrap-select.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
               "node_modules/jquery-datetimepicker/build/jquery.datetimepicker.full.min.js",
-              "node_modules/jquery-nice-select/js/jquery.nice-select.min.js",
               "node_modules/dropzone/dist/dropzone.js",
               "node_modules/wowjs/dist/wow.min.js",
              "src/assets/js/main.js"
@@ -112,9 +108,6 @@
               "src/assets"
             ],
             "styles": [
-              {
-                "input": "node_modules/@progress/kendo-theme-default/dist/all.css"
-              },
               "src/styles.css"
             ],
             "scripts": []

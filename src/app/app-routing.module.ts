@@ -21,6 +21,7 @@ import {AuthGuard} from "./_helpers/auth-guard";
 import {TableSelectComponent} from "./table-select/table-select.component";
 import {PaymentComponent} from "./payment/payment.component";
 import {CompletedOrderOnTableComponent} from "./completed-order-on-table/completed-order-on-table.component";
+import {SoftwareRatingComponent} from "./software-rating/software-rating.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -43,6 +44,7 @@ const routes: Routes = [
   {path: 'payment', component: PaymentComponent,canActivate:[AuthGuard]},
   {path: 'table', component: TableSelectComponent,canActivate:[AuthGuard]},
   {path: 'orderlist', component: OrdersDashboardComponent,canActivate:[AuthGuard]},
+  {path: 'rating', component: SoftwareRatingComponent, canActivate:[AuthGuard], data: { invoiceid:1}},
   {path: 'admin' , children: [
       { path: 'item' , children: [
           { path: 'create', component: CreateItemComponent },

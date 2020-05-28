@@ -5,6 +5,7 @@ import {Item} from '../_models/Item';
 import {catchError} from 'rxjs/operators';
 import {ItemsOnCart} from '../_models/ItemsOnCart';
 import {CategoryWiseItem} from "../_models/CategoryWiseItem";
+import {ItemCategory} from "../_models/ItemCategory";
 
 @Injectable({
   providedIn: 'root'
@@ -51,6 +52,25 @@ export class ItemService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
     const options = { headers, crossDomain: true, withCredentials: true };
     return this.http.post<any>('/rest/item_order_service/v1/item', item, options).subscribe(res => console.log(res.toString()) );
+  }
+
+  getAllItemCategory():Observable<ItemCategory[]> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
+    const options = { headers, crossDomain: true, withCredentials: true };
+    return this.http.get<ItemCategory[]>('/rest/item_order_service/v1/item/category/all', options).pipe(
+      catchError(this.handleError<ItemCategory[]>('getItemCategories', [])));
+  }
+
+  cerateCategory(itemCategory: ItemCategory) {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
+    const options = { headers, crossDomain: true, withCredentials: true };
+    return this.http.post<ItemCategory>('/rest/item_order_service/v1/item', itemCategory, options);
+  }
+
+  updateCategory(itemCategory: ItemCategory) {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
+    const options = { headers, crossDomain: true, withCredentials: true };
+    return this.http.post<ItemCategory>('/rest/item_order_service/v1/item', itemCategory, options);
   }
 }
 

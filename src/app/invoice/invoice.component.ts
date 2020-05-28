@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {OrderService} from '../_services/order.service';
 import {ItemsOnCart} from '../_models/ItemsOnCart';
 import html2canvas from 'html2canvas';
-import * as jspdf from 'jspdf';
 
 
 @Component({
@@ -53,7 +52,7 @@ export class InvoiceComponent implements OnInit {
     return item.item.price * item.quantity;
   }
 
-  public captureScreen() {
+  /*public captureScreen() {
     const data = document.getElementById('contentToConvert');
     console.log(data);
     html2canvas(data).then(canvas => {
@@ -63,10 +62,12 @@ export class InvoiceComponent implements OnInit {
       const heightLeft = imgHeight;
 
       const contentDataURL = canvas.toDataURL('image/png');
-      const pdf = new jspdf('p', 'mm', 'a2'); // A4 size page of PDF
+      const pdf = new jspdf('p', 'mm', 'a4'); // A4 size page of PDF
       const position = 0;
       pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
       pdf.save('MYPdf.pdf'); // Generated PDF
     });
-  }
+  }*/
+
+
 }

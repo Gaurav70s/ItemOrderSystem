@@ -4,6 +4,8 @@ import {Item} from '../_models/Item';
 import {Ingredient} from '../_models/Ingredient';
 import {ItemsOnCart} from "../_models/ItemsOnCart";
 import {CategoryWiseItem} from "../_models/CategoryWiseItem";
+import {Router} from "@angular/router";
+import {Table} from "../_models/Table";
 
 @Component({
   selector: 'app-items',
@@ -11,16 +13,19 @@ import {CategoryWiseItem} from "../_models/CategoryWiseItem";
   styleUrls: ['./items.component.css']
 })
 export class ItemsComponent implements OnInit {
-  items: Item[];
   itemsOnCarts: ItemsOnCart[];
   ingredientString = '';
   categoryWiseItems: CategoryWiseItem[];
+  count:number;
+  table: Table;
 
-  constructor(private itemService: ItemService) {
+  constructor(private itemService: ItemService,
+              private routes: Router) {
     localStorage.setItem(`cartItem`, '[]');
   }
 
   ngOnInit() {
+    this.table = JSON.parse(localStorage.getItem('table'));
     this.getItems();
   }
   getNext(itemsOnCart: ItemsOnCart): void {
@@ -51,10 +56,28 @@ export class ItemsComponent implements OnInit {
   }
 
   addtocart(itemOnCart): void {
-    if(itemOnCart.quantity != 0)
-      this.itemService.addToCart(itemOnCart);
+    this.itemsOnCarts = JSON.parse(localStorage.getItem('cartItem'));
+    if(itemOnCart.quantity != 0){
+      if (this.itemsOnCarts.findIndex(value => value.item.id === itemOnCart.item.id) !== -1) {
+        this.itemsOnCarts = this.itemsOnCarts.filter(value => value.item.id !== itemOnCart.item.id);
+      }
+      this.itemsOnCarts.push(itemOnCart);
+      localStorage.setItem(`cartItem`, JSON.stringify(this.itemsOnCarts));
+      console.log(this.itemsOnCarts);
+    }
+    if(this.itemsOnCarts!= undefined){
+      this.count = this.itemsOnCarts.length
+    } else{
+      this.count =0;
+    }
   }
-  print(): void {
-    console.log('test the crap');
+
+  cartRedirect() {
+    this.routes.navigate(['/cart'])
+  }
+
+
+  getSelectedTable() {
+
   }
 }

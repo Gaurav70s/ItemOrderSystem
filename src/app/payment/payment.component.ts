@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ItemsOnCart} from "../_models/ItemsOnCart";
 import {OrderService} from "../_services/order.service";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
@@ -9,6 +9,8 @@ import {User} from "../_models/User";
 import {Table} from "../_models/Table";
 import {OrderDetail} from "../_models/OrderDetails";
 import {Payment} from "../_models/Payment";
+import {Router} from "@angular/router";
+import {BillingDetails} from "../_models/BillingDetails";
 
 interface DialogData {
   email: string;
@@ -25,20 +27,24 @@ export class PaymentComponent implements OnInit{
   orderDetails : OrderDetail[];
   orderNos: String;
   items: ItemsOnCart[]= [];
+  billingDetails : BillingDetails;
   subtotal = 0;
-  totalQue = 0;
+
   todayDate: Date = new Date();
   paymentMethod:string= '';
-  totalAmount =0;
+  totalQue =0;
   value: any =0;
   subscription : Subscriptions;
   table: Table;
   isPointUsed : boolean;
   pointUsed:number;
   invoiceId:number;
+  editMode = false;
+  serviceCharge: number;
 
   constructor(private orderService: OrderService,
-              private dialog: MatDialog) { }
+              private dialog: MatDialog,
+              private router: Router) { }
 
   ngOnInit() {
     this.table = JSON.parse(localStorage.getItem('table'));
@@ -58,8 +64,6 @@ export class PaymentComponent implements OnInit{
         this.items.push(orderItemsOnCart)
       }
     }
-    console.log(orderNos);
-    console.log(this.items);
     if(this.items!=undefined){
       for (const item of this.items) {
         this.subtotal = this.subtotal + (item.item.price * item.quantity);
@@ -67,9 +71,11 @@ export class PaymentComponent implements OnInit{
       }
     }
     this.orderNos= orderNos;
-    this.getTotalAmount(this.subtotal)
+    this.setBillingDetails(this.subtotal)
   }
-
+  setBillingDetails(subTotal: number){
+    this.billingDetails = new BillingDetails(subTotal,this.getSGST(subTotal), this.getCGST(subTotal), this.getServiceCharge(subTotal), this.getTotalAmount(subTotal))
+  }
   openDialog(): void {
     console.log('inside');
     const dialogConfig = new MatDialogConfig();
@@ -95,11 +101,10 @@ export class PaymentComponent implements OnInit{
   }
 
   getTotalAmount(subTotal: number) {
-    this.totalAmount = subTotal +
+    return subTotal +
       this.getCGST(subTotal) +
       this.getSGST(subTotal) +
       this.getServiceCharge(subTotal);
-    return this.totalAmount;
   }
   getCGST(subTotal: number) {
     return 0.025 * subTotal;
@@ -110,36 +115,28 @@ export class PaymentComponent implements OnInit{
   getServiceCharge(subTotal: number) {
     return 0.05 * subTotal;
   }
-  getTotalPrice(item: ItemsOnCart): number {
-    this.subtotal = 0;
-    this.totalQue = 0;
 
-    for (const item1 of this.items) {
-      this.subtotal = this.subtotal + (item1.item.price * item1.quantity);
-      this.totalQue = this.totalQue + item1.quantity;
-    }
-    return item.item.price * item.quantity;
-  }
 
   selected(select: string) {
     if( select == 'card') this.paymentMethod = 'CARD';
     else if(select == 'cash') this.paymentMethod = 'CASH';
     else if(select == 'upi') this.paymentMethod = 'UPI';
-
-
+    this.value= undefined;
   }
 
   completePayment() {
-    console.log("----->");
-    let payment = new Payment(this.paymentMethod, this.value, this.totalAmount, this.isPointUsed, this.pointUsed, this.subscription);
-    this.orderService.updatePayment(payment, this.table.tableNo ).subscribe(data=>this.invoiceId= data);
+    let payment = new Payment(this.paymentMethod, this.value, this.billingDetails.totalAmount, this.isPointUsed, this.pointUsed, this.subscription, this.billingDetails);
+    this.orderService.updatePayment(payment, this.table.tableNo ).subscribe(data=>{
+      this.invoiceId= data;
+      this.router.navigate(['/rating',{ invoiceid:this.invoiceId}])
+    });
   }
 
   getPoint() {
-     if(this.subscription!= undefined){
-      this.pointUsed = (this.totalAmount > this.subscription.points) ? this.subscription.points : this.totalAmount
-       return this.pointUsed
-     }else return 0
+    if(this.subscription!= undefined){
+      this.pointUsed = (this.billingDetails.totalAmount > this.subscription.points) ? this.subscription.points : this.billingDetails.totalAmount
+      return this.pointUsed
+    }else return 0
 
   }
 
@@ -147,8 +144,19 @@ export class PaymentComponent implements OnInit{
 
     this.getPoint();
     if(this.isPointUsed)
-      this.totalAmount = this.totalAmount - this.pointUsed;
+      this.billingDetails.totalAmount = this.billingDetails.totalAmount - this.pointUsed;
     else
-      this.totalAmount = this.totalAmount + this.pointUsed;
+      this.billingDetails.totalAmount = this.billingDetails.totalAmount + this.pointUsed;
+  }
+
+  isValid(){
+    console.log("valid : " + this.paymentMethod!=undefined && this.value!=undefined +" paymentMethod: "+this.paymentMethod +"value : "+ this.value)
+    return !(this.paymentMethod!=undefined && this.value!=undefined);
+  }
+
+  removeServiceCharge(serviceCharge: number) {
+    this.editMode = false;
+    this.billingDetails.totalAmount = this.billingDetails.totalAmount - this.billingDetails.serviceCharge + serviceCharge;
+    this.billingDetails.serviceCharge = serviceCharge;
   }
 }

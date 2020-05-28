@@ -4,6 +4,67 @@
 .img-category{
   width:15px;
 }
+.badge-counter{
+  position: absolute;
+  transform: scale(.7);
+  transform-origin: top right;
+  right: 0.75rem;
+  margin-top: -1rem;
+}
+.table_name{
+  font-size: 15px;
+}
+.flex-c-m {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: flex-end;
+  -ms-align-items: flex-end;
+  align-items: flex-end;
+}
+.table_name_area{
+  font-size: 25px;
+  color: #fff;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin: 5px;
+
+}
+
+.login100-social-item {
+  font-size: 25px;
+  color: #fff;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin: 5px;
+}
+
+.login100-social-item:hover {
+  color: #fff;
+  background-color: #333333;
+}
+.bg1 {
+  background-color: #3b5998
+}
 
 .categories_img{
   position: absolute;

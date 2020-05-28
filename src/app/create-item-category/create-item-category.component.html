@@ -2,13 +2,72 @@
 <div class="container">
   <!-- Page Header-->
   <div class="row">
-    <div class="col-lg-12">
-
+    <div class="col-md-12">
       <div class="card">
         <div class="card-header">
           <h4>Create Item Category</h4>
         </div>
         <div class="card-body">
+          <div class="row">
+            <div class="col-md-6">
+              <mat-form-field appearance="legacy">
+                <mat-label>Item Category Name:</mat-label>
+                <input matInput placeholder="Enter Name">
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+              <mat-form-field appearance="legacy">
+                <mat-label>Item Category Name:</mat-label>
+                <input matInput placeholder="Enter Name">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="container border-top-generic text-center">
+              <div class="button-group-area">
+                <a class="genric-btn primary radius" (click)="search()">Search</a>
+                <a class="genric-btn primary radius" (click)="prepareForCreate()">Create</a>
+              </div>
+            </div>
+          </div>
+          <div class="row" *ngIf="isSearchActive">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="table-responsive">
+                    <table id="mytable" class="table table-bordred table-striped">
+                      <thead>
+                        <th>Category Name</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                      </thead>
+                      <tbody>
+                      <tr *ngFor="let category of categories">
+                        <td>{{category.categoryName}}</td>
+                        <td><p data-placement="top" data-toggle="tooltip" title="Edit"><span class="material-icons">edit</span></p></td>
+                        <td><p data-placement="top" data-toggle="tooltip" title="Delete"><span class="material-icons">delete_outline</span></p></td>
+                      </tr>
+                      </tbody>
+                    </table>
+
+                    <div class="clearfix"></div>
+                    <ul class="pagination pull-right">
+                      <li class="disabled"><a href="#"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+                      <li class="active"><a href="#">1</a></li>
+                      <li><a href="#">2</a></li>
+                      <li><a href="#">3</a></li>
+                      <li><a href="#">4</a></li>
+                      <li><a href="#">5</a></li>
+                      <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+                    </ul>
+
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
           <form class="form-validate" novalidate="novalidate" [formGroup]="itemCatForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
               <label>Item Category Name</label>
@@ -16,8 +75,14 @@
                 <input name="form2-name" type="text" required="" placeholder="Please specify Item name" class="form-control" formControlName="name" >
               </label>
             </div>
+            <div class="container border-top-generic text-center">
+              <div class="button-group-area">
+                <a class="genric-btn primary radius" (click)="search()">Search</a>
+                <button type="submit" class="genric-btn primary radius">Submit</button>
+              </div>
+            </div>
             <div class="form-group">
-              <button type="submit" class="btn btn-primary">Submit</button>
+
             </div>
           </form>
         </div>

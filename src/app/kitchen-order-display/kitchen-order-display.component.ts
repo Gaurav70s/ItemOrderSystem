@@ -8,6 +8,12 @@ import {KotOrder} from "../_models/KotOrder";
 import {OrderStatus} from "../_models/OrderStatus";
 import {Item} from "../_models/Item";
 import {OrderItem} from "../_models/OrderItem";
+import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
+import {RejectPopupComponent} from "../reject-popup/reject-popup.component";
+
+interface RejectData {
+  rejectMessage:string
+}
 
 @Component({
   selector: 'app-kitchen-order-display',
@@ -20,11 +26,31 @@ export class KitchenOrderDisplayComponent implements OnInit {
   activeOrders: ActiveOrder[] = [];
   orders: OrderDetail[];
   constructor(private orderService: OrderService,
-              /*public snackbar: MatSnackBar,
-              private zone: NgZone*/) { }
+              private dialog: MatDialog) { }
 
   ngOnInit() {
     this.getKotDashboardData();
+  }
+
+  openDialog(order: Order): void {
+    console.log('inside');
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+      email: '',
+      phNumner: ''
+    };
+    dialogConfig.width ='300px';
+    const dialogRef = this.dialog.open(RejectPopupComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(result => {
+      const data = (<RejectData>result);
+      console.log(data.rejectMessage)
+      const updatedOrder = new Order(order.orderNo,OrderStatus.REJECTED, order.orderId, data.rejectMessage );
+      this.rejectOrder(updatedOrder)
+    });
   }
 
   getKotDashboardData() {
@@ -44,14 +70,13 @@ export class KitchenOrderDisplayComponent implements OnInit {
     });
   }*/
   approveOrder(order:Order){
-    const updatedOrder = new Order(order.orderNo,OrderStatus.ACCEPTED, order.orderId );
+    const updatedOrder = new Order(order.orderNo,OrderStatus.ACCEPTED, order.orderId, null );
     this.orderService.updateOrderStatus(updatedOrder).subscribe(data=>this.getKotDashboardData());
 
   }
 
   rejectOrder(order:Order){
-    const updatedOrder = new Order(order.orderNo,OrderStatus.REJECTED, order.orderId );
-    this.orderService.updateOrderStatus(updatedOrder).subscribe(data=> this.getKotDashboardData());
+    this.orderService.updateOrderStatus(order).subscribe(data=> this.getKotDashboardData());
 
   }
   /*openBottomSheet(message: string) {
