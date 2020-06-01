@@ -28,8 +28,8 @@ const routes: Routes = [
   {path: 'item' , children: [
       { path: '', component: ItemsComponent },
       { path: 'create', component: CreateItemComponent },
-/*      { path: 'category/create', component: CreateItemCategoryComponent },
-      { path: 'image/upload', component: CreateItemImagesComponent },*/
+      /*      { path: 'category/create', component: CreateItemCategoryComponent },
+            { path: 'image/upload', component: CreateItemImagesComponent },*/
       { path: ':id', component: ItemDetailsComponent }
     ], canActivate:[AuthGuard]
   },
@@ -50,7 +50,7 @@ const routes: Routes = [
           { path: 'create', component: CreateItemComponent },
           { path: 'category/create', component: CreateItemCategoryComponent },
           { path: 'image/upload', component: CreateItemImagesComponent }
-          ]
+        ]
       },
       { path: 'ingredient' , children: [
           { path: 'create', component: IngredientsComponent }

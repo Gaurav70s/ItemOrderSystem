@@ -5,16 +5,10 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">
-          <h4>Create Item Category</h4>
+          <h4>Item Category</h4>
         </div>
         <div class="card-body">
-          <div class="row">
-            <div class="col-md-6">
-              <mat-form-field appearance="legacy">
-                <mat-label>Item Category Name:</mat-label>
-                <input matInput placeholder="Enter Name">
-              </mat-form-field>
-            </div>
+          <div class="row" *ngIf="!isCreateActive">
             <div class="col-md-6">
               <mat-form-field appearance="legacy">
                 <mat-label>Item Category Name:</mat-label>
@@ -22,7 +16,7 @@
               </mat-form-field>
             </div>
           </div>
-          <div class="row">
+          <div class="row" *ngIf="!isCreateActive">
             <div class="container border-top-generic text-center">
               <div class="button-group-area">
                 <a class="genric-btn primary radius" (click)="search()">Search</a>
@@ -44,8 +38,8 @@
                       <tbody>
                       <tr *ngFor="let category of categories">
                         <td>{{category.categoryName}}</td>
-                        <td><p data-placement="top" data-toggle="tooltip" title="Edit"><span class="material-icons">edit</span></p></td>
-                        <td><p data-placement="top" data-toggle="tooltip" title="Delete"><span class="material-icons">delete_outline</span></p></td>
+                        <td><p class="icon" data-placement="top" data-toggle="tooltip" title="Edit" (click)="edit(this.category)"><span class="material-icons">edit</span></p></td>
+                        <td><p class="icon" data-placement="top" data-toggle="tooltip" title="Delete" (click)="delete(this.category.categoryId)"><span class="material-icons">delete_outline</span></p></td>
                       </tr>
                       </tbody>
                     </table>
@@ -68,21 +62,20 @@
             </div>
           </div>
 
-          <form class="form-validate" novalidate="novalidate" [formGroup]="itemCatForm" (ngSubmit)="onSubmit()">
+          <form class="form-validate" novalidate="novalidate" [formGroup]="itemCatForm" (ngSubmit)="onSubmit()" *ngIf="isCreateActive">
             <div class="form-group">
               <label>Item Category Name</label>
               <label>
-                <input name="form2-name" type="text" required="" placeholder="Please specify Item name" class="form-control" formControlName="name" >
+                <input name="categoryName" type="text" required="" placeholder="Please specify Item name" class="form-control" formControlName="categoryName" [(ngModel)]="categoryForEdit.categoryName" >
               </label>
+            </div>
+            <div class="form-group">
+                <input name="categoryId" type="hidden" required="" class="form-control" formControlName="categoryId" [(ngModel)]="categoryForEdit.categoryId">
             </div>
             <div class="container border-top-generic text-center">
               <div class="button-group-area">
-                <a class="genric-btn primary radius" (click)="search()">Search</a>
                 <button type="submit" class="genric-btn primary radius">Submit</button>
               </div>
-            </div>
-            <div class="form-group">
-
             </div>
           </form>
         </div>
@@ -90,3 +83,4 @@
     </div>
   </div>
 </div>
+<ng-http-loader></ng-http-loader>

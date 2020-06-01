@@ -47,6 +47,7 @@ import { RejectPopupComponent } from './reject-popup/reject-popup.component';
 import { SoftwareRatingComponent } from './software-rating/software-rating.component';
 import {MatIconModule} from "@angular/material/icon";
 import {MatTableModule} from "@angular/material/table";
+import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
 
 
 /*const config = new AuthServiceConfig([
@@ -92,6 +93,7 @@ export function provideConfig() {
   ],
     imports: [
         BrowserModule,
+        NgMultiSelectDropDownModule,
         HttpClientModule,
         AppRoutingModule,
         FormsModule,

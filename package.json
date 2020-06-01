@@ -43,6 +43,7 @@
     "material-design-iconic-font": "^2.2.0",
     "material-design-icons": "^3.0.1",
     "ng-http-loader": "^7.0.0",
+    "ng-multiselect-dropdown": "^0.2.10",
     "ngx-cookie-service": "^3.0.2",
     "owl.carousel": "^2.3.4",
     "rxjs": "~6.5.4",

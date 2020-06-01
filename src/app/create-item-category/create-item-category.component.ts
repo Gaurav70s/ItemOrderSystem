@@ -22,6 +22,7 @@ export class CreateItemCategoryComponent implements OnInit {
   // endTime = new Date();
   returnUrl: string;
   error = '';
+  categoryForEdit: ItemCategory;
   categories: ItemCategory[] =[];
   displayedColumns: string[] = ['categoryId', 'categoryName', 'action'];
   isSearchActive: boolean = false;
@@ -36,26 +37,39 @@ export class CreateItemCategoryComponent implements OnInit {
 
   ngOnInit() {
     this.itemCatForm = this.formBuilder.group({
-      name : ['', Validators.required],
-      price : ['', Validators.required],
-      description: new FormControl(),
-      category: new FormControl(),
-      itemImage: new FormControl(),
-      property: new FormControl()
+      categoryName : ['', Validators.required],
+      categoryId: new FormControl()
     });
-
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
   }
 
   onSubmit() {
+    this.itemCatForm = this.formBuilder.group({
+      categoryName : ['', Validators.required],
+      categoryId: new FormControl()
+    });
+    this.createAndUpdate(this.categoryForEdit)
     console.log('test test');
+    this.isSearchActive= false;
+    this.isCreateActive= false;
+  }
+
+  delete(id: number){
+    this.itemService.deleteCategory(id).subscribe(data=> this.categories = this.categories.filter(data => data.categoryId!==id))
+    console.log('deleted id'+ id)
   }
 
   search() {
     this.isSearchActive= true;
     this.isCreateActive=false;
     this.itemService.getAllItemCategory().subscribe(data => this.categories=data)
+  }
+
+  edit(category: ItemCategory){
+    this.categoryForEdit = category;
+    this.isSearchActive= false;
+    this.isCreateActive= true;
   }
 
   createAndUpdate(itemCategory: ItemCategory) {
@@ -66,12 +80,11 @@ export class CreateItemCategoryComponent implements OnInit {
     } else {
       this.itemService.updateCategory(itemCategory).subscribe()
     }
-
     console.log('searched');
-
   }
 
   prepareForCreate() {
+    this.categoryForEdit= new ItemCategory();
     this.isSearchActive= false;
     this.isCreateActive= true;
   }

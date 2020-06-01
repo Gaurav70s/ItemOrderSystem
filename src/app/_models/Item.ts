@@ -6,7 +6,7 @@ export class Item {
   name: string;
   price: number;
   category: ItemCategory;
-  veg_nonveg: string;
+  property: string;
   description: string;
   ingredients: Ingredient[];
   itemImageUri: string[];

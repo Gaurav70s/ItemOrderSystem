@@ -2,116 +2,132 @@
 <div class="container">
   <!-- Page Header-->
   <div class="row">
-    <div class="col-lg-12">
-
+    <div class="col-md-12">
       <div class="card">
         <div class="card-header">
-          <h4>Create Item</h4>
+          <h4>Item</h4>
         </div>
         <div class="card-body">
-          <form class="form-validate" novalidate="novalidate" [formGroup]="itemForm" (ngSubmit)="onSubmit()">
+          <div class="row" *ngIf="!isCreateActive">
+            <div class="col-md-6">
+              <!--<div >
+                <label>Item Category</label>
+                <ng-multiselect-dropdown
+                  [placeholder]="'Select Item category for Item'"
+                  [data]="itemCategories"
+                  [ngModel]="category"
+                  [settings]="categoryDropdownSettings"
+                >
+                </ng-multiselect-dropdown>
+              </div>-->
+            </div>
+            <div class="col-md-6">
+              <mat-form-field appearance="legacy">
+                <mat-label>Item </mat-label>
+                <input matInput placeholder="Enter Name">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row" *ngIf="!isCreateActive">
+            <div class="container border-top-generic text-center">
+              <div class="button-group-area">
+                <a class="genric-btn primary radius" (click)="search()">Search</a>
+                <a class="genric-btn primary radius" (click)="prepareForCreate()">Create</a>
+              </div>
+            </div>
+          </div>
+          <div class="row" *ngIf="isSearchActive">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="table-responsive">
+                    <table id="mytable" class="table table-bordred table-striped">
+                      <thead>
+                      <th>Name</th>
+                      <th>Property</th>
+                      <th>Category</th>
+                      <th>Price</th>
+                      <th>Ingredients</th>
+                      <th>Edit</th>
+                      <th>Delete</th>
+                      </thead>
+                      <tbody>
+                      <tr *ngFor="let item of items">
+                        <td>{{item.name}}</td>
+                        <td>{{item.property}}</td>
+                        <td>{{item.category.categoryName}}</td>
+                        <td>{{item.price}}</td>
+                        <td>
+                          <kbd *ngFor="let ingredient of item.ingredients">{{ingredient.name}}</kbd>
+                        </td>
+                        <td><p class="icon" data-placement="top" data-toggle="tooltip" title="Edit" (click)="edit(this.item)"><span class="material-icons">edit</span></p></td>
+                        <td><p class="icon" data-placement="top" data-toggle="tooltip" title="Delete" (click)="delete(this.item.id)"><span class="material-icons">delete_outline</span></p></td>
+                      </tr>
+                      </tbody>
+                    </table>
+
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <form class="form-validate" novalidate="novalidate" [formGroup]="itemForm" (ngSubmit)="onSubmit()" *ngIf="isCreateActive">
+            <div class="form-group">
+              <input name="categoryId" type="hidden" required="" class="form-control" formControlName="categoryId" [(ngModel)]="item.id">
+            </div>
             <div class="form-group">
               <label>Item Name</label>
-              <input name="form2-name" type="text" required="" placeholder="Please specify Item name" class="form-control" formControlName="name" >
+              <input name="name" type="text" required="" placeholder="Please specify Item name" class="form-control" formControlName="name" [(ngModel)]="item.name">
             </div>
-
-
             <div class="form-group">
               <label>Item Price</label>
               <div class="input-group">
                 <div class="input-group-prepend"><span class="input-group-text">$</span></div>
-                <input name="form2-email" type="email" required="" placeholder="Please specify Item price" class="form-control" formControlName="price" >
+                <input name="price" type="number" required="" placeholder="Please specify Item price" class="form-control" formControlName="price" [(ngModel)]="item.price">
                 <div class="input-group-append"><span class="input-group-text">.00</span></div>
               </div>
-
             </div>
             <div class="form-group">
               <label>Item Description</label>
-              <input id="form2-password" name="form2-password" required="" placeholder="Please specify Item description" class="form-control" formControlName="description" >
+              <input id="description" name="description" required="" placeholder="Please specify Item description" class="form-control" formControlName="description" [(ngModel)]="item.description" >
             </div>
             <div class="form-group">
               <label>Item Category</label>
-              <!-- <input id="form2-password2" name="form2-password2" required="" placeholder="Please specify Item category" class="form-control" formControlName="category" >-->
-              <select class="browser-default custom-select" formControlName="category">
-                <option selected>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </select>
+              <ng-multiselect-dropdown
+                [settings]="categoryDropdownSettings"
+                [placeholder]="'Select Item category for Item'"
+                [data]="itemCategories"
+                [(ngModel)]="selectedCategory"
+                formControlName="category"
+              >
+              </ng-multiselect-dropdown>
             </div>
-            <div class="row">
-              <div class="col-md-12">
-                <label class="mdb-main-label">Label example</label>
-                <select class="selectpicker" multiple data-live-search="true">
-                  <option value="{{ingredient.id}}" *ngFor="let ingredient of getIngredients()">{{ingredient.name}}</option>
-                </select>
-              </div>
+            <div class="form-group">
+              <label>Item Ingredient</label>
+              <ng-multiselect-dropdown
+                [settings]="ingredientsDropdownSettings"
+                [placeholder]="'Select ingredient for Item'"
+                [data]="ingredients"
+                [(ngModel)]="item.ingredients"
+                formControlName="ingredients"
+              >
+              </ng-multiselect-dropdown>
             </div>
-
             <div class="form-group">
               <label>Item Property </label>
               <div class="col-sm-10">
                 <div>
-                  <input id="optionsRadios1" type="radio" checked="" value="VEG" name="property" formControlName="property">
-                  <label for="optionsRadios1">Veg</label>
+                  <input id="property1" type="radio" checked="" value="VEG" name="property" formControlName="property" [(ngModel)]="item.property">
+                  <label for="property1">Veg</label>
                 </div>
                 <div>
-                  <input id="optionsRadios2" type="radio" value="NONVEG" name="property" formControlName="property">
-                  <label for="optionsRadios2">Non Veg</label>
+                  <input id="property2" type="radio" value="NONVEG" name="property" formControlName="property" [(ngModel)]="item.property">
+                  <label for="property2">Non Veg</label>
                 </div>
               </div>
             </div>
-
-
-
-            <!-- <div class="col-sm-9">
-               <div class="dropdown bootstrap-select"><select data-style="btn-outline-dark" title="Choose one of the following" class="selectpicker" tabindex="-98">
-                 <option class="bs-title-option" value=""></option>
-                 <option>Mustard</option>
-                 <option>Ketchup</option>
-                 <option>Relish</option>
-               </select>
-                 <button type="button" class="btn dropdown-toggle bs-placeholder btn-outline-dark" data-toggle="dropdown" role="button" title="Choose one of the following" aria-expanded="false">
-                   <div class="filter-option">
-                     <div class="filter-option-inner">
-                       <div class="filter-option-inner-inner">Choose one of the following</div>
-                     </div>
-                   </div>
-                 </button>
-                 <div class="dropdown-menu" role="combobox" x-placement="bottom-start" style="max-height: 282.656px; overflow: hidden; min-height: 0px; position: absolute; transform: translate3d(0px, 37px, 0px); top: 0px; left: 0px; will-change: transform;">
-                   <div class="inner show" role="listbox" aria-expanded="false" tabindex="-1" style="max-height: 264.656px; overflow-y: auto; min-height: 0px;">
-                     <ul class="dropdown-menu inner show">
-                       <li>
-                         <a role="option" class="dropdown-item" aria-disabled="false" tabindex="0" aria-selected="false">
-                           <span class="text">Mustard</span>
-                         </a>
-                       </li>
-                       <li>
-                         <a role="option" class="dropdown-item" aria-disabled="false" tabindex="0" aria-selected="false">
-                           <span class="text">Ketchup</span>
-                         </a>
-                       </li>
-                       <li><a role="option" class="dropdown-item" aria-disabled="false" tabindex="0" aria-selected="false"><span class="text">Relish</span></a></li>
-                     </ul>
-                   </div>
-                 </div>
-               </div>
-             </div>-->
-
-            <!--<div class="file-field">
-              <div class="btn btn-primary btn-sm float-left waves-effect waves-light">
-                <span>Choose files</span>
-                <input type="file" multiple="">
-              </div>
-              <div class="file-path-wrapper">
-                <input class="file-path validate valid" type="text" placeholder="Upload one or more files">
-              </div>
-            </div>-->
-            <div class="form-group mt-3">
-              <label class="mr-2">Item Image</label>
-              <input type="file" name="file" placeholder="Please upload Item image" formControlName="itemImage" >
-            </div>
-
             <div class="form-group">
               <button type="submit" class="btn btn-primary">Submit</button>
             </div>
@@ -121,3 +137,4 @@
     </div>
   </div>
 </div>
+<ng-http-loader></ng-http-loader>

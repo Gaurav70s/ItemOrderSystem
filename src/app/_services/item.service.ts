@@ -19,8 +19,15 @@ export class ItemService {
   public getCategoryWiseItems(): Observable<CategoryWiseItem[]> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
     const options = { headers, crossDomain: true, withCredentials: true };
-    return this.http.get<CategoryWiseItem[]>('/rest/item_order_service/v1/item/all', options).pipe(
+    return this.http.get<CategoryWiseItem[]>('/rest/item_order_service/v1/item/allCategoryWise', options).pipe(
     catchError(this.handleError<CategoryWiseItem[]>('getItems', [])));
+  }
+
+  public getAllItems(): Observable<Item[]> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
+    const options = { headers, crossDomain: true, withCredentials: true };
+    return this.http.get<Item[]>('/rest/item_order_service/v1/item/all', options).pipe(
+      catchError(this.handleError<Item[]>('getItems', [])));
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
@@ -43,34 +50,49 @@ export class ItemService {
     /*const blob = new Blob([JSON.stringify(item)], { type: 'application/json'});
     fs.saveAs(blob, '/asset/data/cart.json');*/
   }
-  public getKOT() {
-    return this.http.get<Item[]>('./assets/data/kot.json').pipe(
-      catchError(this.handleError<Item[]>('getItems', [])));
-  }
+
   public createItem(item: Item) {
     console.log(JSON.stringify(item));
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
     const options = { headers, crossDomain: true, withCredentials: true };
-    return this.http.post<any>('/rest/item_order_service/v1/item', item, options).subscribe(res => console.log(res.toString()) );
+    return this.http.post<any>('/rest/item_order_service/v1/item', item, options);
+  }
+
+  updateItem(item: Item):Observable<number> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
+    const options = { headers, crossDomain: true, withCredentials: true };
+    return this.http.put<number>('/rest/item_order_service/v1/item/'+ item.id, item, options);
+  }
+
+  deleteItem(id: number):Observable<number> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
+    const options = { headers, crossDomain: true, withCredentials: true };
+    return this.http.delete<number>('/rest/item_order_service/v1/item/'+id, options);
   }
 
   getAllItemCategory():Observable<ItemCategory[]> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
     const options = { headers, crossDomain: true, withCredentials: true };
-    return this.http.get<ItemCategory[]>('/rest/item_order_service/v1/item/category/all', options).pipe(
+    return this.http.get<ItemCategory[]>('/rest/item_order_service/v1/category/all', options).pipe(
       catchError(this.handleError<ItemCategory[]>('getItemCategories', [])));
   }
 
-  cerateCategory(itemCategory: ItemCategory) {
+  cerateCategory(itemCategory: ItemCategory):Observable<number> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
     const options = { headers, crossDomain: true, withCredentials: true };
-    return this.http.post<ItemCategory>('/rest/item_order_service/v1/item', itemCategory, options);
+    return this.http.post<number>('/rest/item_order_service/v1/category', itemCategory, options);
   }
 
-  updateCategory(itemCategory: ItemCategory) {
+  updateCategory(itemCategory: ItemCategory):Observable<number> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
     const options = { headers, crossDomain: true, withCredentials: true };
-    return this.http.post<ItemCategory>('/rest/item_order_service/v1/item', itemCategory, options);
+    return this.http.put<number>('/rest/item_order_service/v1/category/'+ itemCategory.categoryId, itemCategory, options);
+  }
+
+  deleteCategory(id: number):Observable<number> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
+    const options = { headers, crossDomain: true, withCredentials: true };
+    return this.http.delete<number>('/rest/item_order_service/v1/category/'+id, options);
   }
 }
 
