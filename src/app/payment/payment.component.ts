@@ -66,7 +66,7 @@ export class PaymentComponent implements OnInit{
     }
     if(this.items!=undefined){
       for (const item of this.items) {
-        this.subtotal = this.subtotal + (item.item.price * item.quantity);
+        this.subtotal = this.subtotal + (item.item.price * (item.quantity - item.complimentaryQuantity));
         this.totalQue = this.totalQue + item.quantity;
       }
     }

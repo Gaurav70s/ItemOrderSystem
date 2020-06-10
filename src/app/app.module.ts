@@ -48,6 +48,9 @@ import { SoftwareRatingComponent } from './software-rating/software-rating.compo
 import {MatIconModule} from "@angular/material/icon";
 import {MatTableModule} from "@angular/material/table";
 import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
+import { BillingDashboardComponent } from './billing-dashboard/billing-dashboard.component';
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
 
 
 /*const config = new AuthServiceConfig([
@@ -60,6 +63,7 @@ import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
 export function provideConfig() {
   return config;
 }*/
+
 
 @NgModule({
   declarations: [
@@ -89,7 +93,8 @@ export function provideConfig() {
     PaymentComponent,
     CompletedOrderOnTableComponent,
     RejectPopupComponent,
-    SoftwareRatingComponent
+    SoftwareRatingComponent,
+    BillingDashboardComponent
   ],
     imports: [
         BrowserModule,
@@ -111,14 +116,17 @@ export function provideConfig() {
         MatListModule,
         NgbProgressbarModule,
         MatIconModule,
-        MatTableModule
+        MatTableModule,
+        MatDatepickerModule,
+      MatNativeDateModule
     ],
   providers: [
     //{ provide: AuthServiceConfig, useFactory: provideConfig },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     // provider used to create fake backend
-    CookieService
+    CookieService,
+    MatDatepickerModule
   ],
   bootstrap: [AppComponent]
 })

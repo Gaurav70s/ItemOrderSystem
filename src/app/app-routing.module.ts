@@ -22,14 +22,13 @@ import {TableSelectComponent} from "./table-select/table-select.component";
 import {PaymentComponent} from "./payment/payment.component";
 import {CompletedOrderOnTableComponent} from "./completed-order-on-table/completed-order-on-table.component";
 import {SoftwareRatingComponent} from "./software-rating/software-rating.component";
+import {BillingDashboardComponent} from "./billing-dashboard/billing-dashboard.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: 'item' , children: [
       { path: '', component: ItemsComponent },
       { path: 'create', component: CreateItemComponent },
-      /*      { path: 'category/create', component: CreateItemCategoryComponent },
-            { path: 'image/upload', component: CreateItemImagesComponent },*/
       { path: ':id', component: ItemDetailsComponent }
     ], canActivate:[AuthGuard]
   },
@@ -45,6 +44,7 @@ const routes: Routes = [
   {path: 'table', component: TableSelectComponent,canActivate:[AuthGuard]},
   {path: 'orderlist', component: OrdersDashboardComponent,canActivate:[AuthGuard]},
   {path: 'rating', component: SoftwareRatingComponent, canActivate:[AuthGuard], data: { invoiceid:1}},
+  {path: 'bd', component: BillingDashboardComponent},
   {path: 'admin' , children: [
       { path: 'item' , children: [
           { path: 'create', component: CreateItemComponent },

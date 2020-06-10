@@ -95,10 +95,10 @@
                     </thead>
                     <tbody class="border-bottom">
                     <tr *ngFor="let item of items">
-                      <td class="px-0 border-0 small">{{item.item.name}}</td>
+                      <td class="px-0 border-0 small">{{item.item.name}} <div *ngIf="item.complimentaryQuantity > 0">(Complimentary {{item.complimentaryQuantity}} Qty)</div> </td>
                       <td class="px-0 border-0 small text-right">{{item.quantity}}</td>
                       <td class="px-0 border-0 small text-right">{{item.item.price}}</td>
-                      <td class="px-0 border-0 small text-right">{{item.item.price * item.quantity | number : '1.2'}}</td>
+                      <td class="px-0 border-0 small text-right">{{item.item.price * (item.quantity - item.complimentaryQuantity) | number : '1.2'}}</td>
                     </tr>
                     </tbody>
                     <tfoot class="border-bottom">

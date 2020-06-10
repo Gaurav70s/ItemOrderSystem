@@ -2,28 +2,78 @@
 <div class="container">
   <!-- Page Header-->
   <div class="row">
-    <div class="col-lg-12">
-
+    <div class="col-md-12">
       <div class="card">
         <div class="card-header">
-          <h4>Create Item</h4>
+          <h4>Item Category</h4>
         </div>
         <div class="card-body">
-          <form class="form-validate" novalidate="novalidate" [formGroup]="itemImageForm" (ngSubmit)="onSubmit()">
+          <div class="row" *ngIf="!isCreateActive">
+            <div class="col-md-6">
+              <mat-form-field appearance="legacy">
+                <mat-label>Item Category Name:</mat-label>
+                <input matInput placeholder="Enter Name">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row" *ngIf="!isCreateActive">
+            <div class="container border-top-generic text-center">
+              <div class="button-group-area">
+                <a class="genric-btn primary radius" (click)="search()">Search</a>
+                <a class="genric-btn primary radius" (click)="prepareForCreate()">update</a>
+              </div>
+            </div>
+          </div>
+          <div class="row" *ngIf="isSearchActive">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="table-responsive">
+                    <table id="mytable" class="table table-bordred table-striped">
+                      <thead>
+                      <th>Category Name</th>
+                      <th>Images</th>
+                      <th>Edit</th>
+                      <th>Delete</th>
+                      </thead>
+                      <tbody>
+                      <tr *ngFor="let item of items">
+                        <td>{{item.name}}</td>
+                        <td>
+                          <div class="bd-example bd-example-images">
+                            <img *ngFor="let imageURL of item.itemImageUri" src="assets/images/{{imageURL}}" alt="" class="max-size rounded-circle">
+                          </div>
+                        </td>
+                        <td><p class="icon" data-placement="top" data-toggle="tooltip" title="Edit" (click)="edit(this.item)"><span class="material-icons">edit</span></p></td>
+                        <td><p class="icon" data-placement="top" data-toggle="tooltip" title="Delete" (click)="delete()"><span class="material-icons">delete_outline</span></p></td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <form class="form-validate" novalidate="novalidate" [formGroup]="itemImageForm" (ngSubmit)="onSubmit()" *ngIf="isCreateActive">
             <div class="form-group">
-              <label>Item</label>
-              <select class="browser-default custom-select" formControlName="itemId">
-                <option selected>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </select>
+              <label>Item Category</label>
+              <ng-multiselect-dropdown
+                [settings]="itemDropdownSettings"
+                [placeholder]="'Select Item'"
+                [data]="items"
+                [(ngModel)]="selectedItem"
+                formControlName="item"
+              >
+              </ng-multiselect-dropdown>
             </div>
             <div class="form-group mt-3">
               <label class="mr-2">Item Image</label>
-              <input type="file" name="file" placeholder="Please upload Item image" formControlName="itemImage" >
+              <input type="file"
+                     name="itemImage"
+                     placeholder="Please upload Item image"
+                     formControlName="itemImage"
+                     (change)="handleFileInput($event)">
             </div>
-
             <div class="form-group">
               <button type="submit" class="btn btn-primary">Submit</button>
             </div>
@@ -32,4 +82,13 @@
       </div>
     </div>
   </div>
+</div>
+<ng-http-loader></ng-http-loader>
+
+
+
+
+
+<div class="bd-example bd-example-images">
+
 </div>

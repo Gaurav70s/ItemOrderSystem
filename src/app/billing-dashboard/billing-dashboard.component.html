@@ -1,0 +1,70 @@
+<app-header></app-header>
+
+<div class="d-flex justify-content-between align-items-sm-center flex-column flex-sm-row mb-4">
+  <div class="ml-4 mb-3 mb-sm-0">
+    <h1 class="mb-0">Day Wise Dashboard</h1>
+    <div class="small">
+      <span class="font-weight-500 text-primary">Friday</span> · September 20, 2020 · 12:16 PM</div>
+  </div>
+  <div class="float-left mr-4">
+    <mat-form-field color="accent">
+      <mat-label>Select date for Dashboard</mat-label>
+      <input matInput [matDatepicker]="picker1" [(ngModel)]="date"
+             (dateChange)="getDailyBillingDashboard(date)">
+      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+      <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+</div>
+<div class="container-fluid">
+  <div class="row pt-3">
+    <div class="col-xl-3 col-md-6 mb-4" *ngFor="let billingDashboard of dailyBillingDashboards">
+      <div class="card border-top-0 border-bottom-0 border-right-0 border-left-lg border-blue h-100">
+        <div class="card-body">
+          <div class="d-flex align-items-center">
+            <div class="flex-grow-1">
+              <div class="small font-weight-bold text-blue mb-1">Billing by {{billingDashboard.billingType}}</div>
+              <div class="h5">{{billingDashboard.totalBill | currency:'INR':true:'1.2-2'}} </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="d-flex justify-content-between align-items-sm-center flex-column flex-sm-row mb-4">
+  <div class="ml-4 mb-3 mb-sm-0">
+    <h1 class="mb-0">Monthly Dashboard</h1>
+    <div class="small">
+      <span class="font-weight-500 text-primary">Friday</span> · September 20, 2020 · 12:16 PM</div>
+  </div>
+  <div class="float-left mr-4">
+    <mat-form-field color="accent">
+      <mat-label>Select date for Dashboard</mat-label>
+      <input matInput [matDatepicker]="picker2" [(ngModel)]="monthYear"
+             (dateChange)="getMonthlyBillingDashboard(monthYear)" [min]="sixMonthsAgo" [max]="today">
+      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+      <mat-datepicker #picker2></mat-datepicker>
+    </mat-form-field>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row pt-3">
+    <div class="col-xl-3 col-md-6 mb-4" *ngFor="let billingDashboard of monthlyBillingDashboards">
+      <div class="card border-top-0 border-bottom-0 border-right-0 border-left-lg border-blue h-100">
+        <div class="card-body">
+          <div class="d-flex align-items-center">
+            <div class="flex-grow-1">
+              <div class="small font-weight-bold text-blue mb-1">Billing by {{billingDashboard.billingType}}</div>
+              <div class="h5">{{billingDashboard.totalBill | currency:'INR':true:'1.2-2'}} </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

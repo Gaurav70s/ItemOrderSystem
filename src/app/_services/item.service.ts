@@ -94,5 +94,14 @@ export class ItemService {
     const options = { headers, crossDomain: true, withCredentials: true };
     return this.http.delete<number>('/rest/item_order_service/v1/category/'+id, options);
   }
+
+  uploadItemImage(id: number, fileToUpload: File): Observable<Item> {
+    const headers = new HttpHeaders({ 'Access-Control-Allow-Origin': '*' });
+    const options = { headers, crossDomain: true, withCredentials: true };
+    const formData: FormData = new FormData();
+    formData.append('file', fileToUpload, fileToUpload.name);
+    return this.http.post<Item>('/rest/item_order_service/v1/file/'+id+'/uploadImage', formData,options);
+  }
+
 }
 
