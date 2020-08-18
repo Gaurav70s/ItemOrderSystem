@@ -51,6 +51,12 @@ import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
 import { BillingDashboardComponent } from './billing-dashboard/billing-dashboard.component';
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
+import { KotDisplayComponent } from './kot-display/kot-display.component';
+import { AddonModalComponent } from './addon-modal/addon-modal.component';
+import { OrderOnTableComponent } from './order-on-table/order-on-table.component';
+import { AddOnPopupComponent } from './add-on-popup/add-on-popup.component';
+import {MAT_CHECKBOX_CLICK_ACTION, MatCheckboxModule} from "@angular/material/checkbox";
+import {MatRadioModule} from "@angular/material/radio";
 
 
 /*const config = new AuthServiceConfig([
@@ -94,36 +100,43 @@ export function provideConfig() {
     CompletedOrderOnTableComponent,
     RejectPopupComponent,
     SoftwareRatingComponent,
-    BillingDashboardComponent
+    BillingDashboardComponent,
+    KotDisplayComponent,
+    AddonModalComponent,
+    OrderOnTableComponent,
+    AddOnPopupComponent
   ],
-    imports: [
-        BrowserModule,
-        NgMultiSelectDropDownModule,
-        HttpClientModule,
-        AppRoutingModule,
-        FormsModule,
-        // SocialLoginModule,
-        ReactiveFormsModule,
-        BrowserAnimationsModule,
-        NgbAccordionModule,
-        MatDialogModule,
-        NgHttpLoaderModule.forRoot(),
-        MatFormFieldModule,
-        MatButtonModule,
-        MatInputModule,
-        MatCardModule,
-        MatMenuModule,
-        MatListModule,
-        NgbProgressbarModule,
-        MatIconModule,
-        MatTableModule,
-        MatDatepickerModule,
-      MatNativeDateModule
-    ],
+  imports: [
+    BrowserModule,
+    NgMultiSelectDropDownModule,
+    HttpClientModule,
+    AppRoutingModule,
+    FormsModule,
+    // SocialLoginModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    NgbAccordionModule,
+    MatDialogModule,
+    NgHttpLoaderModule.forRoot(),
+    MatFormFieldModule,
+    MatButtonModule,
+    MatInputModule,
+    MatCardModule,
+    MatMenuModule,
+    MatListModule,
+    NgbProgressbarModule,
+    MatIconModule,
+    MatTableModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatCheckboxModule,
+    MatRadioModule
+  ],
   providers: [
     //{ provide: AuthServiceConfig, useFactory: provideConfig },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: MAT_CHECKBOX_CLICK_ACTION, useValue: 'check'},
     // provider used to create fake backend
     CookieService,
     MatDatepickerModule

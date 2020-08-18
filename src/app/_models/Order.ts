@@ -11,5 +11,6 @@ export class Order {
   orderStatus: OrderStatus;
   orderId: string;
   rejectedComment: string;
+  invoiceId: number;
 
 }

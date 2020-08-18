@@ -11,6 +11,7 @@ import {OrderDetail} from "../_models/OrderDetails";
 import {Payment} from "../_models/Payment";
 import {Router} from "@angular/router";
 import {BillingDetails} from "../_models/BillingDetails";
+import {PaymentMethod} from "../_models/PaymentMethod";
 
 interface DialogData {
   email: string;
@@ -24,23 +25,19 @@ interface DialogData {
 })
 export class PaymentComponent implements OnInit{
 
+  payment: Payment;
   orderDetails : OrderDetail[];
-  orderNos: String;
   items: ItemsOnCart[]= [];
-  billingDetails : BillingDetails;
-  subtotal = 0;
 
   todayDate: Date = new Date();
   paymentMethod:string= '';
-  totalQue =0;
   value: any =0;
   subscription : Subscriptions;
   table: Table;
   isPointUsed : boolean;
   pointUsed:number;
-  invoiceId:number;
-  editMode = false;
-  serviceCharge: number;
+  otp: number;
+  isOtpVerified: boolean;
 
   constructor(private orderService: OrderService,
               private dialog: MatDialog,
@@ -49,33 +46,22 @@ export class PaymentComponent implements OnInit{
   ngOnInit() {
     this.table = JSON.parse(localStorage.getItem('table'));
     this.orderService.getOrdersByTable(this.table.tableNo).subscribe(data=> {
-      this.orderDetails= data;
-      this.mergeAllOrders(this.orderDetails);
+      this.payment= data;
+      this.payment.billingComponents = this.payment.billingComponents.filter(data => data.calculatedValue != 0)
+      this.mergeAllOrders(this.payment.orderDetails);
     });
-
   }
 
 
   mergeAllOrders(orderDetails: OrderDetail[]){
-    let orderNos: string = '';
+
     for(let orderDetail of orderDetails ){
-      orderNos = orderNos + orderDetail.order.orderNo+ ', ';
       for(let orderItemsOnCart of orderDetail.itemsOnCart ){
         this.items.push(orderItemsOnCart)
       }
     }
-    if(this.items!=undefined){
-      for (const item of this.items) {
-        this.subtotal = this.subtotal + (item.item.price * (item.quantity - item.complimentaryQuantity));
-        this.totalQue = this.totalQue + item.quantity;
-      }
-    }
-    this.orderNos= orderNos;
-    this.setBillingDetails(this.subtotal)
   }
-  setBillingDetails(subTotal: number){
-    this.billingDetails = new BillingDetails(subTotal,this.getSGST(subTotal), this.getCGST(subTotal), this.getServiceCharge(subTotal), this.getTotalAmount(subTotal))
-  }
+
   openDialog(): void {
     console.log('inside');
     const dialogConfig = new MatDialogConfig();
@@ -100,23 +86,6 @@ export class PaymentComponent implements OnInit{
     this.orderService.checkSubscription(user).subscribe(data=> this.subscription= data);
   }
 
-  getTotalAmount(subTotal: number) {
-    return subTotal +
-      this.getCGST(subTotal) +
-      this.getSGST(subTotal) +
-      this.getServiceCharge(subTotal);
-  }
-  getCGST(subTotal: number) {
-    return 0.025 * subTotal;
-  }
-  getSGST(subTotal: number) {
-    return 0.025 * subTotal;
-  }
-  getServiceCharge(subTotal: number) {
-    return 0.05 * subTotal;
-  }
-
-
   selected(select: string) {
     if( select == 'card') this.paymentMethod = 'CARD';
     else if(select == 'cash') this.paymentMethod = 'CASH';
@@ -125,28 +94,29 @@ export class PaymentComponent implements OnInit{
   }
 
   completePayment() {
-    let payment = new Payment(this.paymentMethod, this.value, this.billingDetails.totalAmount, this.isPointUsed, this.pointUsed, this.subscription, this.billingDetails);
-    this.orderService.updatePayment(payment, this.table.tableNo ).subscribe(data=>{
-      this.invoiceId= data;
-      this.router.navigate(['/rating',{ invoiceid:this.invoiceId}])
+    this.payment.subscription = this.subscription;
+    this.payment.invoiceDetails.paymentMethod = new PaymentMethod(this.paymentMethod, this.value);
+    console.log(this.payment);
+    this.orderService.updatePayment(this.payment, this.table.tableNo ).subscribe(data=>{
+      this.payment.invoiceDetails.invoiceId= data;
+      this.router.navigate(['/rating', {invoiceid: this.payment.invoiceDetails.invoiceId}])
     });
   }
 
   getPoint() {
     if(this.subscription!= undefined){
-      this.pointUsed = (this.billingDetails.totalAmount > this.subscription.points) ? this.subscription.points : this.billingDetails.totalAmount
+      this.pointUsed = (this.payment.invoiceDetails.totalAmount > this.subscription.points) ? this.subscription.points : this.payment.invoiceDetails.totalAmount
       return this.pointUsed
     }else return 0
 
   }
 
   enablePoints() {
-
     this.getPoint();
-    if(this.isPointUsed)
-      this.billingDetails.totalAmount = this.billingDetails.totalAmount - this.pointUsed;
-    else
-      this.billingDetails.totalAmount = this.billingDetails.totalAmount + this.pointUsed;
+    if(this.isPointUsed){
+      this.payment.invoiceDetails.totalAmount = this.payment.invoiceDetails.totalAmount - this.pointUsed;
+      this.payment.invoiceDetails.subscriptionPointUsed = this.pointUsed;
+    }
   }
 
   isValid(){
@@ -154,9 +124,15 @@ export class PaymentComponent implements OnInit{
     return !(this.paymentMethod!=undefined && this.value!=undefined);
   }
 
-  removeServiceCharge(serviceCharge: number) {
-    this.editMode = false;
-    this.billingDetails.totalAmount = this.billingDetails.totalAmount - this.billingDetails.serviceCharge + serviceCharge;
-    this.billingDetails.serviceCharge = serviceCharge;
+  getOtp(){
+    if(this.isPointUsed){
+      this.orderService.getOTP(this.subscription.subscriptionId).subscribe(data=> console.log(data))
+    }
+  }
+  verifyOtp(){
+    this.orderService.verifyOtp(this.otp, this.subscription.subscriptionId).subscribe(data => {
+      this.isOtpVerified = data
+      this.enablePoints();
+    })
   }
 }

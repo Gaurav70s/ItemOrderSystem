@@ -42,7 +42,7 @@
               </div>
             </div>
             <div class="_1mx0r" style="width: 10%;text-align: center">
-              <span class="_2W2U4">₹{{getTotalPrice(item)}}</span>
+              <span class="_2W2U4">₹{{item.quantity * (item.item.price + item.item.addonsPrice)}}</span>
             </div>
             <span class="fa fa-close" style="cursor:pointer;width: 5%;text-align:right" (click)="deleteItem(item.item)"></span>
           </div>
@@ -58,10 +58,10 @@
         </p>
       </div>
     </div>
-    <div class="col-md-12 col-lg-5 col-xl-5" *ngIf="items.length>0">
+ <!--   <div class="col-md-12 col-lg-5 col-xl-5" *ngIf="items.length>0">
       <div class="overdue card">
         <div class="card-body">
-          <h3>Cart Total</h3><!--<small>Lorem ipsum dolor sit amet.</small>-->
+          <h3>Cart Total</h3>&lt;!&ndash;<small>Lorem ipsum dolor sit amet.</small>&ndash;&gt;
           <table class="table no-border mini-table m-t-20">
             <tbody>
             <tr>
@@ -97,7 +97,12 @@
           </div>
         </div>
       </div>
-    </div>
+    </div>-->
+  </div>
+</div>
+<div class="container border-top-generic" style="text-align: center;">
+  <div class="button-group-area">
+    <a class="genric-btn primary radius" (click)="placeOrder()">Place Order</a>
   </div>
 </div>
 <ng-template #showMessage>

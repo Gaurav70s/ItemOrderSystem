@@ -35,7 +35,6 @@ export class KitchenOrderDisplayComponent implements OnInit {
   openDialog(order: Order): void {
     console.log('inside');
     const dialogConfig = new MatDialogConfig();
-
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.data = {
@@ -63,49 +62,17 @@ export class KitchenOrderDisplayComponent implements OnInit {
     return this.totalQuantity;
   }
 
-  /*createOrderAlert(orders: OrderDetail[]){
-    orders.forEach((odr)=> {
-      const message = "New Order : "+ odr.order.orderNo +" on table :"+ odr.table.tableNo;
-      this.openBottomSheet(message);
-    });
-  }*/
   approveOrder(order:Order){
     const updatedOrder = new Order(order.orderNo,OrderStatus.ACCEPTED, order.orderId, null );
     this.orderService.updateOrderStatus(updatedOrder).subscribe(data=>this.getKotDashboardData());
-
   }
 
   rejectOrder(order:Order){
     this.orderService.updateOrderStatus(order).subscribe(data=> this.getKotDashboardData());
 
   }
-  /*openBottomSheet(message: string) {
 
-    const config = new MatSnackBarConfig();
-    config.panelClass = ['background-black'];
-    config.verticalPosition = 'bottom';
-    config.horizontalPosition = 'right';
-    this.zone.run(() => {
-      this.snackbar.open(message, 'x', config);
-    });
-*/
-
-
-
-
-    /*let sheetRef =  this.bottomSheet.open(OrderSnackbarComponent, {
-      data: orders
-    });
-    sheetRef.afterDismissed().subscribe( data => {
-      console.log('after close data :', data);
-      if(data && data.message=='Cancel') {
-        alert('Cancel was clicked in bottomsheet');
-      } if(data && data.message=='Status') {
-        alert('Change Status was clicked in bottomsheet');
-      }
-    });
-  }*/
   updateOrderItemStatus(order: Order, item: Item) {
-    this.orderService.updateOrderItemStatus(new OrderItem(order,item)).subscribe(data => this.getKotDashboardData());
+    this.orderService.updateOrderItemStatus(new OrderItem(order,item), true).subscribe(data => this.getKotDashboardData());
   }
 }

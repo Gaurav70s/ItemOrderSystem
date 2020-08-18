@@ -22,7 +22,7 @@
               <tr *ngFor="let itemsOnCart of orderDetail.itemsOnCart">
                 <td class="px-0 border-0 small">{{itemsOnCart.item.name}}</td>
                 <td class="px-0 border-0 small text-right">{{itemsOnCart.quantity}}</td>
-                <td class="px-0 border-0 small text-right">{{itemsOnCart.item.price}}</td>
+                <td class="px-0 border-0 small text-right">{{itemsOnCart.item.price + itemsOnCart.item.addonsPrice }}</td>
                 <td class="px-0 border-0 small text-right">{{getTotalPrice(itemsOnCart)| number : '1.2'}}</td>
               </tr>
               </tbody>

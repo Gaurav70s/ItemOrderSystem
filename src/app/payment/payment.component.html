@@ -31,16 +31,19 @@
                 <img src="assets/images/cash_payment.png" class="rounded img-thumbnail" style="width: 15%" alt="">
               </div>
               <div *ngIf="paymentMethod=='CASH'"><label>Please enter payed amount</label>
-                <br/><small><input class="border" type="number" [(ngModel)]="value"> Balance : {{value ? billingDetails.totalAmount - value : billingDetails.totalAmount}}</small></div>
+                <br/><small><input class="border" type="number" [(ngModel)]="value"> Balance : {{value ? payment.invoiceDetails.totalAmount - value : payment.invoiceDetails.totalAmount}}</small></div>
             </li>
             <li class="list-group-item">
-              <input class="form-check-input" name="exampleRadios" type="checkbox" value="points" [(ngModel)]="isPointUsed" (change)="enablePoints()" [disabled]="subscription==undefined || ( subscription!=undefined && subscription.points < 10)" disabled>
+              <input class="form-check-input" name="exampleRadios" type="checkbox" value="points" [(ngModel)]="isPointUsed" (change)="getOtp()" [disabled]="subscription==undefined || ( subscription!=undefined && subscription.points < 10)" disabled>
               <div class="pl-2">Pay by Subscription Points</div>
+              <div *ngIf="isPointUsed"><small>Enter OTP : </small><input [(ngModel)]="otp" class="border" type="number">
+                <img src="assets/images/icons8-forward-button-24.png" class="img-category pl-1" alt=""(click)="verifyOtp()">
+              </div>
               <div *ngIf="subscription">
                 <small class="text-muted">Available Points : {{subscription.points}}</small>
               </div>
-              <div *ngIf="subscription && subscription.points < 10">
-                <small class="text-muted">*Points can be used once membership has more than 1000 points</small>
+              <div *ngIf="subscription && subscription.points < 100">
+                <small class="text-muted">*Points can be used once membership has more than 100 points</small>
               </div>
               <div class="button-group-area">
                 <a class="genric-btn primary radius" (click)="openDialog()">Check Membership</a>
@@ -97,38 +100,32 @@
                     <tr *ngFor="let item of items">
                       <td class="px-0 border-0 small">{{item.item.name}} <div *ngIf="item.complimentaryQuantity > 0">(Complimentary {{item.complimentaryQuantity}} Qty)</div> </td>
                       <td class="px-0 border-0 small text-right">{{item.quantity}}</td>
-                      <td class="px-0 border-0 small text-right">{{item.item.price}}</td>
-                      <td class="px-0 border-0 small text-right">{{item.item.price * (item.quantity - item.complimentaryQuantity) | number : '1.2'}}</td>
+                      <td class="px-0 border-0 small text-right">{{item.item.price + item.item.addonsPrice}}</td>
+                      <td class="px-0 border-0 small text-right">{{(item.item.price + item.item.addonsPrice) * (item.quantity - item.complimentaryQuantity) | number : '1.2'}}</td>
                     </tr>
                     </tbody>
                     <tfoot class="border-bottom">
                     <tr>
                       <td colspan="3" class="text-muted border-0 small text-right">Subtotal Amount</td>
-                      <td class="font-medium border-0 float-right small">{{billingDetails.subTotal | number : '1.2' }}</td>
+                      <td class="font-medium border-0 float-right small">{{payment.invoiceDetails.subTotal | number : '1.2' }}</td>
+                    </tr>
+                    <tr *ngFor="let component of payment.billingComponents">
+                      <td colspan="3" class="border-0 small text-muted text-right">{{component.name}} @{{component.value}}</td>
+                      <td class="font-medium border-0 float-right small">{{component.calculatedValue | number : '1.2' }}</td>
                     </tr>
                     <tr>
-                      <td colspan="3" class="text-muted border-0 small text-right">Service Charge @5%</td>
-                      <td *ngIf='!editMode' (click)='editMode=true' class="font-medium border-0 float-right small">{{billingDetails.serviceCharge | number : '1.2' }}</td>
-                      <td class="font-medium border-0 float-right small">
-                        <input *ngIf='editMode' class='cellInput' type='number' [(ngModel)]="serviceCharge" (focusout)="removeServiceCharge(serviceCharge)">
-                      </td>
+                      <td colspan="3" class="text-muted border-0 small text-right">Discount @{{payment.invoiceDetails.discountDetails.discount}}</td>
+                      <td class="font-medium border-0 float-right small">{{payment.invoiceDetails.discountDetails.calculatedValue | number : '1.2' }}</td>
                     </tr>
-                    <tr>
-                      <td colspan="3" class="text-muted border-0 small text-right">SGST@2.50%</td>
-                      <td class="font-medium border-0 float-right small">{{billingDetails.stateGst | number : '1.2' }}</td>
-                    </tr>
-                    <tr>
-                      <td colspan="3" class="text-muted border-0 small text-right">CGST@2.50%</td>
-                      <td class="font-medium border-0 float-right small">{{billingDetails.centerGst | number : '1.2' }}</td>
-                    </tr>
-                    <tr *ngIf="subscription!=undefined && isPointUsed">
+                    <tr *ngIf="subscription!=undefined && isOtpVerified">
                       <td colspan="3" class="text-muted border-0 small text-right">Points</td>
                       <td class="font-medium border-0 float-right small">{{getPoint() | number : '1.2' }}</td>
                     </tr>
                     <tr class="border-top">
                       <td colspan="3" class="border-0 text-right">Amount Payable</td>
-                      <td class="font-medium border-0 float-right ">{{billingDetails.totalAmount | number : '1.2' }}</td>
+                      <td class="font-medium border-0 float-right ">{{payment.invoiceDetails.totalAmount | number : '1.2' }}</td>
                     </tr>
+
                     </tfoot>
                   </table>
                 </div>

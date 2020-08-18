@@ -3,5 +3,6 @@ export enum OrderStatus{
   ACCEPTED = "Accepted",
   COMPLETED = "Completed",
   PAYED = "Payed",
-  REJECTED= "Rejected"
+  REJECTED= "Rejected",
+  SETTLED = "Settled"
 }

@@ -1,5 +1,6 @@
 import {Ingredient} from './Ingredient';
 import {ItemCategory} from "./ItemCategory";
+import {ItemAddOn} from "./ItemAddOn";
 
 export class Item {
   id: number;
@@ -10,4 +11,6 @@ export class Item {
   description: string;
   ingredients: Ingredient[];
   itemImageUri: string[];
+  addonsPrice : number;
+  addons: ItemAddOn[];
 }

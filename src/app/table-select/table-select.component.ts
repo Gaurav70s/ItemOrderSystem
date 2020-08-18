@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import {CounterDashboard} from "../_models/CounterDashboard";
+import {Component, OnInit} from '@angular/core';
 import {CounterServiceService} from "../_services/counter-service.service";
 import {Table} from "../_models/Table";
 import {Router} from "@angular/router";
+import {User} from "../_models/User";
+import {Role} from "../_models/Role";
+import {LoginUser} from "../_models/LoginUser";
 
 @Component({
   selector: 'app-table-select',
@@ -12,6 +14,7 @@ import {Router} from "@angular/router";
 export class TableSelectComponent implements OnInit {
 
   private tables : Table[];
+  private loginUser : LoginUser;
   constructor(private counterService : CounterServiceService,
               private router: Router) { }
 
@@ -25,7 +28,17 @@ export class TableSelectComponent implements OnInit {
   }
 
   selectTable(table: Table){
+    this.loginUser= JSON.parse(localStorage.getItem('currentUser'));
+    console.log(this.loginUser)
     localStorage.setItem('table',JSON.stringify(table));
-    this.router.navigate(['/item'])
+    if(this.loginUser.user.role == Role.Waiter){
+      this.router.navigate(['/item'])
+    } else if(this.loginUser.user.role == Role.Admin) {
+      this.router.navigate(['/table/order'])
+    } else{
+      this.router.navigate(['/'])
+    }
+
+
   }
 }

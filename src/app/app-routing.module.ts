@@ -23,6 +23,8 @@ import {PaymentComponent} from "./payment/payment.component";
 import {CompletedOrderOnTableComponent} from "./completed-order-on-table/completed-order-on-table.component";
 import {SoftwareRatingComponent} from "./software-rating/software-rating.component";
 import {BillingDashboardComponent} from "./billing-dashboard/billing-dashboard.component";
+import {KotDisplayComponent} from "./kot-display/kot-display.component";
+import {OrderOnTableComponent} from "./order-on-table/order-on-table.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -45,6 +47,9 @@ const routes: Routes = [
   {path: 'orderlist', component: OrdersDashboardComponent,canActivate:[AuthGuard]},
   {path: 'rating', component: SoftwareRatingComponent, canActivate:[AuthGuard], data: { invoiceid:1}},
   {path: 'bd', component: BillingDashboardComponent},
+  {path: 'kotd', component: KotDisplayComponent},
+  {path: 'table/order', component: OrderOnTableComponent},
+
   {path: 'admin' , children: [
       { path: 'item' , children: [
           { path: 'create', component: CreateItemComponent },

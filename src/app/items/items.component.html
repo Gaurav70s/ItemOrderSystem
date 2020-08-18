@@ -105,7 +105,10 @@
               </i></div>
               <div class="_2zAXs" id="qua">{{itemOnCart.quantity ? itemOnCart.quantity : 0}}</div>
               <div class="cart_icon1" title="Add to cart">
-                <i class="material-icons cart_icon" (click)="addtocart(itemOnCart)" >
+                <i *ngIf="itemOnCart.item.addons != undefined && itemOnCart.item.addons.length > 0" class="material-icons cart_icon" (click)="openDialog(itemOnCart)" >
+                  add_shopping_cart
+                </i>
+                <i *ngIf="itemOnCart.item.addons == undefined " class="material-icons cart_icon" (click)="addtocart(itemOnCart)" >
                   add_shopping_cart
                 </i>
               </div>

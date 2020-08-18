@@ -6,6 +6,11 @@ import {ItemsOnCart} from "../_models/ItemsOnCart";
 import {CategoryWiseItem} from "../_models/CategoryWiseItem";
 import {Router} from "@angular/router";
 import {Table} from "../_models/Table";
+import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
+import {AddOnPopupComponent} from "../add-on-popup/add-on-popup.component";
+
+class  DialogData {
+}
 
 @Component({
   selector: 'app-items',
@@ -20,7 +25,8 @@ export class ItemsComponent implements OnInit {
   table: Table;
 
   constructor(private itemService: ItemService,
-              private routes: Router) {
+              private routes: Router,
+              private dialog: MatDialog) {
     localStorage.setItem(`cartItem`, '[]');
   }
 
@@ -79,5 +85,38 @@ export class ItemsComponent implements OnInit {
 
   getSelectedTable() {
 
+  }
+
+  openDialog(itemOnCart: ItemsOnCart): void {
+    console.log('inside');
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = itemOnCart;
+    dialogConfig.width ='600px';
+    dialogConfig.maxHeight = '800px'
+    const dialogRef = this.dialog.open(AddOnPopupComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log("collected data -->"+  result)
+
+      result.item.addons.forEach(addon =>{
+        itemOnCart.item.addonsPrice = 0.00
+        if(addon.type == 'checkbox'){
+          addon.selected = addon.options.filter(option => option.default_selection)
+          addon.selected.forEach(addon => itemOnCart.item.addonsPrice = itemOnCart.item.addonsPrice + addon.price)
+          console.log("addon checkbox Price --> "+ itemOnCart.item.addonsPrice)
+        } else if(addon.type == 'radio'){
+          const selected = [];
+          selected.push(addon.selected)
+          addon.selected = selected;
+          addon.selected.forEach(addon => itemOnCart.item.addonsPrice = itemOnCart.item.addonsPrice + addon.price)
+          console.log("addon checkbox Price --> "+ itemOnCart.item.addonsPrice)
+        }
+      })
+      this.addtocart(result);
+      console.log("modified item on cart -->" + result.toString())
+
+    });
   }
 }
