@@ -13,8 +13,8 @@ import {LoginUser} from "../_models/LoginUser";
 })
 export class TableSelectComponent implements OnInit {
 
-  private tables : Table[];
-  private loginUser : LoginUser;
+  tables : Table[];
+  loginUser : LoginUser;
   constructor(private counterService : CounterServiceService,
               private router: Router) { }
 

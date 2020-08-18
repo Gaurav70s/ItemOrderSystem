@@ -8,7 +8,7 @@ import {Table} from "../_models/Table";
   styleUrls: ['./counter-view.component.css']
 })
 export class CounterViewComponent implements OnInit {
-  private dashboards: Table[];
+  dashboards: Table[];
   constructor(private counterService: CounterServiceService) { }
 
   ngOnInit() {
