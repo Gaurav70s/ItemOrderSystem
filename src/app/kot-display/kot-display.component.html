@@ -1,0 +1,53 @@
+<app-header></app-header>
+<div class="row">
+  <div class="col-lg-4 col-md-12" *ngFor="let order of orders">
+    <div class="card">
+      <div class="card-header card-header-warning">
+        <h4 class="card-title">Order Number : <b>{{order.order.orderNo}}</b>
+          <div class="float-right">{{order.table.tableNo}}</div>
+          <span class="material-icons float-right material-icons-heading">weekend</span>
+        </h4>
+      </div>
+      <div class="card-body">
+        <div class="tab-content">
+          <div class="tab-pane active" id="profile">
+            <table class="table">
+              <tbody>
+              <tr *ngFor="let item of order.itemsOnCart">
+                <td>
+                  <div class="treeview w-20">
+                    <ul class="mb-1 pb-2">
+                      <li><span class="material-icons float-left material-icons-heading">keyboard_arrow_right</span>
+                        <span>{{item.item.name}}</span>
+                        <ul>
+                          <li *ngFor="let addon of item.item.addons" class="pl-5"><div *ngIf="addon.selected.length > 0 "><span class="material-icons pr-2 material-icons-addon">brightness_1</span>{{addon.heading}} [{{getOptions(addon.selected)}}]</div></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                </td>
+                <td>
+                  <h4 class="text-dark float-right">{{item.quantity}}</h4>
+                </td>
+                <td (click)="updateOrderItemStatus(this.order.order, this.item)" style="text-align: end">
+                  <div class ="text-right" [ngClass]="this.item.delivered ? 'circle-loader load-complete' : 'circle-loader'">
+                    <div [class.checkmark]="this.item.delivered"  class=" draw"></div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="3">
+                  <div class="button-group-area text-center">
+                    <a class="genric-btn primary radius" (click)="updateOrderStatus(this.order.order)">Complete Order</a>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-http-loader></ng-http-loader>

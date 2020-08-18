@@ -1,0 +1,97 @@
+<app-header></app-header>
+<div class="row">
+  <div class="col-lg-6 col-md-12" *ngFor="let payment of paymentList">
+    <div class="card" >
+      <div class="card-header card-header-warning">
+        <h4 class="card-title">Invoice Number : <b>{{payment.invoiceDetails.invoiceId}}</b>
+          <div class="float-right">{{table.tableNo}}</div>
+          <span class="material-icons float-right material-icons-heading">weekend</span>
+        </h4>
+      </div>
+      <div class="card-body">
+        <div class="tab-content">
+          <div class="tab-pane active" id="profile">
+            <table class="table">
+              <thead>
+              <th>Item</th>
+              <th>#</th>
+              <th>Complimentary #</th>
+              <th>Price</th>
+              <th>status</th>
+              </thead>
+              <tbody *ngFor="let orderDetail of payment.orderDetails">
+              <tr>
+                <td colspan="5">Order number : {{orderDetail.order.orderNo}}</td>
+              </tr>
+              <tr *ngFor="let item of orderDetail.itemsOnCart">
+                <td>
+                  <div class="treeview w-20">
+                    <ul class="mb-1 pb-2">
+                      <li><span class="material-icons float-left material-icons-heading">keyboard_arrow_right</span>
+                        <span>{{item.item.name}}</span>
+                        <ul>
+                          <li *ngFor="let addon of item.item.addons" class="pl-5"><div *ngIf="addon.selected.length > 0 "><span class="material-icons pr-2 material-icons-addon">brightness_1</span>{{addon.heading}} [{{getOptions(addon.selected)}}]</div></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                </td>
+                <td>
+                  <h4 class="text-dark float-right">{{item.quantity}}</h4>
+                </td>
+                <td>
+                  <table class="table-bordered text-dark">
+                    <tr>
+                      <td class="up" (click)="addComplementaryItem(item)"><i class="material-icons">keyboard_arrow_up</i></td>
+                      <td style="padding: 0 7px 0 7px">{{item.complimentaryQuantity}}</td>
+                      <td class="down" (click)="removeComplementaryItem(item)"><i class="material-icons">keyboard_arrow_down</i></td>
+                    </tr>
+                  </table>
+                </td>
+                <td>{{(item.quantity - item.complimentaryQuantity) * (item.item.price + item.item.addonsPrice)}}</td>
+                <td style="text-align: end">
+                  <div class ="text-right" [ngClass]="this.item.delivered ? 'circle-loader load-complete' : 'circle-loader'">
+                    <div [class.checkmark]="this.item.delivered"  class=" draw"></div>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+              <tfoot class="border-bottom">
+              <tr>
+                <td colspan="3" class="text-muted border-0 small text-right">Subtotal Amount</td>
+                <td></td>
+                <td class="font-medium border-0 float-right small" >{{payment.invoiceDetails.subTotal | number : '1.2' }}</td>
+              </tr>
+              <tr *ngFor="let billingComponent of payment.billingComponents">
+                <td colspan="3" class="text-muted border-0 small text-right">{{billingComponent.name}} @{{billingComponent.value}}</td>
+                <td class="small border-0"><input class="float-right" name="exampleRadios" type="checkbox" [checked]="billingComponent.default_applicable" [disabled]="!billingComponent.optional" (change)="billingComponent.default_applicable = !billingComponent.default_applicable"></td>
+                <td class="font-medium border-0 float-right small" >{{billingComponent.calculatedValue | number : '1.2' }}</td>
+              </tr>
+              <tr>
+                <td colspan="3" class="text-muted border-0 small text-right">Discount</td>
+                <td *ngIf="!getOrderStatus(payment)" class="font-medium border-0 float-right small">{{payment.invoiceDetails.discountDetails.discount | number : '1.2' }}</td>
+                <td *ngIf="getOrderStatus(payment)" class="font-medium border-0 float-right small"><input [value]="payment.invoiceDetails.discountDetails.discount | number : '1.2'" [(ngModel)]="discount" class="border" type="number"></td>
+                <td class="text-muted border-0 small text-right">{{payment.invoiceDetails.discountDetails.calculatedValue}}</td>
+              </tr>
+              <tr class="border-top">
+                <td colspan="3" class="border-0 text-right">Amount Payable</td>
+                <td></td>
+                <td class="font-medium border-0 float-right ">{{payment.invoiceDetails.totalAmount | number : '1.2' }}</td>
+              </tr>
+              <tr class="border-top">
+                <td colspan="5">
+                  <div class="button-group-area text-center">
+                    <a *ngIf="getOrderStatusForButton(payment)" class="genric-btn primary radius" (click)="editPayment()">Edit</a>
+                    <a class="genric-btn primary radius" (click)="savePayment(this.payment)">Save Payment</a>
+                  </div>
+                </td>
+              </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-http-loader></ng-http-loader>

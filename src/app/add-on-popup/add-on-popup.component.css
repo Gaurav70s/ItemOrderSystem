@@ -1,0 +1,181 @@
+h1 {
+  display: block;
+  font-size: 2em;
+  margin-block-start: 0.83em;
+  margin-block-end: 0.83em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+  font-style: normal !important;
+}
+
+.eggzWm {
+  width: calc(100% + 0.5rem);
+  display: flex;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  align-items: center;
+  margin: 0px;
+}
+.dbHZcD {
+  font-size: 1.5rem !important;
+  line-height: 3rem;
+  color: rgb(28, 28, 28);
+  font-weight: 400;
+  margin: 0px;
+}
+.jwGlki {
+  max-height: 3rem;
+  height: 3rem;
+  width: 3rem;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+.fRCvfo {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.byLLrW {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1;
+  width: 24px;
+  height: 24px;
+}
+.fUbHSE {
+  color: rgb(105, 105, 105);
+  font-size: 16px;
+  padding-top: 0.2rem;
+}
+.bpZzxC {
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(232, 232, 232);
+  border-image: initial;
+  margin: 1rem 0px;
+}
+.lgSpWD {
+  overflow: hidden;
+}
+.llODjY {
+  color: rgb(28, 28, 28);
+  font-size: 1.5rem;
+}
+.jsBNCl {
+  width: 200%;
+  display: flex;
+  position: relative;
+  top: 0px;
+  left: 0px;
+  transform: translateX(0px);
+  transition: all 0.2s ease 0s;
+}
+.hrZMQg {
+  font-size: 14px;
+  color: rgb(207, 207, 207);
+  margin-top: 0.4rem;
+  width: 50%;
+}
+.lcIeKj {
+  font-size: 14px;
+  color: rgb(237, 90, 107);
+  margin-top: 0.4rem;
+  font-weight: 400;
+  width: 50%;
+}
+
+ul {
+  list-style-type: none;
+  margin-top: 4px;
+}
+
+ul {
+  display: block;
+  list-style-type: disc;
+  margin-block-start: 0 !important;
+  margin-block-end: 0 !important;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 0 !important;
+}
+
+._3kFGv {
+  margin-top: 8px;
+  margin-bottom: 24px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 231px;
+}
+
+._3Iuwi {
+  display: -ms-flexbox;
+  display: flex;
+  line-height: 32px;
+  margin-right: 24px;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+._3VE_Q {
+  text-decoration: none;
+  line-height: 32px;
+  color: hsl(0, 0%, 20%);
+  font-size: 14px;
+}
+
+._1HBLP {
+  display: inline-block;
+  position: relative;
+}
+
+._12dTO {
+  color: hsl(0, 0%, 60%);
+  font-size: 14px;
+}
+
+._2kkyX {
+  color: hsl(0, 0%, 60%);
+  font-size: 1rem;
+}
+._1HhXF {
+  margin-top: 4px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+._3vvh6 {
+  font-family: -apple-system, BlinkMacSystemFont, segoe ui, avenir next, avenir, helvetica neue, helvetica, ubuntu, roboto, noto, arial, sans-serif;
+  -webkit-font-smoothing: subpixel-antialiased;
+  font-size: 20px !important;
+  color: hsl(0, 0%, 30%);
+  font-weight: 500;
+}
+
+.example-radio-group {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0;
+}
+
+.example-radio-button {
+  margin: 5px;
+}
+
+.oRYSe {
+  display: block;
+  overflow: auto;
+}
