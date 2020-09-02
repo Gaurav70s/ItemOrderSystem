@@ -57,6 +57,7 @@ import { OrderOnTableComponent } from './order-on-table/order-on-table.component
 import { AddOnPopupComponent } from './add-on-popup/add-on-popup.component';
 import {MAT_CHECKBOX_CLICK_ACTION, MatCheckboxModule} from "@angular/material/checkbox";
 import {MatRadioModule} from "@angular/material/radio";
+import { NgMaterialMultilevelMenuModule } from 'ng-material-multilevel-menu';
 
 
 /*const config = new AuthServiceConfig([
@@ -130,7 +131,8 @@ export function provideConfig() {
     MatDatepickerModule,
     MatNativeDateModule,
     MatCheckboxModule,
-    MatRadioModule
+    MatRadioModule,
+    NgMaterialMultilevelMenuModule
   ],
   providers: [
     //{ provide: AuthServiceConfig, useFactory: provideConfig },

@@ -11,6 +11,19 @@ import {Router} from "@angular/router";
 })
 export class AppMenuComponent implements OnInit {
   menus: Menu[];
+  config = {
+    paddingAtStart: true,
+    interfaceWithRoute: true,
+    classname: 'my-custom-class',
+    listBackgroundColor: `rgb(208, 241, 239)`,
+    fontColor: `rgb(8, 54, 71)`,
+    backgroundColor: `rgb(208, 241, 239)`,
+    selectedListFontColor: `red`,
+    highlightOnSelect: true,
+    collapseOnSelect: true,
+    rtlLayout: false
+};
+expandCollapseStatus = 'expand';
 
   constructor(private menuService: MenuServiceService,
               private authService: AuthenticationService,
@@ -21,7 +34,8 @@ export class AppMenuComponent implements OnInit {
   }
 
   getMenu() {
-    this.menuService.getMenus().subscribe(data => this.menus = data);
+    this.menus = JSON.parse( localStorage.getItem("menus"))
+    console.log(this.menus)
   }
   logout(){
     this.authService.logout();

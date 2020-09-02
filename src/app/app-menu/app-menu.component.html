@@ -14,8 +14,15 @@
           <span></span>
         </div>
         <div class="main-menu main-menu2">
-          <ul>
-            <li *ngFor="let menu of menus"><a href="{{menu.url}}">{{menu.name}}</a></li>
+          <ul class="navbar-nav mr-auto">
+            <li *ngFor="let menu of menus" *ngClass="menu.childs.size > 0 ? nav-item dropdown : nav-item"><a class="nav-link" href="{{menu.url}}">{{menu.heading}}</a>
+            <ul *ngIf="menu.childs.size > 0">
+              <li *ngFor="let childlvl1 of childs"><a href="{{childlvl1.url}}">{{childlvl1.heading}}</a>
+                <ul *ngIf="childlvl1.childs.size > 0">
+                  <li *ngFor="let childlvl2 of childs"><a href="{{childlvl2.url}}">{{childlvl1.heading}}</a>
+                </ul>
+            </ul>
+            </li>
            <!-- <li><a href="/cart">cart</a></li>
             <li><a href="/item">menu</a></li>
             &lt;!&ndash;<li><a href="#">blog</a>

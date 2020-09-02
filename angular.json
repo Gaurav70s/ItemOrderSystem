@@ -35,7 +35,6 @@
               "node_modules/dropzone/dist/dropzone.css",
               "node_modules/animate.css/animate.css",
               "node_modules/material-design-iconic-font/dist/css/material-design-iconic-font.min.css"
-
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
@@ -48,7 +47,7 @@
               "node_modules/jquery-datetimepicker/build/jquery.datetimepicker.full.min.js",
               "node_modules/dropzone/dist/dropzone.js",
               "node_modules/wowjs/dist/wow.min.js",
-             "src/assets/js/main.js"
+              "src/assets/js/main.js"
             ]
           },
           "configurations": {
@@ -141,5 +140,8 @@
       }
     }
   },
-  "defaultProject": "itemOrderSystem"
+  "defaultProject": "itemOrderSystem",
+  "cli": {
+    "analytics": "764bfbcf-ffdc-4fcc-82af-83c58663144b"
+  }
 }

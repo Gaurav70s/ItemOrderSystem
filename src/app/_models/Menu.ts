@@ -1,4 +1,5 @@
 export class Menu {
-  name: string;
+  heading: string;
   url: string;
+  childs: Menu[]
 }
