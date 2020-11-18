@@ -1,4 +1,4 @@
-<!-- Header Area Starts -->
+<!-- Header Area Starts
 <header class="header-area header-area2">
   <div class="container">
     <div class="row">
@@ -23,7 +23,7 @@
                 </ul>
             </ul>
             </li>
-           <!-- <li><a href="/cart">cart</a></li>
+           &lt;!&ndash; <li><a href="/cart">cart</a></li>
             <li><a href="/item">menu</a></li>
             &lt;!&ndash;<li><a href="#">blog</a>
               <ul class="sub-menu">
@@ -32,11 +32,32 @@
               </ul>
             </li>&ndash;&gt;
             <li><a href="#">contact</a></li>
-            <li><a href="/login">login</a></li>-->
+            <li><a href="/login">login</a></li>&ndash;&gt;
             <li><a (click)="logout()">logout</a></li>
           </ul>
         </div>
       </div>
     </div>
   </div>
-</header>
+</header>-->
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="main_nav">
+
+    <ul class="navbar-nav">
+      <li class="nav-item dropdown" *ngFor="let menu of menus"><a class="nav-link dropdown-toggle" data-toggle="dropdown" href="{{menu.url}}"> {{menu.heading}} </a>
+        <ul class="dropdown-menu" *ngIf="menu.childs.length > 0">
+          <li *ngFor="let child of menu.childs" ><a class="dropdown-item" href="{{child.url}}"> {{child.heading}} </a>
+            <ul class="submenu dropdown-menu" *ngIf="child.childs.length > 0">
+              <li *ngFor="let subChild of child.childs"><a class="dropdown-item" herf="{{subChild.url}}"> {{subChild.heading}} </a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div> <!-- navbar-collapse.// -->
+</nav>
