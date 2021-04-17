@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { RejectPopupComponent } from './reject-popup.component';
 
@@ -6,7 +6,7 @@ describe('RejectPopupComponent', () => {
   let component: RejectPopupComponent;
   let fixture: ComponentFixture<RejectPopupComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ RejectPopupComponent ]
     })

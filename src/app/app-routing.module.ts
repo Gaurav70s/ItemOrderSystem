@@ -17,14 +17,14 @@ import {InvoiceComponent} from './invoice/invoice.component';
 import {CreateItemCategoryComponent} from './create-item-category/create-item-category.component';
 import {CreateItemImagesComponent} from './create-item-images/create-item-images.component';
 import {IngredientsComponent} from './ingredients/ingredients.component';
-import {AuthGuard} from "./_helpers/auth-guard";
-import {TableSelectComponent} from "./table-select/table-select.component";
-import {PaymentComponent} from "./payment/payment.component";
-import {CompletedOrderOnTableComponent} from "./completed-order-on-table/completed-order-on-table.component";
-import {SoftwareRatingComponent} from "./software-rating/software-rating.component";
-import {BillingDashboardComponent} from "./billing-dashboard/billing-dashboard.component";
-import {KotDisplayComponent} from "./kot-display/kot-display.component";
-import {OrderOnTableComponent} from "./order-on-table/order-on-table.component";
+import {AuthGuard} from './_helpers/auth-guard';
+import {TableSelectComponent} from './table-select/table-select.component';
+import {PaymentComponent} from './payment/payment.component';
+import {CompletedOrderOnTableComponent} from './completed-order-on-table/completed-order-on-table.component';
+import {SoftwareRatingComponent} from './software-rating/software-rating.component';
+import {BillingDashboardComponent} from './billing-dashboard/billing-dashboard.component';
+import {KotDisplayComponent} from './kot-display/kot-display.component';
+import {OrderOnTableComponent} from './order-on-table/order-on-table.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -32,20 +32,20 @@ const routes: Routes = [
       { path: '', component: ItemsComponent },
       { path: 'create', component: CreateItemComponent },
       { path: ':id', component: ItemDetailsComponent }
-    ], canActivate:[AuthGuard]
+    ], canActivate: [AuthGuard]
   },
-  {path: 'checkout', component: CheckoutComponent ,canActivate:[AuthGuard],data: { roles: [Role.Waiter]}},
-  {path: 'cart' , component: CartComponent,canActivate:[AuthGuard], data: { roles: [Role.Waiter]}},
+  {path: 'checkout', component: CheckoutComponent , canActivate: [AuthGuard], data: { roles: [Role.Waiter]}},
+  {path: 'cart' , component: CartComponent, canActivate: [AuthGuard], data: { roles: [Role.Waiter]}},
   {path: 'login', component: LoginComponent},
-  {path: 'create', component: CreateItemComponent,canActivate:[AuthGuard]},
-  {path: 'forgotPassword', component: ForgotPasswordComponent,canActivate:[AuthGuard]},
-  {path: 'table_order', component: CompletedOrderOnTableComponent,canActivate:[AuthGuard]},
-  {path: 'counterview', component: CounterViewComponent,canActivate:[AuthGuard]},
-  {path: 'invoice', component: InvoiceComponent,canActivate:[AuthGuard]},
-  {path: 'payment', component: PaymentComponent,canActivate:[AuthGuard]},
-  {path: 'table', component: TableSelectComponent,canActivate:[AuthGuard]},
-  {path: 'orderlist', component: OrdersDashboardComponent,canActivate:[AuthGuard]},
-  {path: 'rating', component: SoftwareRatingComponent, canActivate:[AuthGuard], data: { invoiceid:1}},
+  {path: 'create', component: CreateItemComponent, canActivate: [AuthGuard]},
+  {path: 'forgotPassword', component: ForgotPasswordComponent, canActivate: [AuthGuard]},
+  {path: 'table_order', component: CompletedOrderOnTableComponent, canActivate: [AuthGuard]},
+  {path: 'counterview', component: CounterViewComponent, canActivate: [AuthGuard]},
+  {path: 'invoice', component: InvoiceComponent, canActivate: [AuthGuard]},
+  {path: 'payment', component: PaymentComponent, canActivate: [AuthGuard]},
+  {path: 'table', component: TableSelectComponent, canActivate: [AuthGuard]},
+  {path: 'orderlist', component: OrdersDashboardComponent, canActivate: [AuthGuard]},
+  {path: 'rating', component: SoftwareRatingComponent, canActivate: [AuthGuard], data: { invoiceid: 1}},
   {path: 'bd', component: BillingDashboardComponent},
   {path: 'kotd', component: KotDisplayComponent},
   {path: 'table/order', component: OrderOnTableComponent},
@@ -61,16 +61,16 @@ const routes: Routes = [
           { path: 'create', component: IngredientsComponent }
         ]
       }
-    ],canActivate:[AuthGuard]
+    ], canActivate: [AuthGuard]
   },
-  {path: 'signup', component: SignupComponent,canActivate:[AuthGuard]},
-  {path: 'kot', component: KitchenOrderDisplayComponent ,canActivate:[AuthGuard]},
+  {path: 'signup', component: SignupComponent, canActivate: [AuthGuard]},
+  {path: 'kot', component: KitchenOrderDisplayComponent , canActivate: [AuthGuard]},
   {path: '**', redirectTo: '/login' }
 ];
 
 @NgModule({
   providers: [],
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}
