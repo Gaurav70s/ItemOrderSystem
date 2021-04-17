@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 import {BillingServiceService} from "../billing-service.service";
 import {DateAdapter, MAT_DATE_FORMATS, NativeDateAdapter} from "@angular/material/core";
 import {DatePipe, formatDate} from "@angular/common";
@@ -14,6 +14,7 @@ export const PICK_FORMATS = {
   }
 };
 
+@Injectable()
 class PickDateAdapter extends NativeDateAdapter {
   format(date: Date, displayFormat: Object): string {
     if (displayFormat === 'input') {
