@@ -1,4 +1,4 @@
-export class BillingComponent{
+export class BillingComponent {
   id: number;
   name: string;
   value: number;

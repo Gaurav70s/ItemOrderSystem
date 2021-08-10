@@ -1,4 +1,4 @@
-.alert{
+.alert {
   margin-bottom: 0;
 }
 
@@ -9,6 +9,7 @@
 
   &.hide-scrollbar {
     overflow: auto;
+
     &::-webkit-scrollbar {
       display: none;
     }
@@ -25,13 +26,15 @@
   border: 1px solid #000000;
   margin: .1rem;
   padding: 1px 8px;
+
   &:hover {
     cursor: pointer;
     background: #000000;
     color: #ffffff;
     border-color: #ffffff;
   }
-  &:hover div{
+
+  &:hover div {
     cursor: pointer;
     background: #000000;
     color: #ffffff;
@@ -55,7 +58,7 @@ td {
   white-space: nowrap;
   vertical-align: baseline;
   border-radius: .125rem;
-  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
 .content {
@@ -64,7 +67,7 @@ td {
   flex-grow: 1;
 }
 
-.font-weight-semibold{
+.font-weight-semibold {
   color: #000;
   font-size: 47px !important;
   font-weight: 800;
@@ -77,7 +80,9 @@ td {
 
 .btn-group,
 .btn-group-vertical {
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 10px rgba(0, 0, 0, 0.12); }
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 10px rgba(0, 0, 0, 0.12);
+}
+
 .btn-group .btn,
 .btn-group-vertical .btn {
   box-shadow: none !important;
@@ -85,20 +90,28 @@ td {
   -moz-border-radius: 0;
   -ms-border-radius: 0;
   border-radius: 0;
-font-size: 13px;
+  font-size: 13px;
 }
+
 .btn-group .btn .caret,
 .btn-group-vertical .btn .caret {
   position: relative;
-  bottom: 1px; }
+  bottom: 1px;
+}
+
 .btn-group .btn-group,
 .btn-group-vertical .btn-group {
-  box-shadow: none !important; }
+  box-shadow: none !important;
+}
+
 .btn-group .btn + .dropdown-toggle,
 .btn-group-vertical .btn + .dropdown-toggle {
-  border-left: 1px solid rgba(0, 0, 0, 0.08) !important; }
+  border-left: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
 
-.bg-grey{background-color:#777}
+.bg-grey {
+  background-color: #777
+}
 
 b {
   font-size: 20px;
@@ -114,13 +127,6 @@ b {
   border: 0;
   border-radius: 0;
 }
-
-
-
-
-
-
-
 
 
 /*.alpha-primary{background-color:#e3f2fd}

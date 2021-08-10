@@ -2,8 +2,8 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {ItemAddOn} from '../_models/ItemAddOn';
 
-interface AddonData{
-  itemAddon: ItemAddOn[]
+interface AddonData {
+  itemAddon: ItemAddOn[];
 }
 
 
@@ -14,15 +14,16 @@ interface AddonData{
 })
 export class AddonModalComponent implements OnInit {
 
+  constructor(
+    public dialogRef: MatDialogRef<AddonModalComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: AddonData) {
+  }
+
   ngOnInit(): void {
   }
 
   onClose(): void {
     this.dialogRef.close();
   }
-
-  constructor(
-    public dialogRef: MatDialogRef<AddonModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: AddonData) {}
 
 }

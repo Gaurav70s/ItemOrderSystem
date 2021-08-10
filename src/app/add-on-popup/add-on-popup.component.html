@@ -1,4 +1,4 @@
-<div >
+<div>
   <section class="re4bd0-9 eggzWm">
     <h1 class="sc-cmUJln dbHZcD">{{itemOnCart.item.name}}</h1>
     <!--<i class="rbbb40-1 fRCvfo re4bd0-1 jwGlki" size="24" color="#1C1C1C" tabindex="0" aria-label="close Modal">
@@ -13,47 +13,47 @@
         <path d="M11.42 10.42l3.54-3.54c0.38-0.4 0.38-1.040 0-1.42s-1.020-0.4-1.42 0l-3.54 3.54-3.54-3.54c-0.4-0.4-1.020-0.4-1.42 0s-0.38 1.020 0 1.42l3.54 3.54-3.54 3.54c-0.38 0.38-0.38 1.020 0 1.42 0.2 0.18 0.46 0.28 0.72 0.28s0.5-0.1 0.7-0.28l3.54-3.56 3.54 3.56c0.2 0.18 0.46 0.28 0.72 0.28s0.5-0.1 0.7-0.28c0.38-0.4 0.38-1.040 0-1.42l-3.54-3.54z" fill="url(#ckdes6bos015t3h6tb6vmfgq6)"></path>
       </svg>
     </i>-->
-    <span class="fRCvfo jwGlki material-icons" (click)="onNoClick()">close</span>
+    <span (click)="onNoClick()" class="fRCvfo jwGlki material-icons">close</span>
   </section>
   <section class="re4bd0-11 oRYSe">
     <div class="sc-dXLFzO hCbnG">
-    <div class="sc-bJTOcE fUbHSE">{{itemOnCart.item.description}}</div>
-    <div class="sc-cnTzU bpZzxC"></div>
-    <div class="sc-gFXMyG bQcBuM">
-      <div class="sc-dPNhBE lgSpWD">
-        <div class="sc-kkwfeq llODjY">Addon</div>
-        <div *ngFor="let addOn of itemOnCart.item.addons">
-          <div class="_1HhXF">
-            <h3 class="_3vvh6">{{addOn.heading}}</h3>
-          </div>
-          <div class="_1y-cL" *ngIf="addOn.type=='checkbox'">
-            <div class="_3kFGv">
-              <div class="_3Iuwi" *ngFor="let option of addOn.options">
-                <mat-checkbox [(ngModel)]="option.default_selection"
-                              *ngIf="addOn.type=='checkbox'">
-                  {{option.label}}
-                </mat-checkbox>
-                <span class="_2kkyX">{{option.price}}</span>
+      <div class="sc-bJTOcE fUbHSE">{{itemOnCart.item.description}}</div>
+      <div class="sc-cnTzU bpZzxC"></div>
+      <div class="sc-gFXMyG bQcBuM">
+        <div class="sc-dPNhBE lgSpWD">
+          <div class="sc-kkwfeq llODjY">Addon</div>
+          <div *ngFor="let addOn of itemOnCart.item.addons">
+            <div class="_1HhXF">
+              <h3 class="_3vvh6">{{addOn.heading}}</h3>
+            </div>
+            <div *ngIf="addOn.type=='checkbox'" class="_1y-cL">
+              <div class="_3kFGv">
+                <div *ngFor="let option of addOn.options" class="_3Iuwi">
+                  <mat-checkbox *ngIf="addOn.type=='checkbox'"
+                                [(ngModel)]="option.default_selection">
+                    {{option.label}}
+                  </mat-checkbox>
+                  <span class="_2kkyX">{{option.price}}</span>
+                </div>
               </div>
             </div>
+            <mat-radio-group
+              *ngIf="addOn.type=='radio'"
+              [(ngModel)]="addOn.selected"
+              aria-labelledby="example-radio-group-label" class="example-radio-group">
+              <mat-radio-button *ngFor="let option of addOn.options" [value]="option" class="example-radio-button">
+                {{option.label}}
+              </mat-radio-button>
+            </mat-radio-group>
           </div>
-          <mat-radio-group
-            aria-labelledby="example-radio-group-label"
-            class="example-radio-group"
-            [(ngModel)]="addOn.selected" *ngIf="addOn.type=='radio'">
-            <mat-radio-button class="example-radio-button" *ngFor="let option of addOn.options" [value]="option">
-              {{option.label}}
-            </mat-radio-button>
-          </mat-radio-group>
         </div>
       </div>
+      <div class="sc-iLVFha hsmCWR"></div>
     </div>
-    <div class="sc-iLVFha hsmCWR"></div>
-  </div>
 
   </section>
   <div class="button-group-area text-center">
-    <a class="genric-btn primary radius" [mat-dialog-close]="itemOnCart">Add to cart </a>
+    <a [mat-dialog-close]="itemOnCart" class="genric-btn primary radius">Add to cart </a>
     <!--<a class="genric-btn primary radius" (click)="openDialog()">Split Bill</a>-->
   </div>
 </div>

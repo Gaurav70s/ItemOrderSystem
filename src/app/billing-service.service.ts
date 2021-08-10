@@ -9,17 +9,18 @@ import {BillingDashboard} from './_models/BillingDashboard';
 })
 export class BillingServiceService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
-  getDailyBillingData(date: string): Observable<BillingDashboard[]>{
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
-    const options = { headers, crossDomain: true, withCredentials: true };
-    return this.http.get<BillingDashboard[]>('/rest/item_order_service/v1/dashboard/billing/'+date, options);
+  getDailyBillingData(date: string): Observable<BillingDashboard[]> {
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'});
+    const options = {headers, crossDomain: true, withCredentials: true};
+    return this.http.get<BillingDashboard[]>('/rest/item_order_service/v1/dashboard/billing/' + date, options);
   }
 
   getMonthlyBillingData(month: number, fullYear: number) {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
-    const options = { headers, crossDomain: true, withCredentials: true };
-    return this.http.get<BillingDashboard[]>('/rest/item_order_service/v1/dashboard/billing/'+fullYear+'/'+month, options);
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'});
+    const options = {headers, crossDomain: true, withCredentials: true};
+    return this.http.get<BillingDashboard[]>('/rest/item_order_service/v1/dashboard/billing/' + fullYear + '/' + month, options);
   }
 }

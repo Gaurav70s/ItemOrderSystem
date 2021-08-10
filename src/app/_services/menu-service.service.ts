@@ -11,7 +11,8 @@ export class MenuServiceService {
 
   menus: Menu[];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   public getMenus(): Observable<Menu[]> {
     return this.http.get<Menu[]>('./assets/data/app-menu.json').pipe(

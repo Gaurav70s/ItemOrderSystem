@@ -6,14 +6,17 @@
   background-color: #BB3F30;
   padding: 10px 20px;
 }
+
 .bottom-sheet div {
   flex: 1;
   color: white;
 }
+
 button {
   margin-left: 5px;
   color: black !important;
 }
+
 button.change {
   color: white !important;
 }

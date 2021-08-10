@@ -18,13 +18,12 @@ export const PICK_FORMATS = {
 class PickDateAdapter extends NativeDateAdapter {
   format(date: Date, displayFormat: Object): string {
     if (displayFormat === 'input') {
-      return formatDate(date,'yyyy-MM-dd',this.locale);
+      return formatDate(date, 'yyyy-MM-dd', this.locale);
     } else {
       return date.toDateString();
     }
   }
 }
-
 
 
 @Component({
@@ -39,31 +38,32 @@ class PickDateAdapter extends NativeDateAdapter {
 })
 export class BillingDashboardComponent implements OnInit {
 
-  constructor(private billingService: BillingServiceService,
-              public datepipe: DatePipe) { }
-  date : Date = new Date();
-  dailyBillingDashboards : BillingDashboard[];
-  monthlyBillingDashboards : BillingDashboard[];
+  date: Date = new Date();
+  dailyBillingDashboards: BillingDashboard[];
+  monthlyBillingDashboards: BillingDashboard[];
   today = new Date();
   sixMonthsAgo = new Date();
   monthYear: Date = new Date();
 
+  constructor(private billingService: BillingServiceService,
+              public datepipe: DatePipe) {
+  }
 
   ngOnInit(): void {
     this.sixMonthsAgo.setMonth(this.today.getMonth() - 6);
-    this.getDailyBillingDashboard(new Date())
-    this.getMonthlyBillingDashboard(new Date())
+    this.getDailyBillingDashboard(new Date());
+    this.getMonthlyBillingDashboard(new Date());
 
   }
 
-  getDailyBillingDashboard(date: Date){
-    console.log(this.datepipe.transform(date,'yyyy-MM-dd').toString())
-    this.billingService.getDailyBillingData(this.datepipe.transform(date,'yyyy-MM-dd').toString()).subscribe(data=> this.dailyBillingDashboards = data)
+  getDailyBillingDashboard(date: Date) {
+    console.log(this.datepipe.transform(date, 'yyyy-MM-dd').toString());
+    this.billingService.getDailyBillingData(this.datepipe.transform(date, 'yyyy-MM-dd').toString()).subscribe(data => this.dailyBillingDashboards = data);
 
   }
 
-  getMonthlyBillingDashboard(date: Date){
-    this.billingService.getMonthlyBillingData(date.getMonth()+1, date.getFullYear()).subscribe(data=> this.monthlyBillingDashboards = data)
+  getMonthlyBillingDashboard(date: Date) {
+    this.billingService.getMonthlyBillingData(date.getMonth() + 1, date.getFullYear()).subscribe(data => this.monthlyBillingDashboards = data);
 
   }
 }

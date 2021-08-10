@@ -136,8 +136,8 @@ export function provideConfig() {
   ],
   providers: [
     // { provide: AuthServiceConfig, useFactory: provideConfig },
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
     //{ provide: MAT_CHECKBOX_CLICK_ACTION, useValue: 'check'},
     // provider used to create fake backend
     CookieService,
@@ -146,4 +146,5 @@ export function provideConfig() {
   bootstrap: [AppComponent]
 })
 
-export class AppModule { }
+export class AppModule {
+}

@@ -8,7 +8,7 @@
           <h4>Item Category</h4>
         </div>
         <div class="card-body">
-          <div class="row" *ngIf="!isCreateActive">
+          <div *ngIf="!isCreateActive" class="row">
             <div class="col-md-6">
               <mat-form-field appearance="legacy">
                 <mat-label>Item Category Name:</mat-label>
@@ -16,30 +16,33 @@
               </mat-form-field>
             </div>
           </div>
-          <div class="row" *ngIf="!isCreateActive">
+          <div *ngIf="!isCreateActive" class="row">
             <div class="container border-top-generic text-center">
               <div class="button-group-area">
-                <a class="genric-btn primary radius" (click)="search()">Search</a>
-                <a class="genric-btn primary radius" (click)="prepareForCreate()">Create</a>
+                <a (click)="search()" class="genric-btn primary radius">Search</a>
+                <a (click)="prepareForCreate()" class="genric-btn primary radius">Create</a>
               </div>
             </div>
           </div>
-          <div class="row" *ngIf="isSearchActive">
+          <div *ngIf="isSearchActive" class="row">
             <div class="container">
               <div class="row">
                 <div class="col-md-12">
                   <div class="table-responsive">
-                    <table id="mytable" class="table table-bordred table-striped">
+                    <table class="table table-bordred table-striped" id="mytable">
                       <thead>
-                        <th>Category Name</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
+                      <th>Category Name</th>
+                      <th>Edit</th>
+                      <th>Delete</th>
                       </thead>
                       <tbody>
                       <tr *ngFor="let category of categories">
                         <td>{{category.categoryName}}</td>
-                        <td><p class="icon" data-placement="top" data-toggle="tooltip" title="Edit" (click)="edit(this.category)"><span class="material-icons">edit</span></p></td>
-                        <td><p class="icon" data-placement="top" data-toggle="tooltip" title="Delete" (click)="delete(this.category.categoryId)"><span class="material-icons">delete_outline</span></p></td>
+                        <td><p (click)="edit(this.category)" class="icon" data-placement="top" data-toggle="tooltip"
+                               title="Edit"><span class="material-icons">edit</span></p></td>
+                        <td><p (click)="delete(this.category.categoryId)" class="icon" data-placement="top" data-toggle="tooltip"
+                               title="Delete"><span
+                          class="material-icons">delete_outline</span></p></td>
                       </tr>
                       </tbody>
                     </table>
@@ -62,19 +65,22 @@
             </div>
           </div>
 
-          <form class="form-validate" novalidate="novalidate" [formGroup]="itemCatForm" (ngSubmit)="onSubmit()" *ngIf="isCreateActive">
+          <form (ngSubmit)="onSubmit()" *ngIf="isCreateActive" [formGroup]="itemCatForm" class="form-validate"
+                novalidate="novalidate">
             <div class="form-group">
               <label>Item Category Name</label>
               <label>
-                <input name="categoryName" type="text" required="" placeholder="Please specify Item name" class="form-control" formControlName="categoryName" [(ngModel)]="categoryForEdit.categoryName" >
+                <input [(ngModel)]="categoryForEdit.categoryName" class="form-control" formControlName="categoryName" name="categoryName"
+                       placeholder="Please specify Item name" required="" type="text">
               </label>
             </div>
             <div class="form-group">
-                <input name="categoryId" type="hidden" required="" class="form-control" formControlName="categoryId" [(ngModel)]="categoryForEdit.categoryId">
+              <input [(ngModel)]="categoryForEdit.categoryId" class="form-control" formControlName="categoryId" name="categoryId" required=""
+                     type="hidden">
             </div>
             <div class="container border-top-generic text-center">
               <div class="button-group-area">
-                <button type="submit" class="genric-btn primary radius">Submit</button>
+                <button class="genric-btn primary radius" type="submit">Submit</button>
               </div>
             </div>
           </form>

@@ -55,41 +55,42 @@
 
 <section class="mt-5">
   <div class="container">
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="flex-c-m">
-        <a class="table_name_area bg1">
-          <div class="text-white table_name">
-            {{table.tableNo}}
-          </div>
-        </a>
-        <a class="login100-social-item bg1" (click)="cartRedirect()">
-          <i class="material-icons" style="color: #ffffff" >
-            shopping_cart
-          </i>
-          <span class="badge badge-danger badge-counter">{{count}}</span>
-        </a>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="flex-c-m">
+          <a class="table_name_area bg1">
+            <div class="text-white table_name">
+              {{table.tableNo}}
+            </div>
+          </a>
+          <a (click)="cartRedirect()" class="login100-social-item bg1">
+            <i class="material-icons" style="color: #ffffff">
+              shopping_cart
+            </i>
+            <span class="badge badge-danger badge-counter">{{count}}</span>
+          </a>
 
+        </div>
       </div>
     </div>
-  </div>
   </div>
 </section>
 
 <section class="ftco-section">
   <div class="container">
     <div class="row">
-      <div class="col-md-6 col-lg-4 menu-wrap" *ngFor="let categoryWiseItem of categoryWiseItems">
-        <div class="heading-menu text-center ftco-animate fadeInUp ftco-animated" >
+      <div *ngFor="let categoryWiseItem of categoryWiseItems" class="col-md-6 col-lg-4 menu-wrap">
+        <div class="heading-menu text-center ftco-animate fadeInUp ftco-animated">
           <h3>{{categoryWiseItem.category.categoryName}}</h3>
         </div>
-        <div class="menus d-flex ftco-animate fadeInUp ftco-animated" *ngFor="let itemOnCart of categoryWiseItem.itemsOnCarts">
+        <div *ngFor="let itemOnCart of categoryWiseItem.itemsOnCarts"
+             class="menus d-flex ftco-animate fadeInUp ftco-animated">
           <div class="menu-img img" style="background-image: url(assets/images/food{{itemOnCart.item.id}}.jpg);"></div>
           <div class="text">
             <div class="d-flex">
               <div class="one-half">
                 <small>{{itemOnCart.item.name}}</small>
-                <img src="assets/images/{{itemOnCart.item.property | lowercase}}.png" class="img-category pl-1" alt="">
+                <img alt="" class="img-category pl-1" src="assets/images/{{itemOnCart.item.property | lowercase}}.png">
               </div>
               <div class="one-forth">
                 <span class="price">{{itemOnCart.item.price| currency:'INR'}}</span>
@@ -97,18 +98,20 @@
             </div>
             <p><span *ngFor="let ingredient of itemOnCart.item.ingredients">{{ingredient.name}}, </span></p>
             <div class="_33Hf_ _3L1X9">
-              <div class="_1ds9T" title= "Add Quantity" (click)="getNext(itemOnCart)"><i class="material-icons">
+              <div (click)="getNext(itemOnCart)" class="_1ds9T" title="Add Quantity"><i class="material-icons">
                 keyboard_arrow_up
               </i></div>
-              <div class="_29Y5Z" title= "Remove Quantity" (click)="getPrevious(itemOnCart)"><i class="material-icons">
+              <div (click)="getPrevious(itemOnCart)" class="_29Y5Z" title="Remove Quantity"><i class="material-icons">
                 keyboard_arrow_down
               </i></div>
               <div class="_2zAXs" id="qua">{{itemOnCart.quantity ? itemOnCart.quantity : 0}}</div>
               <div class="cart_icon1" title="Add to cart">
-                <i *ngIf="itemOnCart.item.addons != undefined && itemOnCart.item.addons.length > 0" class="material-icons cart_icon" (click)="openDialog(itemOnCart)" >
+                <i (click)="openDialog(itemOnCart)"
+                   *ngIf="itemOnCart.item.addons != undefined && itemOnCart.item.addons.length > 0" class="material-icons cart_icon">
                   add_shopping_cart
                 </i>
-                <i *ngIf="itemOnCart.item.addons == undefined " class="material-icons cart_icon" (click)="addtocart(itemOnCart)" >
+                <i (click)="addtocart(itemOnCart)" *ngIf="itemOnCart.item.addons == undefined "
+                   class="material-icons cart_icon">
                   add_shopping_cart
                 </i>
               </div>
@@ -119,7 +122,6 @@
     </div>
   </div>
 </section>
-
 
 
 <!--<app-booktable></app-booktable>-->

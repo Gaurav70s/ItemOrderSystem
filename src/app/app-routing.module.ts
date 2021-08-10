@@ -28,14 +28,15 @@ import {OrderOnTableComponent} from './order-on-table/order-on-table.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
-  {path: 'item' , children: [
-      { path: '', component: ItemsComponent },
-      { path: 'create', component: CreateItemComponent },
-      { path: ':id', component: ItemDetailsComponent }
+  {
+    path: 'item', children: [
+      {path: '', component: ItemsComponent},
+      {path: 'create', component: CreateItemComponent},
+      {path: ':id', component: ItemDetailsComponent}
     ], canActivate: [AuthGuard]
   },
-  {path: 'checkout', component: CheckoutComponent , canActivate: [AuthGuard], data: { roles: [Role.Waiter]}},
-  {path: 'cart' , component: CartComponent, canActivate: [AuthGuard], data: { roles: [Role.Waiter]}},
+  {path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard], data: {roles: [Role.Waiter]}},
+  {path: 'cart', component: CartComponent, canActivate: [AuthGuard], data: {roles: [Role.Waiter]}},
   {path: 'login', component: LoginComponent},
   {path: 'create', component: CreateItemComponent, canActivate: [AuthGuard]},
   {path: 'forgotPassword', component: ForgotPasswordComponent, canActivate: [AuthGuard]},
@@ -45,32 +46,36 @@ const routes: Routes = [
   {path: 'payment', component: PaymentComponent, canActivate: [AuthGuard]},
   {path: 'table', component: TableSelectComponent, canActivate: [AuthGuard]},
   {path: 'orderlist', component: OrdersDashboardComponent, canActivate: [AuthGuard]},
-  {path: 'rating', component: SoftwareRatingComponent, canActivate: [AuthGuard], data: { invoiceid: 1}},
+  {path: 'rating', component: SoftwareRatingComponent, canActivate: [AuthGuard], data: {invoiceid: 1}},
   {path: 'bd', component: BillingDashboardComponent},
   {path: 'kotd', component: KotDisplayComponent},
   {path: 'table/order', component: OrderOnTableComponent},
 
-  {path: 'admin' , children: [
-      { path: 'item' , children: [
-          { path: 'create', component: CreateItemComponent },
-          { path: 'category/create', component: CreateItemCategoryComponent },
-          { path: 'image/upload', component: CreateItemImagesComponent }
+  {
+    path: 'admin', children: [
+      {
+        path: 'item', children: [
+          {path: 'create', component: CreateItemComponent},
+          {path: 'category/create', component: CreateItemCategoryComponent},
+          {path: 'image/upload', component: CreateItemImagesComponent}
         ]
       },
-      { path: 'ingredient' , children: [
-          { path: 'create', component: IngredientsComponent }
+      {
+        path: 'ingredient', children: [
+          {path: 'create', component: IngredientsComponent}
         ]
       }
     ], canActivate: [AuthGuard]
   },
   {path: 'signup', component: SignupComponent, canActivate: [AuthGuard]},
-  {path: 'kot', component: KitchenOrderDisplayComponent , canActivate: [AuthGuard]},
-  {path: '**', redirectTo: '/login' }
+  {path: 'kot', component: KitchenOrderDisplayComponent, canActivate: [AuthGuard]},
+  {path: '**', redirectTo: '/login'}
 ];
 
 @NgModule({
   providers: [],
-  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
+  imports: [RouterModule.forRoot(routes, {relativeLinkResolution: 'legacy'})],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}

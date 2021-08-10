@@ -1,5 +1,5 @@
-<div class="bottom-sheet" *ngFor="let order of data ">
+<div *ngFor="let order of data " class="bottom-sheet">
   <div> Do you want to change status ?{{order.order.orderNo}} </div>
-  <button mat-button type="button" color="warn" (click)="clearBar()">Cancel</button>
-  <button mat-button class="change" type="submit" color="warn" (click)="changeStatus()">Change</button>
+  <button (click)="clearBar()" color="warn" mat-button type="button">Cancel</button>
+  <button (click)="changeStatus()" class="change" color="warn" mat-button type="submit">Change</button>
 </div>

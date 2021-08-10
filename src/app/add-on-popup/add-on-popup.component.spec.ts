@@ -8,9 +8,9 @@ describe('AddOnPopupComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddOnPopupComponent ]
+      declarations: [AddOnPopupComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

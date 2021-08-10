@@ -9,7 +9,9 @@ import {Table} from '../_models/Table';
 })
 export class CounterViewComponent implements OnInit {
   dashboards: Table[];
-  constructor(private counterService: CounterServiceService) { }
+
+  constructor(private counterService: CounterServiceService) {
+  }
 
   ngOnInit() {
     this.getDashboardData();

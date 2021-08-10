@@ -8,7 +8,7 @@ import {Table} from '../_models/Table';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {AddOnPopupComponent} from '../add-on-popup/add-on-popup.component';
 
-class  DialogData {
+class DialogData {
 }
 
 @Component({
@@ -20,7 +20,7 @@ export class ItemsComponent implements OnInit {
   itemsOnCarts: ItemsOnCart[];
   ingredientString = '';
   categoryWiseItems: CategoryWiseItem[];
-  count:number;
+  count: number;
   table: Table;
 
   constructor(private itemService: ItemService,
@@ -33,10 +33,14 @@ export class ItemsComponent implements OnInit {
     this.table = JSON.parse(localStorage.getItem('table'));
     this.getItems();
   }
+
   getNext(itemsOnCart: ItemsOnCart): void {
-    if (itemsOnCart.quantity === undefined) { itemsOnCart.quantity= 0; }
+    if (itemsOnCart.quantity === undefined) {
+      itemsOnCart.quantity = 0;
+    }
     itemsOnCart.quantity = itemsOnCart.quantity + 1;
   }
+
   getPrevious(itemsOnCart: ItemsOnCart): void {
     if (itemsOnCart.quantity > 0) {
       itemsOnCart.quantity = itemsOnCart.quantity - 1;
@@ -51,7 +55,8 @@ export class ItemsComponent implements OnInit {
 
 
   }
-  getIngredientsList(ingredients: Ingredient[] ) {
+
+  getIngredientsList(ingredients: Ingredient[]) {
     this.ingredientString = '';
     ingredients.forEach((ingredient) => {
       this.ingredientString = this.ingredientString + ingredient.name + ' ';
@@ -62,7 +67,7 @@ export class ItemsComponent implements OnInit {
 
   addtocart(itemOnCart): void {
     this.itemsOnCarts = JSON.parse(localStorage.getItem('cartItem'));
-    if(itemOnCart.quantity != 0){
+    if (itemOnCart.quantity != 0) {
       if (this.itemsOnCarts.findIndex(value => value.item.id === itemOnCart.item.id) !== -1) {
         this.itemsOnCarts = this.itemsOnCarts.filter(value => value.item.id !== itemOnCart.item.id);
       }
@@ -70,15 +75,15 @@ export class ItemsComponent implements OnInit {
       localStorage.setItem(`cartItem`, JSON.stringify(this.itemsOnCarts));
       console.log(this.itemsOnCarts);
     }
-    if(this.itemsOnCarts!= undefined){
-      this.count = this.itemsOnCarts.length
-    } else{
-      this.count =0;
+    if (this.itemsOnCarts != undefined) {
+      this.count = this.itemsOnCarts.length;
+    } else {
+      this.count = 0;
     }
   }
 
   cartRedirect() {
-    this.routes.navigate(['/cart'])
+    this.routes.navigate(['/cart']);
   }
 
 
@@ -92,29 +97,29 @@ export class ItemsComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.data = itemOnCart;
-    dialogConfig.width ='600px';
-    dialogConfig.maxHeight = '800px'
+    dialogConfig.width = '600px';
+    dialogConfig.maxHeight = '800px';
     const dialogRef = this.dialog.open(AddOnPopupComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log("collected data -->"+  result)
+      console.log('collected data -->' + result);
 
-      result.item.addons.forEach(addon =>{
-        itemOnCart.item.addonsPrice = 0.00
-        if(addon.type == 'checkbox'){
-          addon.selected = addon.options.filter(option => option.default_selection)
-          addon.selected.forEach(addon => itemOnCart.item.addonsPrice = itemOnCart.item.addonsPrice + addon.price)
-          console.log("addon checkbox Price --> "+ itemOnCart.item.addonsPrice)
-        } else if(addon.type == 'radio'){
+      result.item.addons.forEach(addon => {
+        itemOnCart.item.addonsPrice = 0.00;
+        if (addon.type == 'checkbox') {
+          addon.selected = addon.options.filter(option => option.default_selection);
+          addon.selected.forEach(addon => itemOnCart.item.addonsPrice = itemOnCart.item.addonsPrice + addon.price);
+          console.log('addon checkbox Price --> ' + itemOnCart.item.addonsPrice);
+        } else if (addon.type == 'radio') {
           const selected = [];
-          selected.push(addon.selected)
+          selected.push(addon.selected);
           addon.selected = selected;
-          addon.selected.forEach(addon => itemOnCart.item.addonsPrice = itemOnCart.item.addonsPrice + addon.price)
-          console.log("addon checkbox Price --> "+ itemOnCart.item.addonsPrice)
+          addon.selected.forEach(addon => itemOnCart.item.addonsPrice = itemOnCart.item.addonsPrice + addon.price);
+          console.log('addon checkbox Price --> ' + itemOnCart.item.addonsPrice);
         }
-      })
+      });
       this.addtocart(result);
-      console.log("modified item on cart -->" + result.toString())
+      console.log('modified item on cart -->' + result.toString());
 
     });
   }

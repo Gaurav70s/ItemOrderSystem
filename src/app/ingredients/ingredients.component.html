@@ -8,7 +8,7 @@
           <h4>Item Ingredients</h4>
         </div>
         <div class="card-body">
-          <div class="row" *ngIf="!isCreateActive">
+          <div *ngIf="!isCreateActive" class="row">
             <div class="col-md-6">
               <mat-form-field appearance="legacy">
                 <mat-label>Item Ingredient Name:</mat-label>
@@ -16,20 +16,20 @@
               </mat-form-field>
             </div>
           </div>
-          <div class="row" *ngIf="!isCreateActive">
+          <div *ngIf="!isCreateActive" class="row">
             <div class="container border-top-generic text-center">
               <div class="button-group-area">
-                <a class="genric-btn primary radius" (click)="search()">Search</a>
-                <a class="genric-btn primary radius" (click)="prepareForCreate()">Create</a>
+                <a (click)="search()" class="genric-btn primary radius">Search</a>
+                <a (click)="prepareForCreate()" class="genric-btn primary radius">Create</a>
               </div>
             </div>
           </div>
-          <div class="row" *ngIf="isSearchActive">
+          <div *ngIf="isSearchActive" class="row">
             <div class="container">
               <div class="row">
                 <div class="col-md-12">
                   <div class="table-responsive">
-                    <table id="mytable" class="table table-bordred table-striped">
+                    <table class="table table-bordred table-striped" id="mytable">
                       <thead>
                       <th>Ingredient Name</th>
                       <th>Edit</th>
@@ -38,8 +38,11 @@
                       <tbody>
                       <tr *ngFor="let ingredient of ingredientsList">
                         <td>{{ingredient.name}}</td>
-                        <td><p class="icon" data-placement="top" data-toggle="tooltip" title="Edit" (click)="edit(this.ingredient)"><span class="material-icons">edit</span></p></td>
-                        <td><p class="icon" data-placement="top" data-toggle="tooltip" title="Delete" (click)="delete(this.ingredient.id)"><span class="material-icons">delete_outline</span></p></td>
+                        <td><p (click)="edit(this.ingredient)" class="icon" data-placement="top" data-toggle="tooltip"
+                               title="Edit"><span class="material-icons">edit</span></p></td>
+                        <td><p (click)="delete(this.ingredient.id)" class="icon" data-placement="top" data-toggle="tooltip"
+                               title="Delete"><span class="material-icons">delete_outline</span>
+                        </p></td>
                       </tr>
                       </tbody>
                     </table>
@@ -61,18 +64,21 @@
               </div>
             </div>
           </div>
-          <form class="form-validate" novalidate="novalidate" [formGroup]="ingredientsForm" (ngSubmit)="onSubmit()" *ngIf="isCreateActive">
+          <form (ngSubmit)="onSubmit()" *ngIf="isCreateActive" [formGroup]="ingredientsForm" class="form-validate"
+                novalidate="novalidate">
             <div class="form-group">
-                <input class="form-control" formControlName="id" name="id" placeholder="Please specify Item name" required="" type="hidden" [(ngModel)]="ingredient.id">
+              <input [(ngModel)]="ingredient.id" class="form-control" formControlName="id" name="id"
+                     placeholder="Please specify Item name" required="" type="hidden">
             </div>
             <div class="form-group">
               <label>Ingredient Name</label>
               <label>
-                <input class="form-control" formControlName="name" name="name" placeholder="Please specify Item name" required="" type="text" [(ngModel)]="ingredient.name">
+                <input [(ngModel)]="ingredient.name" class="form-control" formControlName="name" name="name"
+                       placeholder="Please specify Item name" required="" type="text">
               </label>
             </div>
             <div class="button-group-area">
-              <button type="submit" class="genric-btn primary radius">Submit</button>
+              <button class="genric-btn primary radius" type="submit">Submit</button>
             </div>
           </form>
         </div>

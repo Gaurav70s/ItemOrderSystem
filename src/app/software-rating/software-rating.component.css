@@ -3,7 +3,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(ellipse at center, lightblue 0%,#18cefb 100%);
+  background: radial-gradient(ellipse at center, lightblue 0%, #18cefb 100%);
 }
 
 .rating {
@@ -20,6 +20,7 @@ body {
   -webkit-transform: scale(1.2);
   -webkit-transform: rotate(30deg);
 }
+
 .rating2:hover:before {
   content: "😦";
   position: absolute;
@@ -27,12 +28,14 @@ body {
   margin-left: -15px;
   -webkit-transform: rotate(15deg);
 }
+
 .rating3:hover:before {
   content: "😐";
   position: absolute;
   font-size: 140px;
   margin-left: -10px;
 }
+
 .rating4:hover:before {
   content: "😀";
   position: absolute;
@@ -40,6 +43,7 @@ body {
   margin-left: -15px;
   -webkit-transform: rotate(-15deg);
 }
+
 .rating5:hover:before {
   content: "😍";
   position: absolute;

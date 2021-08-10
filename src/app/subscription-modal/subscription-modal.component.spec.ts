@@ -8,9 +8,9 @@ describe('SunscriptionModalComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ SubscriptionModalComponent ]
+      declarations: [SubscriptionModalComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

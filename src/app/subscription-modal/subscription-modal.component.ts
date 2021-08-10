@@ -30,7 +30,8 @@ export class SubscriptionModalComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<SubscriptionModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+  }
 
   onNoClick(): void {
     this.dialogRef.close();

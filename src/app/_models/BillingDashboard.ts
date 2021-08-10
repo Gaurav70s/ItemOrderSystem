@@ -3,8 +3,8 @@ class BillingData {
   date: string;
 }
 
-export class BillingDashboard{
+export class BillingDashboard {
   billingType: string;
-   totalBill: number;
-   data: BillingData[];
- }
+  totalBill: number;
+  data: BillingData[];
+}

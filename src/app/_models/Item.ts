@@ -11,6 +11,6 @@ export class Item {
   description: string;
   ingredients: Ingredient[];
   itemImageUri: string[];
-  addonsPrice : number;
+  addonsPrice: number;
   addons: ItemAddOn[];
 }

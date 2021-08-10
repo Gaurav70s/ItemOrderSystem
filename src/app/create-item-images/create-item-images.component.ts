@@ -21,17 +21,18 @@ export class CreateItemImagesComponent implements OnInit {
   fileToUpload: File = null;
   isSearchActive: boolean = false;
   isCreateActive: boolean = false;
-  selectedItem: Item[]=[];
+  selectedItem: Item[] = [];
 
-  constructor( private formBuilder: FormBuilder,
-               private route: ActivatedRoute,
-               private itemService: ItemService,
-               private router: Router) { }
+  constructor(private formBuilder: FormBuilder,
+              private route: ActivatedRoute,
+              private itemService: ItemService,
+              private router: Router) {
+  }
 
 
   ngOnInit() {
     this.itemImageForm = this.formBuilder.group({
-      item : ['', Validators.required],
+      item: ['', Validators.required],
       itemImage: ['', Validators.required]
     });
 
@@ -51,11 +52,11 @@ export class CreateItemImagesComponent implements OnInit {
 
   onSubmit() {
     console.log(this.itemImageForm.value);
-    this.uploadFileToActivity()
+    this.uploadFileToActivity();
   }
 
-  getItems(){
-    this.itemService.getAllItems().subscribe(data => this.items=data)
+  getItems() {
+    this.itemService.getAllItems().subscribe(data => this.items = data);
   }
 
   handleFileInput(event) {
@@ -66,30 +67,32 @@ export class CreateItemImagesComponent implements OnInit {
 
   uploadFileToActivity() {
     this.itemService.uploadItemImage(this.selectedItem[0].id, this.fileToUpload).subscribe(data => {
-      this.isSearchActive= false;
-      this.isCreateActive=false;
+      this.isSearchActive = false;
+      this.isCreateActive = false;
       this.selectedItem = [];
     }, error => {
       console.log(error);
     });
   }
 
-  delete(){}
-  search(){
-    this.isSearchActive= true;
-    this.isCreateActive=false;
+  delete() {
+  }
+
+  search() {
+    this.isSearchActive = true;
+    this.isCreateActive = false;
   }
 
   prepareForCreate() {
     this.selectedItem = [];
-    this.isSearchActive= false;
-    this.isCreateActive= true;
+    this.isSearchActive = false;
+    this.isCreateActive = true;
   }
 
-  edit(item: Item){
-    this.selectedItem.push(item)
-    this.isSearchActive= false;
-    this.isCreateActive= true;
+  edit(item: Item) {
+    this.selectedItem.push(item);
+    this.isSearchActive = false;
+    this.isCreateActive = true;
   }
 
 }

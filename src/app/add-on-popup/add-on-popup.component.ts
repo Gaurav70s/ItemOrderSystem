@@ -14,7 +14,8 @@ export class AddOnPopupComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<AddOnPopupComponent>,
-    @Inject(MAT_DIALOG_DATA) public itemOnCart: ItemsOnCart) {}
+    @Inject(MAT_DIALOG_DATA) public itemOnCart: ItemsOnCart) {
+  }
 
   onNoClick(): void {
     this.dialogRef.close();

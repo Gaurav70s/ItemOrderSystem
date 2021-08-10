@@ -8,9 +8,9 @@ describe('BillingDashboardComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ BillingDashboardComponent ]
+      declarations: [BillingDashboardComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

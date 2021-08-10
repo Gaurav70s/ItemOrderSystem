@@ -15,7 +15,7 @@ import {ItemsOnCart} from '../_models/ItemsOnCart';
 import {AddOnOptions} from '../_models/AddOnOptions';
 
 interface RejectData {
-  rejectMessage:string
+  rejectMessage: string;
 }
 
 @Component({
@@ -32,8 +32,10 @@ export class KotDisplayComponent implements OnInit {
   orders: OrderDetail[];
   //addons: ItemAddOn[] = [new ItemAddOn("Extra Cheese"), new ItemAddOn("Extra Hot")]
   status: boolean = false;
+
   constructor(private orderService: OrderService,
-              private dialog: MatDialog) { }
+              private dialog: MatDialog) {
+  }
 
 
   ngOnDestroy() {
@@ -42,7 +44,7 @@ export class KotDisplayComponent implements OnInit {
 
   ngOnInit() {
     this.subscription = timer(0, 1000000).pipe(
-      switchMap(() => this.orderService.getKOTOrderData())).subscribe(data=> this.orders= data)
+      switchMap(() => this.orderService.getKOTOrderData())).subscribe(data => this.orders = data);
   }
 
   openDialog(order: Order): void {
@@ -54,20 +56,20 @@ export class KotDisplayComponent implements OnInit {
       email: '',
       phNumner: ''
     };
-    dialogConfig.width ='300px';
+    dialogConfig.width = '300px';
     const dialogRef = this.dialog.open(RejectPopupComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(result => {
-      const data = (<RejectData>result);
-      console.log(data.rejectMessage)
-      const updatedOrder = new Order(order.orderNo,OrderStatus.REJECTED, order.orderId, data.rejectMessage );
-      this.rejectOrder(updatedOrder)
+      const data = (<RejectData> result);
+      console.log(data.rejectMessage);
+      const updatedOrder = new Order(order.orderNo, OrderStatus.REJECTED, order.orderId, data.rejectMessage);
+      this.rejectOrder(updatedOrder);
     });
   }
 
   getKotDashboardData() {
     this.orderService.getKOTOrderData().subscribe(data => {
-      this.orders= data;
+      this.orders = data;
     });
   }
 
@@ -77,36 +79,36 @@ export class KotDisplayComponent implements OnInit {
     return this.totalQuantity;
   }
 
-  approveOrder(order:Order){
-    const updatedOrder = new Order(order.orderNo,OrderStatus.ACCEPTED, order.orderId, null );
-    this.orderService.updateOrderStatus(updatedOrder).subscribe(data=>this.getKotDashboardData());
+  approveOrder(order: Order) {
+    const updatedOrder = new Order(order.orderNo, OrderStatus.ACCEPTED, order.orderId, null);
+    this.orderService.updateOrderStatus(updatedOrder).subscribe(data => this.getKotDashboardData());
   }
 
-  rejectOrder(order:Order){
-    this.orderService.updateOrderStatus(order).subscribe(data=> this.getKotDashboardData());
+  rejectOrder(order: Order) {
+    this.orderService.updateOrderStatus(order).subscribe(data => this.getKotDashboardData());
 
   }
 
-  updateOrderStatus(order: Order){
-    this.orderService.completeOrder(order).subscribe(data=> this.orders = this.orders.filter(orderBase => {
-      orderBase.order.orderId == order.orderId
-    }))
+  updateOrderStatus(order: Order) {
+    this.orderService.completeOrder(order).subscribe(data => this.orders = this.orders.filter(orderBase => {
+      orderBase.order.orderId == order.orderId;
+    }));
   }
 
-  clickEvent(){
+  clickEvent() {
 
   }
 
   updateOrderItemStatus(order: Order, itemsOnCart: ItemsOnCart) {
-    itemsOnCart.delivered = !itemsOnCart.delivered
-    this.orderService.updateOrderItemStatus(new OrderItem(order,itemsOnCart.item), itemsOnCart.delivered).subscribe(data => this.getKotDashboardData());
+    itemsOnCart.delivered = !itemsOnCart.delivered;
+    this.orderService.updateOrderItemStatus(new OrderItem(order, itemsOnCart.item), itemsOnCart.delivered).subscribe(data => this.getKotDashboardData());
   }
 
   getOptions(selected: AddOnOptions[]): string {
     const options = [];
     selected.forEach(data => {
-      options.push(data.label)
-    })
+      options.push(data.label);
+    });
     return options.toString();
   }
 

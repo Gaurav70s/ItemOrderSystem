@@ -1,14 +1,13 @@
-
 <app-header></app-header>
 <div class="content">
   <div class="row">
-    <div class="col-md-8 shadow" >
+    <div class="col-md-8 shadow">
       <div class="mb-3">
         <ul class="list-group list-group-flush">
           <li class="list-group-item">Active Orders</li>
         </ul>
         <div class="row">
-          <div class="col-md-4 pt-3" *ngFor="let activeOrder of activeOrders">
+          <div *ngFor="let activeOrder of activeOrders" class="col-md-4 pt-3">
 
             <!-- Marketing campaigns -->
             <div class="card">
@@ -22,8 +21,10 @@
               <ul class="list-group list-group-flush">
                 <li class="list-group-item">
                   <div class="scroll-container hide-scrollbar">
-                    <div class="title text-md-center" (click)="updateOrderItemStatus(odr.order, activeOrder.item)" *ngFor="let odr of activeOrder.kotOrder">
-                      {{ odr.table.tableNo }}<div class="subtitle text-md-center">{{ odr.quantity}}</div>
+                    <div (click)="updateOrderItemStatus(odr.order, activeOrder.item)" *ngFor="let odr of activeOrder.kotOrder"
+                         class="title text-md-center">
+                      {{ odr.table.tableNo }}
+                      <div class="subtitle text-md-center">{{ odr.quantity}}</div>
                     </div>
                   </div>
                 </li>
@@ -40,7 +41,7 @@
           <li class="list-group-item">New Orders</li>
         </ul>
 
-        <ngb-accordion [closeOthers]="true" #acc="ngbAccordion" activeIds="ngb-panel-0">
+        <ngb-accordion #acc="ngbAccordion" [closeOthers]="true" activeIds="ngb-panel-0">
           <ngb-panel *ngFor="let order of orders">
             <ng-template ngbPanelTitle>
               <span>New Orders : {{order.order.orderNo}} on table no : {{order.table.tableNo}}</span>
@@ -57,7 +58,7 @@
                 </thead>
                 <tbody>
                 <tr *ngFor="let itemsOnCart of order.itemsOnCart; let i=index">
-                  <th scope="row">{{i +1}}</th>
+                  <th scope="row">{{i + 1}}</th>
                   <td>{{itemsOnCart.item.name}}</td>
                   <td>{{itemsOnCart.quantity}}</td>
                   <!--<td>@mdo</td>-->
@@ -65,8 +66,8 @@
                 </tbody>
               </table>
               <div class="text-md-center">
-              <button type="button" class="btn btn-success" (click)="approveOrder(order.order)">Approve</button>
-              <button type="button" class="btn btn-danger ml-3" (click)="openDialog(order.order)">Reject</button>
+                <button (click)="approveOrder(order.order)" class="btn btn-success" type="button">Approve</button>
+                <button (click)="openDialog(order.order)" class="btn btn-danger ml-3" type="button">Reject</button>
               </div>
             </ng-template>
           </ngb-panel>

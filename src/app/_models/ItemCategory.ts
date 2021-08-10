@@ -1,4 +1,4 @@
-export class ItemCategory{
-  categoryId:number;
+export class ItemCategory {
+  categoryId: number;
   categoryName: string;
 }

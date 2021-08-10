@@ -18,6 +18,7 @@ h1 {
   align-items: center;
   margin: 0px;
 }
+
 .dbHZcD {
   font-size: 1.5rem !important;
   line-height: 3rem;
@@ -25,6 +26,7 @@ h1 {
   font-weight: 400;
   margin: 0px;
 }
+
 .jwGlki {
   max-height: 3rem;
   height: 3rem;
@@ -36,6 +38,7 @@ h1 {
   justify-content: center;
   border-radius: 50%;
 }
+
 .fRCvfo {
   display: flex;
   -webkit-box-align: center;
@@ -50,11 +53,13 @@ h1 {
   width: 24px;
   height: 24px;
 }
+
 .fUbHSE {
   color: rgb(105, 105, 105);
   font-size: 16px;
   padding-top: 0.2rem;
 }
+
 .bpZzxC {
   border-width: 1px;
   border-style: solid;
@@ -62,13 +67,16 @@ h1 {
   border-image: initial;
   margin: 1rem 0px;
 }
+
 .lgSpWD {
   overflow: hidden;
 }
+
 .llODjY {
   color: rgb(28, 28, 28);
   font-size: 1.5rem;
 }
+
 .jsBNCl {
   width: 200%;
   display: flex;
@@ -78,12 +86,14 @@ h1 {
   transform: translateX(0px);
   transition: all 0.2s ease 0s;
 }
+
 .hrZMQg {
   font-size: 14px;
   color: rgb(207, 207, 207);
   margin-top: 0.4rem;
   width: 50%;
 }
+
 .lcIeKj {
   font-size: 14px;
   color: rgb(237, 90, 107);
@@ -145,6 +155,7 @@ ul {
   color: hsl(0, 0%, 60%);
   font-size: 1rem;
 }
+
 ._1HhXF {
   margin-top: 4px;
   display: -ms-flexbox;

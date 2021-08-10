@@ -5,10 +5,10 @@ import {BehaviorSubject, Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {LoginUser} from '../_models/LoginUser';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({providedIn: 'root'})
 export class AuthenticationService {
-  private currentUserSubject: BehaviorSubject<LoginUser>;
   public currentUser: Observable<LoginUser>;
+  private currentUserSubject: BehaviorSubject<LoginUser>;
 
   constructor(private http: HttpClient,
               private cookieService: CookieService) {
@@ -21,12 +21,12 @@ export class AuthenticationService {
   }
 
   login(username: string, password: string) {
-    return this.http.post<any>('/rest/item_order_service/v1/users/authenticate', { username, password })
+    return this.http.post<any>('/rest/item_order_service/v1/users/authenticate', {username, password})
       .pipe(map(data => {
         // login successful if there's a jwt token in the response
         if (data && data.token) {
           // store data details and jwt token in local storage to keep data logged in between page refreshes
-          this.saveToken(data.token)
+          this.saveToken(data.token);
           localStorage.setItem('currentUser', JSON.stringify(data));
           localStorage.setItem('menus', JSON.stringify(data.menus));
           this.currentUserSubject.next(data);
@@ -36,9 +36,9 @@ export class AuthenticationService {
       }));
   }
 
-  saveToken(token){
+  saveToken(token) {
     const expireDate = new Date().getTime() + (1000 * 5 * 60 * 60);
-    this.cookieService.set("access_token", token, expireDate);
+    this.cookieService.set('access_token', token, expireDate);
   }
 
   logout() {

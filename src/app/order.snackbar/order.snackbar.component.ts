@@ -10,10 +10,12 @@ import {OrderDetail} from '../_models/OrderDetails';
 })
 export class OrderSnackbarComponent implements OnInit {
 
-  constructor(private bottomSheetRef: MatBottomSheetRef<KitchenOrderDisplayComponent>,
-              @Inject(MAT_BOTTOM_SHEET_DATA) public data: OrderDetail[]) {}
-
   title: string;
+
+  constructor(private bottomSheetRef: MatBottomSheetRef<KitchenOrderDisplayComponent>,
+              @Inject(MAT_BOTTOM_SHEET_DATA) public data: OrderDetail[]) {
+  }
+
   clearBar(): void {
     this.bottomSheetRef.dismiss();
     event.preventDefault();
@@ -25,8 +27,6 @@ export class OrderSnackbarComponent implements OnInit {
       data: this.data
     });
   }
-
-
 
 
   ngOnInit(): void {

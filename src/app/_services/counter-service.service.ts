@@ -9,22 +9,25 @@ import {Table} from '../_models/Table';
 })
 export class CounterServiceService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   public getCounterDashboard(): Observable<Table[]> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
-    const options = { headers, crossDomain: true, withCredentials: true };
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'});
+    const options = {headers, crossDomain: true, withCredentials: true};
     return this.http.get<Table[]>('/rest/item_order_service/v1/table/all', options)
       .pipe(catchError(this.handleError<Table[]>('getCounterDashboard', null)));
 
   }
+
   public getAvailableTables() {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
-    const options = { headers, crossDomain: true, withCredentials: true };
+    const headers = new HttpHeaders({'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'});
+    const options = {headers, crossDomain: true, withCredentials: true};
     return this.http.get<Table[]>('/rest/item_order_service/v1/table/all', options)
       .pipe(catchError(this.handleError<Table[]>('getCounterDashboard', null)));
 
   }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error); // log to console instead

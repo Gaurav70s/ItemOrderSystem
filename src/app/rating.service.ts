@@ -7,11 +7,12 @@ import {Observable} from 'rxjs';
 })
 export class RatingService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
 
-  public submitRating(rating :number, invoiceid: string): Observable<boolean> {
+  public submitRating(rating: number, invoiceid: string): Observable<boolean> {
     const headers = new HttpHeaders({'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'});
     const options = {headers, crossDomain: true, withCredentials: true};
-    return this.http.post<boolean>('/rest/item_order_service/v1/rating/'+ invoiceid+"/"+rating , options)
+    return this.http.post<boolean>('/rest/item_order_service/v1/rating/' + invoiceid + '/' + rating, options);
   }
 }

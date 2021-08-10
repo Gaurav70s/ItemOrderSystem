@@ -1,4 +1,4 @@
-export class DiscountDetails{
+export class DiscountDetails {
   discount: number;
   calculatedValue: number;
 }

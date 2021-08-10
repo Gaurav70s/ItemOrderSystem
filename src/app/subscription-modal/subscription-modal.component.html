@@ -5,7 +5,7 @@
 
   <mat-form-field>
     <label>Email :</label>
-    <input matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher" [(ngModel)]="data.email">
+    <input [(ngModel)]="data.email" [errorStateMatcher]="matcher" [formControl]="emailFormControl" matInput>
     <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
       Please enter a valid email address
     </mat-error>
@@ -16,11 +16,11 @@
 
   <mat-form-field>
     <label>Ph. Number</label>
-    <input matInput [(ngModel)]="data.phNumber">
+    <input [(ngModel)]="data.phNumber" matInput>
   </mat-form-field>
 
 </div>
 <div mat-dialog-actions>
-  <button mat-button [mat-dialog-close]="data" cdkFocusInitial class="genric-btn primary radius">Check</button>
-  <button mat-button (click)="onNoClick()" class="genric-btn primary radius">Close</button>
+  <button [mat-dialog-close]="data" cdkFocusInitial class="genric-btn primary radius" mat-button>Check</button>
+  <button (click)="onNoClick()" class="genric-btn primary radius" mat-button>Close</button>
 </div>

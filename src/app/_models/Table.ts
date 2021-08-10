@@ -4,6 +4,6 @@ export class Table {
   status: string;
 
   constructor(tableNo: string) {
-    this.tableNo= tableNo;
+    this.tableNo = tableNo;
   }
 }

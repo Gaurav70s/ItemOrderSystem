@@ -9,12 +9,13 @@ import {ItemsOnCart} from '../_models/ItemsOnCart';
   styleUrls: ['./invoice.component.css']
 })
 export class InvoiceComponent implements OnInit {
- items: ItemsOnCart[];
+  items: ItemsOnCart[];
   subtotal = 0;
   totalQue = 0;
   todayDate: Date = new Date();
 
-  constructor(private cartService: OrderService) { }
+  constructor(private cartService: OrderService) {
+  }
 
   ngOnInit() {
     this.items = JSON.parse(localStorage.getItem('cartItem'));
@@ -31,15 +32,19 @@ export class InvoiceComponent implements OnInit {
   getTotalAmount(subTotal: number) {
     return subTotal + this.getCGST(subTotal) + this.getSGST(subTotal) + this.getServiceCharge(subTotal);
   }
+
   getCGST(subTotal: number) {
     return 0.025 * subTotal;
   }
+
   getSGST(subTotal: number) {
     return 0.025 * subTotal;
   }
+
   getServiceCharge(subTotal: number) {
     return 0.05 * subTotal;
   }
+
   getTotalPrice(item: ItemsOnCart): number {
     this.subtotal = 0;
     this.totalQue = 0;

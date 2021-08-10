@@ -8,9 +8,9 @@ describe('CreateItemImagesComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ CreateItemImagesComponent ]
+      declarations: [CreateItemImagesComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

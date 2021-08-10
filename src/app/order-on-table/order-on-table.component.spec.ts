@@ -8,9 +8,9 @@ describe('OrderOnTableComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ OrderOnTableComponent ]
+      declarations: [OrderOnTableComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

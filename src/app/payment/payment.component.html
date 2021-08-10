@@ -7,37 +7,45 @@
         <mat-action-list>
           <ul class="list-group list-group-flush">
             <li class="list-group-item">
-              <input class="form-check-input" type="radio" name="exampleRadios" value="card" (change)="selected('card')">
+              <input (change)="selected('card')" class="form-check-input" name="exampleRadios" type="radio"
+                     value="card">
               <div class="pl-2">Pay by Debit / Credit / ATM Card</div>
               <div class="col-6">
-                <img src="assets/images/cards.jpeg" class="rounded img-thumbnail" alt="">
+                <img alt="" class="rounded img-thumbnail" src="assets/images/cards.jpeg">
               </div>
               <div *ngIf="paymentMethod=='CARD'"><label>Please Provide last four digit of Card number</label>
                 <br/><small>XXXX-XXXX-XXXX-<input [(ngModel)]="value" class="border" type="number"></small></div>
             </li>
             <li class="list-group-item">
-              <input class="form-check-input" name="exampleRadios" type="radio" value="upi" (change)="selected('upi')">
+              <input (change)="selected('upi')" class="form-check-input" name="exampleRadios" type="radio" value="upi">
               <div class="pl-2">Pay by UPI</div>
               <div class="col-3">
-                <img src="assets/images/UPI.png" class="rounded img-thumbnail" alt="">
+                <img alt="" class="rounded img-thumbnail" src="assets/images/UPI.png">
               </div>
               <div *ngIf="paymentMethod=='UPI'"><label>Please Provide your UPI id</label>
-                <br/><small><input [(ngModel)]="value" type="text" class="border"></small></div>
+                <br/><small><input [(ngModel)]="value" class="border" type="text"></small></div>
             </li>
             <li class="list-group-item">
-              <input class="form-check-input" name="exampleRadios" type="radio" value="cash" (change)="selected('cash')">
+              <input (change)="selected('cash')" class="form-check-input" name="exampleRadios" type="radio"
+                     value="cash">
               <div class="pl-2">Pay by Cash</div>
               <div class="col-9">
-                <img src="assets/images/cash_payment.png" class="rounded img-thumbnail" style="width: 15%" alt="">
+                <img alt="" class="rounded img-thumbnail" src="assets/images/cash_payment.png" style="width: 15%">
               </div>
               <div *ngIf="paymentMethod=='CASH'"><label>Please enter payed amount</label>
-                <br/><small><input class="border" type="number" [(ngModel)]="value"> Balance : {{value ? payment.invoiceDetails.totalAmount - value : payment.invoiceDetails.totalAmount}}</small></div>
+                <br/><small><input [(ngModel)]="value" class="border" type="number"> Balance
+                  : {{value ? payment.invoiceDetails.totalAmount - value : payment.invoiceDetails.totalAmount}}</small>
+              </div>
             </li>
             <li class="list-group-item">
-              <input class="form-check-input" name="exampleRadios" type="checkbox" value="points" [(ngModel)]="isPointUsed" (change)="getOtp()" [disabled]="subscription==undefined || ( subscription!=undefined && subscription.points < 10)" disabled>
+              <input (change)="getOtp()" [(ngModel)]="isPointUsed" [disabled]="subscription==undefined || ( subscription!=undefined && subscription.points < 10)" class="form-check-input"
+                     disabled name="exampleRadios"
+                     type="checkbox"
+                     value="points">
               <div class="pl-2">Pay by Subscription Points</div>
               <div *ngIf="isPointUsed"><small>Enter OTP : </small><input [(ngModel)]="otp" class="border" type="number">
-                <img src="assets/images/icons8-forward-button-24.png" class="img-category pl-1" alt=""(click)="verifyOtp()">
+                <img (click)="verifyOtp()" alt="" class="img-category pl-1"
+                     src="assets/images/icons8-forward-button-24.png">
               </div>
               <div *ngIf="subscription">
                 <small class="text-muted">Available Points : {{subscription.points}}</small>
@@ -46,7 +54,7 @@
                 <small class="text-muted">*Points can be used once membership has more than 100 points</small>
               </div>
               <div class="button-group-area">
-                <a class="genric-btn primary radius" (click)="openDialog()">Check Membership</a>
+                <a (click)="openDialog()" class="genric-btn primary radius">Check Membership</a>
               </div>
             </li>
           </ul>
@@ -57,10 +65,10 @@
       <div class="card">
         <div class="row">
           <div class="col text-center">
-            <!-- Logo--><img src="assets/images/logo/logo.png" alt="..." style="max-width: 6rem;" class="img-fluid">
+            <!-- Logo--><img alt="..." class="img-fluid" src="assets/images/logo/logo.png" style="max-width: 6rem;">
             <!-- Heading-->
             <p class="mb-0">(A Unit Of SAM Hospitality)</p>
-            <h6 class="text-uppercase text-muted"> </h6>
+            <h6 class="text-uppercase text-muted"></h6>
             <p class="text-muted mb-0">GSTIN: 08ADMFS1179B1ZO</p>
           </div>
         </div>
@@ -80,14 +88,14 @@
           </div>
         </div>
         <div class="row mr-2 ml-2">
-          <div class="col-md-12" *ngIf="items">
+          <div *ngIf="items" class="col-md-12">
             <div class="panel panel-default">
               <div class="panel-heading">
                 <strong>Order summary</strong>
               </div>
               <div class="panel-body">
                 <div class="table-responsive">
-                  <table class="table" >
+                  <table class="table">
                     <thead>
                     <tr>
                       <th class="px-0 bg-transparent" style="width: 50%"><span class="h6">Item</span></th>
@@ -98,28 +106,36 @@
                     </thead>
                     <tbody class="border-bottom">
                     <tr *ngFor="let item of items">
-                      <td class="px-0 border-0 small">{{item.item.name}} <div *ngIf="item.complimentaryQuantity > 0">(Complimentary {{item.complimentaryQuantity}} Qty)</div> </td>
+                      <td class="px-0 border-0 small">{{item.item.name}}
+                        <div *ngIf="item.complimentaryQuantity > 0">(Complimentary {{item.complimentaryQuantity}}Qty)
+                        </div>
+                      </td>
                       <td class="px-0 border-0 small text-right">{{item.quantity}}</td>
                       <td class="px-0 border-0 small text-right">{{item.item.price + item.item.addonsPrice}}</td>
-                      <td class="px-0 border-0 small text-right">{{(item.item.price + item.item.addonsPrice) * (item.quantity - item.complimentaryQuantity) | number : '1.2'}}</td>
+                      <td
+                        class="px-0 border-0 small text-right">{{(item.item.price + item.item.addonsPrice) * (item.quantity - item.complimentaryQuantity) | number : '1.2'}}</td>
                     </tr>
                     </tbody>
                     <tfoot class="border-bottom">
                     <tr>
-                      <td colspan="3" class="text-muted border-0 small text-right">Subtotal Amount</td>
-                      <td class="font-medium border-0 float-right small">{{payment.invoiceDetails.subTotal | number : '1.2' }}</td>
+                      <td class="text-muted border-0 small text-right" colspan="3">Subtotal Amount</td>
+                      <td
+                        class="font-medium border-0 float-right small">{{payment.invoiceDetails.subTotal | number : '1.2' }}</td>
                     </tr>
                     <tr *ngFor="let component of payment.billingComponents">
-                      <td colspan="3" class="border-0 small text-muted text-right">{{component.name}} @{{component.value}}</td>
-                      <td class="font-medium border-0 float-right small">{{component.calculatedValue | number : '1.2' }}</td>
+                      <td class="border-0 small text-muted text-right" colspan="3">{{component.name}}
+                        @{{component.value}}</td>
+                      <td
+                        class="font-medium border-0 float-right small">{{component.calculatedValue | number : '1.2' }}</td>
                     </tr>
                     <tr *ngIf="subscription!=undefined && isOtpVerified">
-                      <td colspan="3" class="text-muted border-0 small text-right">Points</td>
+                      <td class="text-muted border-0 small text-right" colspan="3">Points</td>
                       <td class="font-medium border-0 float-right small">{{getPoint() | number : '1.2' }}</td>
                     </tr>
                     <tr class="border-top">
-                      <td colspan="3" class="border-0 text-right">Amount Payable</td>
-                      <td class="font-medium border-0 float-right ">{{payment.invoiceDetails.totalAmount | number : '1.2' }}</td>
+                      <td class="border-0 text-right" colspan="3">Amount Payable</td>
+                      <td
+                        class="font-medium border-0 float-right ">{{payment.invoiceDetails.totalAmount | number : '1.2' }}</td>
                     </tr>
 
                     </tfoot>
@@ -140,7 +156,7 @@
   </div>
   <div class="row"></div>
   <div class="button-group-area text-center">
-    <a class="genric-btn primary radius" *ngIf="paymentMethod && value" (click)="completePayment()">Complete Payment</a>
+    <a (click)="completePayment()" *ngIf="paymentMethod && value" class="genric-btn primary radius">Complete Payment</a>
     <!--<a class="genric-btn primary radius" (click)="openDialog()">Split Bill</a>-->
   </div>
 </div>

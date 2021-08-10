@@ -18,26 +18,27 @@ export class CompletedOrderOnTableComponent implements OnInit {
   table: Table;
 
 
-  constructor(private orderService: OrderService) { }
+  constructor(private orderService: OrderService) {
+  }
 
   ngOnInit() {
     this.table = JSON.parse(localStorage.getItem('table'));
-    this.orderService.getOrdersByTable(this.table.tableNo).subscribe(data => this.orderDetails= data.orderDetails);
+    this.orderService.getOrdersByTable(this.table.tableNo).subscribe(data => this.orderDetails = data.orderDetails);
   }
 
   getTotalPrice(item: ItemsOnCart): number {
     return (item.item.price + item.item.addonsPrice) * item.quantity;
   }
 
-  getPercentageCompletion(orderDetail: OrderDetail): number{
-    const totalQue =  orderDetail.itemsOnCart.length;
-    var completedQue =0;
-    for( let itemOnCart of orderDetail.itemsOnCart){
-      if(itemOnCart.delivered){
+  getPercentageCompletion(orderDetail: OrderDetail): number {
+    const totalQue = orderDetail.itemsOnCart.length;
+    var completedQue = 0;
+    for (let itemOnCart of orderDetail.itemsOnCart) {
+      if (itemOnCart.delivered) {
         completedQue++;
       }
 
     }
-    return completedQue/totalQue*100;
+    return completedQue / totalQue * 100;
   }
 }

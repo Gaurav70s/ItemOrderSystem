@@ -8,9 +8,9 @@ describe('SoftwareRatingComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ SoftwareRatingComponent ]
+      declarations: [SoftwareRatingComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

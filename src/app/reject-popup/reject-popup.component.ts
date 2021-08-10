@@ -4,6 +4,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 interface RejectData {
   rejectMessage: string;
 }
+
 @Component({
   selector: 'app-reject-popup',
   templateUrl: './reject-popup.component.html',
@@ -14,7 +15,8 @@ export class RejectPopupComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<RejectPopupComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: RejectData) {}
+    @Inject(MAT_DIALOG_DATA) public data: RejectData) {
+  }
 
   onNoClick(): void {
     this.dialogRef.close();

@@ -12,30 +12,32 @@ import {LoginUser} from '../_models/LoginUser';
 })
 export class TableSelectComponent implements OnInit {
 
-  tables : Table[];
-  loginUser : LoginUser;
-  constructor(private counterService : CounterServiceService,
-              private router: Router) { }
+  tables: Table[];
+  loginUser: LoginUser;
+
+  constructor(private counterService: CounterServiceService,
+              private router: Router) {
+  }
 
   ngOnInit() {
 
-    this.getAvailableTables()
+    this.getAvailableTables();
   }
 
-  public getAvailableTables(){
-    this.counterService.getAvailableTables().subscribe(data=> this.tables = data)
+  public getAvailableTables() {
+    this.counterService.getAvailableTables().subscribe(data => this.tables = data);
   }
 
-  selectTable(table: Table){
-    this.loginUser= JSON.parse(localStorage.getItem('currentUser'));
-    console.log(this.loginUser)
-    localStorage.setItem('table',JSON.stringify(table));
-    if(this.loginUser.user.role == Role.Waiter){
-      this.router.navigate(['/item'])
-    } else if(this.loginUser.user.role == Role.Admin) {
-      this.router.navigate(['/table/order'])
-    } else{
-      this.router.navigate(['/'])
+  selectTable(table: Table) {
+    this.loginUser = JSON.parse(localStorage.getItem('currentUser'));
+    console.log(this.loginUser);
+    localStorage.setItem('table', JSON.stringify(table));
+    if (this.loginUser.user.role === Role.Waiter) {
+      this.router.navigate(['/item']);
+    } else if (this.loginUser.user.role === Role.Admin) {
+      this.router.navigate(['/table/order']);
+    } else {
+      this.router.navigate(['/']);
     }
 
 

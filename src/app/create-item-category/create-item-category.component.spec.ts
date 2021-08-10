@@ -8,9 +8,9 @@ describe('CreateItemCategoryComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ CreateItemCategoryComponent ]
+      declarations: [CreateItemCategoryComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,15 +1,7 @@
 import {PaymentMethod} from './PaymentMethod';
 
-export class BillingDetails{
+export class BillingDetails {
 
-
-  constructor(subTotal: number, stateGst: number, centerGst: number, serviceCharge: number, totalAmount: number) {
-    this.subTotal = subTotal;
-    this.stateGst = stateGst;
-    this.centerGst = centerGst;
-    this.serviceCharge = serviceCharge;
-    this.totalAmount = totalAmount;
-  }
 
   invoiceId: number;
   subTotal: number;
@@ -20,4 +12,12 @@ export class BillingDetails{
   subscriptionPoints: number;
   paymentMethod: PaymentMethod;
   discount: number;
+
+  constructor(subTotal: number, stateGst: number, centerGst: number, serviceCharge: number, totalAmount: number) {
+    this.subTotal = subTotal;
+    this.stateGst = stateGst;
+    this.centerGst = centerGst;
+    this.serviceCharge = serviceCharge;
+    this.totalAmount = totalAmount;
+  }
 }

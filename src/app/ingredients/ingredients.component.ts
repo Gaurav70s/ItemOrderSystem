@@ -21,16 +21,17 @@ export class IngredientsComponent implements OnInit {
   isCreateActive: boolean = false;
   ingredientsList: Ingredient[];
 
-  constructor( private formBuilder: FormBuilder,
-               private route: ActivatedRoute,
-               private router: Router,
-               private ingredientService: IngredientService) { }
+  constructor(private formBuilder: FormBuilder,
+              private route: ActivatedRoute,
+              private router: Router,
+              private ingredientService: IngredientService) {
+  }
 
 
   ngOnInit() {
     this.ingredientsForm = this.formBuilder.group({
-      name : ['', Validators.required],
-      id : ['', Validators.required]
+      name: ['', Validators.required],
+      id: ['', Validators.required]
     });
 
     // get return url from route parameters or default to '/'
@@ -44,36 +45,36 @@ export class IngredientsComponent implements OnInit {
   }
 
 
-  delete(id: number){
-    this.ingredientService.deleteIngredients(id).subscribe(data => this.ingredientsList = this.ingredientsList.filter(data => data.id!==id))
-    console.log('deleted id'+ id)
+  delete(id: number) {
+    this.ingredientService.deleteIngredients(id).subscribe(data => this.ingredientsList = this.ingredientsList.filter(data => data.id !== id));
+    console.log('deleted id' + id);
   }
 
   search() {
-    this.isSearchActive= true;
-    this.isCreateActive=false;
-    this.ingredientService.getAllIngredients().subscribe(data => this.ingredientsList=data)
+    this.isSearchActive = true;
+    this.isCreateActive = false;
+    this.ingredientService.getAllIngredients().subscribe(data => this.ingredientsList = data);
   }
 
-  edit(selectedIngredient: Ingredient){
+  edit(selectedIngredient: Ingredient) {
     this.ingredient = selectedIngredient;
-    this.isSearchActive= false;
-    this.isCreateActive= true;
+    this.isSearchActive = false;
+    this.isCreateActive = true;
   }
 
   createAndUpdate(ingredient: Ingredient) {
-    this.isSearchActive= false;
-    this.isCreateActive=false;
-    if(ingredient.id == undefined){
-      this.ingredientService.createIngredient(ingredient).subscribe()
+    this.isSearchActive = false;
+    this.isCreateActive = false;
+    if (ingredient.id == undefined) {
+      this.ingredientService.createIngredient(ingredient).subscribe();
     } else {
-     this.ingredientService.updateIngredient(ingredient).subscribe()
+      this.ingredientService.updateIngredient(ingredient).subscribe();
     }
   }
 
   prepareForCreate() {
-    this.ingredient= new Ingredient();
-    this.isSearchActive= false;
-    this.isCreateActive= true;
+    this.ingredient = new Ingredient();
+    this.isSearchActive = false;
+    this.isCreateActive = true;
   }
 }

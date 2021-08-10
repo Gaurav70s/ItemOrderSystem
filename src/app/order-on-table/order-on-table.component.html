@@ -1,7 +1,7 @@
 <app-header></app-header>
 <div class="row">
-  <div class="col-lg-6 col-md-12" *ngFor="let payment of paymentList">
-    <div class="card" >
+  <div *ngFor="let payment of paymentList" class="col-lg-6 col-md-12">
+    <div class="card">
       <div class="card-header card-header-warning">
         <h4 class="card-title">Invoice Number : <b>{{payment.invoiceDetails.invoiceId}}</b>
           <div class="float-right">{{table.tableNo}}</div>
@@ -30,7 +30,12 @@
                       <li><span class="material-icons float-left material-icons-heading">keyboard_arrow_right</span>
                         <span>{{item.item.name}}</span>
                         <ul>
-                          <li *ngFor="let addon of item.item.addons" class="pl-5"><div *ngIf="addon.selected.length > 0 "><span class="material-icons pr-2 material-icons-addon">brightness_1</span>{{addon.heading}} [{{getOptions(addon.selected)}}]</div></li>
+                          <li *ngFor="let addon of item.item.addons" class="pl-5">
+                            <div *ngIf="addon.selected.length > 0 "><span
+                              class="material-icons pr-2 material-icons-addon">brightness_1</span>{{addon.heading}}
+                              [{{getOptions(addon.selected)}}]
+                            </div>
+                          </li>
                         </ul>
                       </li>
                     </ul>
@@ -42,44 +47,62 @@
                 <td>
                   <table class="table-bordered text-dark">
                     <tr>
-                      <td class="up" (click)="addComplementaryItem(item)"><i class="material-icons">keyboard_arrow_up</i></td>
+                      <td (click)="addComplementaryItem(item)" class="up"><i
+                        class="material-icons">keyboard_arrow_up</i></td>
                       <td style="padding: 0 7px 0 7px">{{item.complimentaryQuantity}}</td>
-                      <td class="down" (click)="removeComplementaryItem(item)"><i class="material-icons">keyboard_arrow_down</i></td>
+                      <td (click)="removeComplementaryItem(item)" class="down"><i class="material-icons">keyboard_arrow_down</i>
+                      </td>
                     </tr>
                   </table>
                 </td>
                 <td>{{(item.quantity - item.complimentaryQuantity) * (item.item.price + item.item.addonsPrice)}}</td>
                 <td style="text-align: end">
-                  <div class ="text-right" [ngClass]="this.item.delivered ? 'circle-loader load-complete' : 'circle-loader'">
-                    <div [class.checkmark]="this.item.delivered"  class=" draw"></div>
+                  <div [ngClass]="this.item.delivered ? 'circle-loader load-complete' : 'circle-loader'"
+                       class="text-right">
+                    <div [class.checkmark]="this.item.delivered" class=" draw"></div>
                   </div>
                 </td>
               </tr>
               </tbody>
               <tfoot class="border-bottom">
               <tr>
-                <td colspan="3" class="text-muted border-0 small text-right">Subtotal Amount</td>
+                <td class="text-muted border-0 small text-right" colspan="3">Subtotal Amount</td>
                 <td></td>
-                <td class="font-medium border-0 float-right small" >{{payment.invoiceDetails.subTotal | number : '1.2' }}</td>
+                <td
+                  class="font-medium border-0 float-right small">{{payment.invoiceDetails.subTotal | number : '1.2' }}</td>
               </tr>
               <tr *ngFor="let billingComponent of payment.billingComponents">
-                <td *ngIf="edit && billingComponent.editable; else elseBlock" colspan="3" class="text-muted border-0 small text-right">{{billingComponent.name}} @<input [value]="billingComponent.value | number : '1.2'" [(ngModel)]="billingComponent.value" class="border" type="number">{{getSymbol(billingComponent.billingValueType)}}</td>
-                <ng-template #elseBlock><td colspan="3" class="text-muted border-0 small text-right">{{billingComponent.name}} @{{billingComponent.value}}{{getSymbol(billingComponent.billingValueType)}}</td></ng-template>
-                <td class="small border-0"><input class="float-right" name="exampleRadios" type="checkbox" [checked]="billingComponent.defaultApplicable" [disabled]="!billingComponent.optional" (change)="billingComponent.defaultApplicable = !billingComponent.defaultApplicable"></td>
-                <td class="font-medium border-0 float-right small" >{{billingComponent.calculatedValue | number : '1.2' }}</td>
+                <td *ngIf="edit && billingComponent.editable; else elseBlock" class="text-muted border-0 small text-right"
+                    colspan="3">{{billingComponent.name}} @<input
+                  [(ngModel)]="billingComponent.value" [value]="billingComponent.value | number : '1.2'" class="border"
+                  type="number">{{getSymbol(billingComponent.billingValueType)}}</td>
+                <ng-template #elseBlock>
+                  <td class="text-muted border-0 small text-right" colspan="3">{{billingComponent.name}}
+                    @{{billingComponent.value}}{{getSymbol(billingComponent.billingValueType)}}</td>
+                </ng-template>
+                <td class="small border-0"><input (change)="billingComponent.defaultApplicable = !billingComponent.defaultApplicable" [checked]="billingComponent.defaultApplicable" [disabled]="!billingComponent.optional"
+                                                  class="float-right"
+                                                  name="exampleRadios"
+                                                  type="checkbox">
+                </td>
+                <td
+                  class="font-medium border-0 float-right small">{{billingComponent.calculatedValue | number : '1.2' }}</td>
               </tr>
               <tr class="border-top">
-                <td colspan="3" class="border-0 text-right">Amount Payable</td>
+                <td class="border-0 text-right" colspan="3">Amount Payable</td>
                 <td></td>
-                <td class="font-medium border-0 float-right ">{{payment.invoiceDetails.totalAmount | number : '1.2' }}</td>
+                <td
+                  class="font-medium border-0 float-right ">{{payment.invoiceDetails.totalAmount | number : '1.2' }}</td>
               </tr>
               <tr class="border-top">
                 <td colspan="5">
                   <div class="button-group-area text-center">
-                    <a *ngIf="getOrderStatusForButton(payment) && !edit" class="genric-btn primary radius" (click)="editPayment()">Edit</a>
-                    <a *ngIf="getOrderStatusForButton(payment) && edit" class="genric-btn primary radius" (click)="editPayment()">save</a>
+                    <a (click)="editPayment()" *ngIf="getOrderStatusForButton(payment) && !edit"
+                       class="genric-btn primary radius">Edit</a>
+                    <a (click)="editPayment()" *ngIf="getOrderStatusForButton(payment) && edit"
+                       class="genric-btn primary radius">save</a>
 
-                    <a class="genric-btn primary radius" (click)="savePayment(this.payment)">Save Payment</a>
+                    <a (click)="savePayment(this.payment)" class="genric-btn primary radius">Save Payment</a>
                   </div>
                 </td>
               </tr>

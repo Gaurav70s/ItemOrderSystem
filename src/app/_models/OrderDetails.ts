@@ -10,11 +10,12 @@ export class OrderDetail {
   itemsOnCart: ItemsOnCart[];
   subscription: Subscriptions;
   table: Table;
+
   constructor(user: User[],
               itemsOnCart: ItemsOnCart[],
               subscription: Subscriptions,
               table: Table) {
-    this.users =user;
+    this.users = user;
     this.itemsOnCart = itemsOnCart;
     this.subscription = subscription;
     this.table = table;

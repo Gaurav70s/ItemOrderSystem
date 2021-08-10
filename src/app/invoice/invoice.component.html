@@ -1,97 +1,98 @@
-<div id="contentToConvert" class="container">
-    <div class="card card-body p-5 page">
-      <div class="row size-a4">
-        <div class="col text-right">
-          <!-- Badge-->
-          <div class="badge badge-success">Payed</div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col text-center">
-          <!-- Logo--><img src="assets/images/logo/logo.png" alt="..." style="max-width: 6rem;" class="img-fluid mb-4">
-          <!-- Heading-->
-          <p class="mb-6">(A Unit Of SAM Hospitality)</p>
-          <p class="text-muted mb-6">Invoice #{{20190204}}</p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-12 col-md-6">
-          <h6 class="text-uppercase text-muted">Invoiced from</h6>
-          <p class="text-muted mb-3"><strong class="text-body">Step Out Cafe</strong><br>                    P-14, Sahdev Marg<br>                    C-Scheme, Jaipur<br>                    Rajasthan, India</p>
-          <h6 class="text-uppercase text-muted">Invoiced ID</h6>
-          <p class="mb-3">#{{20190204}}</p>
-        </div>
-        <div class="col-12 col-md-6 text-md-right">
-          <!--<h6 class="text-uppercase text-muted">Invoiced to</h6>
-          <p class="text-muted mb-4"><strong class="text-body">Jack London</strong><br>                    Lonely Wolf<br>                    1150 Lost St.<br>                    Middle of Nowhere</p>
-          --><h6 class="text-uppercase text-muted">Invoiced date</h6>
-          <p class="mb-3">
-            <time datetime="2018-04-23">{{todayDate | date:'medium':'IST'}}</time>
-          </p>
-          <h6 class="text-uppercase text-muted">GSTIN </h6>
-          <p class="mb-3">08ADMFS1179B1ZO</p>
-          <h6 class="text-uppercase text-muted">Table No. </h6>
-          <p class="mb-3">TB01</p>
-
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-12">
-          <!-- Table-->
-          <div class="table-responsive">
-            <table class="table my-3">
-              <thead>
-              <tr>
-                <th class="px-0 bg-transparent" style="width: 50%"><span class="h6">Item Description</span></th>
-                <th class="px-0 bg-transparent text-right" style="width: 15%"><span class="h6">Quantity</span></th>
-                <th class="px-0 bg-transparent text-right" style="width: 20%"><span class="h6">Cost per Item</span></th>
-                <th class="px-0 bg-transparent text-right" style="width: 15%"><span class="h6">Total Cost</span></th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr *ngFor="let item of items">
-                <td class="px-0 border-0 small">{{item.item.name}}</td>
-                <td class="px-0 border-0 text-right">{{item.quantity}}</td>
-                <td class="px-0 border-0 text-right">{{item.item.price}}</td>
-                <td class="px-0 border-0 text-right">{{getTotalPrice(item) | number : '1.2'}}</td>
-              </tr>
-              <tr>
-                <td colspan="3" class="text-muted border-0 small text-right">Subtotal Amount</td>
-                <td class="font-medium border-0 float-right small">{{subtotal | number : '1.2' }}</td>
-              </tr>
-              <tr>
-
-                <td colspan="3" class="text-muted border-0 small text-right">Service Charge @5%</td>
-                <td class="font-medium border-0 float-right small">{{getServiceCharge(subtotal) | number : '1.2' }}</td>
-              </tr>
-              <tr>
-
-                <td colspan="3" class="text-muted border-0 small text-right">SGST@2.50%</td>
-                <td class="font-medium border-0 float-right small">{{getSGST(subtotal) | number : '1.2' }}</td>
-              </tr>
-              <tr>
-
-                <td colspan="3" class="text-muted border-0 small text-right">CGST@2.50%</td>
-                <td class="font-medium border-0 float-right small">{{getCGST(subtotal) | number : '1.2' }}</td>
-              </tr>
-              <tr>
-
-                <td colspan="3" class="border-0 text-right">Amount Payable</td>
-                <td class="font-medium border-0 float-right ">{{getTotalAmount(subtotal) | number : '1.2' }}</td>
-              </tr>
-              </tbody>
-            </table>
-          </div>
-          <!-- <hr class="my-5">
-           <h6 class="text-uppercase">Note</h6>-->
-        </div>
-      </div>
-      <div class="col text-center py-5">
-        <!-- Heading-->
-        <p class="mb-0 font-weight-bold text-md-center">www.stepoutcafe.in</p>
-        <p class="mb-0"><i class="fa fa-facebook"></i> : @stepoutjaipur</p>
-        <p class="mb-0"><i class="fa fa-instagram"></i> : @stepoutjaipur</p>
+<div class="container" id="contentToConvert">
+  <div class="card card-body p-5 page">
+    <div class="row size-a4">
+      <div class="col text-right">
+        <!-- Badge-->
+        <div class="badge badge-success">Payed</div>
       </div>
     </div>
+    <div class="row">
+      <div class="col text-center">
+        <!-- Logo--><img alt="..." class="img-fluid mb-4" src="assets/images/logo/logo.png" style="max-width: 6rem;">
+        <!-- Heading-->
+        <p class="mb-6">(A Unit Of SAM Hospitality)</p>
+        <p class="text-muted mb-6">Invoice #{{20190204}}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-md-6">
+        <h6 class="text-uppercase text-muted">Invoiced from</h6>
+        <p class="text-muted mb-3"><strong class="text-body">Step Out Cafe</strong><br> P-14, Sahdev Marg<br> C-Scheme,
+          Jaipur<br> Rajasthan, India</p>
+        <h6 class="text-uppercase text-muted">Invoiced ID</h6>
+        <p class="mb-3">#{{20190204}}</p>
+      </div>
+      <div class="col-12 col-md-6 text-md-right">
+        <!--<h6 class="text-uppercase text-muted">Invoiced to</h6>
+        <p class="text-muted mb-4"><strong class="text-body">Jack London</strong><br>                    Lonely Wolf<br>                    1150 Lost St.<br>                    Middle of Nowhere</p>
+        --><h6 class="text-uppercase text-muted">Invoiced date</h6>
+        <p class="mb-3">
+          <time datetime="2018-04-23">{{todayDate | date:'medium':'IST'}}</time>
+        </p>
+        <h6 class="text-uppercase text-muted">GSTIN </h6>
+        <p class="mb-3">08ADMFS1179B1ZO</p>
+        <h6 class="text-uppercase text-muted">Table No. </h6>
+        <p class="mb-3">TB01</p>
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <!-- Table-->
+        <div class="table-responsive">
+          <table class="table my-3">
+            <thead>
+            <tr>
+              <th class="px-0 bg-transparent" style="width: 50%"><span class="h6">Item Description</span></th>
+              <th class="px-0 bg-transparent text-right" style="width: 15%"><span class="h6">Quantity</span></th>
+              <th class="px-0 bg-transparent text-right" style="width: 20%"><span class="h6">Cost per Item</span></th>
+              <th class="px-0 bg-transparent text-right" style="width: 15%"><span class="h6">Total Cost</span></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let item of items">
+              <td class="px-0 border-0 small">{{item.item.name}}</td>
+              <td class="px-0 border-0 text-right">{{item.quantity}}</td>
+              <td class="px-0 border-0 text-right">{{item.item.price}}</td>
+              <td class="px-0 border-0 text-right">{{getTotalPrice(item) | number : '1.2'}}</td>
+            </tr>
+            <tr>
+              <td class="text-muted border-0 small text-right" colspan="3">Subtotal Amount</td>
+              <td class="font-medium border-0 float-right small">{{subtotal | number : '1.2' }}</td>
+            </tr>
+            <tr>
+
+              <td class="text-muted border-0 small text-right" colspan="3">Service Charge @5%</td>
+              <td class="font-medium border-0 float-right small">{{getServiceCharge(subtotal) | number : '1.2' }}</td>
+            </tr>
+            <tr>
+
+              <td class="text-muted border-0 small text-right" colspan="3">SGST@2.50%</td>
+              <td class="font-medium border-0 float-right small">{{getSGST(subtotal) | number : '1.2' }}</td>
+            </tr>
+            <tr>
+
+              <td class="text-muted border-0 small text-right" colspan="3">CGST@2.50%</td>
+              <td class="font-medium border-0 float-right small">{{getCGST(subtotal) | number : '1.2' }}</td>
+            </tr>
+            <tr>
+
+              <td class="border-0 text-right" colspan="3">Amount Payable</td>
+              <td class="font-medium border-0 float-right ">{{getTotalAmount(subtotal) | number : '1.2' }}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- <hr class="my-5">
+         <h6 class="text-uppercase">Note</h6>-->
+      </div>
+    </div>
+    <div class="col text-center py-5">
+      <!-- Heading-->
+      <p class="mb-0 font-weight-bold text-md-center">www.stepoutcafe.in</p>
+      <p class="mb-0"><i class="fa fa-facebook"></i> : @stepoutjaipur</p>
+      <p class="mb-0"><i class="fa fa-instagram"></i> : @stepoutjaipur</p>
+    </div>
   </div>
+</div>
 <ng-http-loader></ng-http-loader>

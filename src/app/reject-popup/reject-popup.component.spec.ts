@@ -8,9 +8,9 @@ describe('RejectPopupComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ RejectPopupComponent ]
+      declarations: [RejectPopupComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

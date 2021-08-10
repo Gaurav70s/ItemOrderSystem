@@ -19,7 +19,7 @@ export class CreateItemComponent implements OnInit {
   loading = false;
   returnUrl: string;
   error = '';
-  selectedCategory: ItemCategory[]=[];
+  selectedCategory: ItemCategory[] = [];
   items: Item[];
   ingredients: Ingredient[];
   itemCategories: ItemCategory[];
@@ -30,20 +30,21 @@ export class CreateItemComponent implements OnInit {
   isSearchActive: boolean = false;
   isCreateActive: boolean = false;
   category: ItemCategory;
-  item:Item= new Item();
+  item: Item = new Item();
 
-  constructor( private formBuilder: FormBuilder,
-               // private authService: AuthService,
-               private itemService: ItemService,
-               private ingredientService: IngredientService,
-               private route: ActivatedRoute,
-               private router: Router) { }
+  constructor(private formBuilder: FormBuilder,
+              // private authService: AuthService,
+              private itemService: ItemService,
+              private ingredientService: IngredientService,
+              private route: ActivatedRoute,
+              private router: Router) {
+  }
 
 
   ngOnInit() {
     this.itemForm = this.formBuilder.group({
-      name : ['', Validators.required],
-      price : ['', Validators.required],
+      name: ['', Validators.required],
+      price: ['', Validators.required],
       description: new FormControl(),
       category: new FormControl(),
       ingredients: new FormControl(),
@@ -79,19 +80,20 @@ export class CreateItemComponent implements OnInit {
   onSubmit() {
     /*var item: Item = this.itemForm.value
     item.category = item.category[0]*/
-    console.log("item" + this.item)
-    this.createAndUpdate(this.item)
+    console.log('item' + this.item);
+    this.createAndUpdate(this.item);
     //this.itemForm.patchValue({category: this.file})
     //this.itemService.createItem(item);
     //console.log(this.itemForm.value);
   }
+
   getIngredients() {
     this.ingredientService.getAllIngredients().subscribe(data => this.ingredients = data);
     return this.ingredients;
   }
 
-  getCategory(){
-    this.itemService.getAllItemCategory().subscribe(data => this.itemCategories= data)
+  getCategory() {
+    this.itemService.getAllItemCategory().subscribe(data => this.itemCategories = data);
   }
 
   onFileSelect(event) {
@@ -103,42 +105,44 @@ export class CreateItemComponent implements OnInit {
   onItemSelect(item: any) {
     console.log(item);
   }
+
   onSelectAll(items: any) {
     console.log(items);
   }
 
-  delete(id: number){
-    this.itemService.deleteItem(id).subscribe(data=> this.items = this.items.filter(data => data.id !==id))
-    console.log('deleted id'+ id)
+  delete(id: number) {
+    this.itemService.deleteItem(id).subscribe(data => this.items = this.items.filter(data => data.id !== id));
+    console.log('deleted id' + id);
   }
 
   search() {
-    this.isSearchActive= true;
-    this.isCreateActive=false;
+    this.isSearchActive = true;
+    this.isCreateActive = false;
     this.itemService.getAllItems().subscribe(data => {
-      console.log(JSON.stringify(data))
-      this.items=data;
-    })
+      console.log(JSON.stringify(data));
+      this.items = data;
+    });
   }
 
-  edit(selectedItem: Item){
+  edit(selectedItem: Item) {
     this.getIngredients();
     this.getCategory();
-    this.selectedCategory.push(selectedItem.category)
+    this.selectedCategory.push(selectedItem.category);
     this.item = selectedItem;
-    this.isSearchActive= false;
-    this.isCreateActive= true;
+    this.isSearchActive = false;
+    this.isCreateActive = true;
   }
 
   createAndUpdate(item: Item) {
-    if(this.selectedCategory!= undefined)
+    if (this.selectedCategory != undefined) {
       item.category = this.selectedCategory[0];
-    this.isSearchActive= false;
-    this.isCreateActive=false;
-    if(item.id == undefined){
-      this.itemService.createItem(item).subscribe(data => this.item= new Item())
+    }
+    this.isSearchActive = false;
+    this.isCreateActive = false;
+    if (item.id == undefined) {
+      this.itemService.createItem(item).subscribe(data => this.item = new Item());
     } else {
-      this.itemService.updateItem(item).subscribe(data => this.item= new Item())
+      this.itemService.updateItem(item).subscribe(data => this.item = new Item());
     }
     console.log('searched');
   }
@@ -146,8 +150,8 @@ export class CreateItemComponent implements OnInit {
   prepareForCreate() {
     this.getIngredients();
     this.getCategory();
-    this.isSearchActive= false;
-    this.isCreateActive= true;
+    this.isSearchActive = false;
+    this.isCreateActive = true;
   }
 
 }

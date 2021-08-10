@@ -21,7 +21,8 @@ export class OrderOnTableComponent implements OnInit {
 
   constructor(
     private orderService: OrderService
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.table = JSON.parse(localStorage.getItem('table'));
@@ -29,7 +30,7 @@ export class OrderOnTableComponent implements OnInit {
   }
 
   addComplementaryItem(item: ItemsOnCart) {
-    if (item.complimentaryQuantity < item.quantity){
+    if (item.complimentaryQuantity < item.quantity) {
       item.complimentaryQuantity = item.complimentaryQuantity + 1;
     }
   }
@@ -46,7 +47,7 @@ export class OrderOnTableComponent implements OnInit {
   }
 
   removeComplementaryItem(item: ItemsOnCart) {
-    if (item.complimentaryQuantity > 0 ){
+    if (item.complimentaryQuantity > 0) {
       item.complimentaryQuantity = item.complimentaryQuantity - 1;
     }
   }

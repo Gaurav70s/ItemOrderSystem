@@ -1,13 +1,15 @@
-h4{
+h4 {
   color: #0a0a0a;
 }
-.row{
+
+.row {
   padding-top: 10px;
 }
+
 table {
   width: 100%;
 }
 
-.icon{
+.icon {
   cursor: pointer;
 }

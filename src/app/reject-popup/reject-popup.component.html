@@ -5,13 +5,13 @@
 
   <mat-form-field>
     <!--<input matInput type="text" [(ngModel)]="data.rejectMessage">-->
-    <textarea matInput
-              [(ngModel)]="data.rejectMessage">
+    <textarea [(ngModel)]="data.rejectMessage"
+              matInput>
   </textarea>
   </mat-form-field>
 
 </div>
 <div mat-dialog-actions>
-  <button mat-button [mat-dialog-close]="data" cdkFocusInitial class="genric-btn primary radius">Check</button>
-  <button mat-button (click)="onNoClick()" class="genric-btn primary radius">Close</button>
+  <button [mat-dialog-close]="data" cdkFocusInitial class="genric-btn primary radius" mat-button>Check</button>
+  <button (click)="onNoClick()" class="genric-btn primary radius" mat-button>Close</button>
 </div>

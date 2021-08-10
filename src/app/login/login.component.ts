@@ -18,10 +18,11 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   // user: SocialUser;
   loading = false;
-  isSubmitted  =  false;
+  isSubmitted = false;
   // endTime = new Date();
   returnUrl: string;
   error = '';
+
   constructor(
     private formBuilder: FormBuilder,
     // private authService: AuthService,
@@ -91,7 +92,10 @@ export class LoginComponent implements OnInit {
     this.router.navigateByUrl('/item');
   }*/
 
-
+  // convenience getter for easy access to form fields
+  get f() {
+    return this.loginForm.controls;
+  }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -102,9 +106,6 @@ export class LoginComponent implements OnInit {
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
   }
-
-  // convenience getter for easy access to form fields
-  get f() { return this.loginForm.controls; }
 
   onSubmit() {
     this.isSubmitted = true;

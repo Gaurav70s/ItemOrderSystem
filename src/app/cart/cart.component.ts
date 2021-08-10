@@ -24,20 +24,20 @@ interface DialogData {
 })
 
 export class CartComponent implements OnInit {
-  email:string;
-  phNumber:string;
+  email: string;
+  phNumber: string;
   items: ItemsOnCart[];
   orderDetail: OrderDetail;
   subtotal = 0;
   totalQue = 0;
   orderStatus = false;
-  subscription : Subscriptions;
-  users: User[]= [];
+  subscription: Subscriptions;
+  users: User[] = [];
 
   constructor(private cartService: OrderService,
               private router: Router,
-              private dialog: MatDialog) { }
-
+              private dialog: MatDialog) {
+  }
 
 
   ngOnInit() {
@@ -53,17 +53,14 @@ export class CartComponent implements OnInit {
       email: '',
       phNumner: ''
     };
-    dialogConfig.width ='300px';
+    dialogConfig.width = '300px';
     const dialogRef = this.dialog.open(SubscriptionModalComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(result => {
-      const data = (<DialogData>result);
-      const user = new User( data.phNumber,data.email, Role.Customer);
+      const data = (<DialogData> result);
+      const user = new User(data.phNumber, data.email, Role.Customer);
       this.checkSubscription(user);
     });
-  }
-  private checkSubscription(user:User){
-    this.cartService.checkSubscription(user).subscribe(data=> this.subscription= data);
   }
 
   public getCartItems() {
@@ -73,9 +70,11 @@ export class CartComponent implements OnInit {
       this.totalQue = this.totalQue + item.quantity;
     }
   }
+
   getNext(item: ItemsOnCart): void {
     item.quantity = item.quantity + 1;
   }
+
   getPrevious(item: ItemsOnCart): void {
     if (item.quantity > 0) {
       item.quantity = item.quantity - 1;
@@ -92,13 +91,17 @@ export class CartComponent implements OnInit {
     }
     return item.item.price * item.quantity;
   }
-  deleteItem(item: Item ): void {
+
+  deleteItem(item: Item): void {
     this.items = this.items.filter(h => h.item !== item);
   }
+
   placeOrder() {
-    const table: Table  = JSON.parse(localStorage.getItem('table'));
+    const table: Table = JSON.parse(localStorage.getItem('table'));
     this.users.push(JSON.parse(localStorage.getItem('currentUser')).user);
-    if(this.subscription != undefined) this.users.push(this.subscription.user);
+    if (this.subscription != undefined) {
+      this.users.push(this.subscription.user);
+    }
     this.orderDetail = new OrderDetail(
       this.users,
       this.items,
@@ -108,21 +111,29 @@ export class CartComponent implements OnInit {
     this.cartService.placeOrder(this.orderDetail).subscribe(data => {
       this.orderDetail = data;
       this.orderStatus = true;
-      localStorage.setItem('cartItem','[]');
-      this.router.navigate(["/table_order"])
+      localStorage.setItem('cartItem', '[]');
+      this.router.navigate(['/table_order']);
     });
   }
+
   getTotalAmount(subTotal: number) {
- return subTotal + this.getCGST(subTotal) + this.getSGST(subTotal) + this.getServiceCharge(subTotal);
+    return subTotal + this.getCGST(subTotal) + this.getSGST(subTotal) + this.getServiceCharge(subTotal);
   }
+
   getCGST(subTotal: number) {
     return 0.025 * subTotal;
   }
+
   getSGST(subTotal: number) {
     return 0.025 * subTotal;
   }
+
   getServiceCharge(subTotal: number) {
     return 0.05 * subTotal;
+  }
+
+  private checkSubscription(user: User) {
+    this.cartService.checkSubscription(user).subscribe(data => this.subscription = data);
   }
 
 }
