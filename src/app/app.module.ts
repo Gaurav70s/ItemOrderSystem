@@ -30,34 +30,34 @@ import {InvoiceComponent} from './invoice/invoice.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SubscriptionModalComponent} from './subscription-modal/subscription-modal.component';
 import {OrderSnackbarComponent} from './order.snackbar/order.snackbar.component';
-import {NgbAccordionModule, NgbProgressbarModule} from "@ng-bootstrap/ng-bootstrap";
+import {NgbAccordionModule, NgbProgressbarModule} from '@ng-bootstrap/ng-bootstrap';
 import {NgHttpLoaderModule} from 'ng-http-loader';
-import {MatDialogModule} from "@angular/material/dialog";
-import {MatFormFieldModule} from "@angular/material/form-field";
-import {MatButtonModule} from "@angular/material/button";
-import {MatInputModule} from "@angular/material/input";
-import {MatCardModule} from "@angular/material/card";
-import {CookieService} from "ngx-cookie-service";
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatButtonModule} from '@angular/material/button';
+import {MatInputModule} from '@angular/material/input';
+import {MatCardModule} from '@angular/material/card';
+import {CookieService} from 'ngx-cookie-service';
 import {TableSelectComponent} from './table-select/table-select.component';
-import {MatMenuModule} from "@angular/material/menu";
+import {MatMenuModule} from '@angular/material/menu';
 import {PaymentComponent} from './payment/payment.component';
-import {MatListModule} from "@angular/material/list";
+import {MatListModule} from '@angular/material/list';
 import {CompletedOrderOnTableComponent} from './completed-order-on-table/completed-order-on-table.component';
-import { RejectPopupComponent } from './reject-popup/reject-popup.component';
-import { SoftwareRatingComponent } from './software-rating/software-rating.component';
-import {MatIconModule} from "@angular/material/icon";
-import {MatTableModule} from "@angular/material/table";
-import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
-import { BillingDashboardComponent } from './billing-dashboard/billing-dashboard.component';
-import {MatDatepickerModule} from "@angular/material/datepicker";
-import {MatNativeDateModule} from "@angular/material/core";
-import { KotDisplayComponent } from './kot-display/kot-display.component';
-import { AddonModalComponent } from './addon-modal/addon-modal.component';
-import { OrderOnTableComponent } from './order-on-table/order-on-table.component';
-import { AddOnPopupComponent } from './add-on-popup/add-on-popup.component';
-import {MAT_CHECKBOX_CLICK_ACTION, MatCheckboxModule} from "@angular/material/checkbox";
-import {MatRadioModule} from "@angular/material/radio";
-import { NgMaterialMultilevelMenuModule } from 'ng-material-multilevel-menu';
+import {RejectPopupComponent} from './reject-popup/reject-popup.component';
+import {SoftwareRatingComponent} from './software-rating/software-rating.component';
+import {MatIconModule} from '@angular/material/icon';
+import {MatTableModule} from '@angular/material/table';
+import {NgMultiSelectDropDownModule} from 'ng-multiselect-dropdown';
+import {BillingDashboardComponent} from './billing-dashboard/billing-dashboard.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+import {KotDisplayComponent} from './kot-display/kot-display.component';
+import {AddonModalComponent} from './addon-modal/addon-modal.component';
+import {OrderOnTableComponent} from './order-on-table/order-on-table.component';
+import {AddOnPopupComponent} from './add-on-popup/add-on-popup.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatRadioModule} from '@angular/material/radio';
+import {NgMaterialMultilevelMenuModule} from 'ng-material-multilevel-menu';
 
 
 /*const config = new AuthServiceConfig([
@@ -135,10 +135,10 @@ export function provideConfig() {
     NgMaterialMultilevelMenuModule
   ],
   providers: [
-    //{ provide: AuthServiceConfig, useFactory: provideConfig },
+    // { provide: AuthServiceConfig, useFactory: provideConfig },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    { provide: MAT_CHECKBOX_CLICK_ACTION, useValue: 'check'},
+    //{ provide: MAT_CHECKBOX_CLICK_ACTION, useValue: 'check'},
     // provider used to create fake backend
     CookieService,
     MatDatepickerModule

@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {OrderService} from '../_services/order.service';
 import {ItemsOnCart} from '../_models/ItemsOnCart';
-import html2canvas from 'html2canvas';
 
 
 @Component({

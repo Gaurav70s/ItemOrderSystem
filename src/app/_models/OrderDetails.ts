@@ -1,8 +1,8 @@
-import {Order} from "./Order";
-import {User} from "./User";
-import {ItemsOnCart} from "./ItemsOnCart";
-import {Subscriptions} from "./Subscriptions";
-import {Table} from "./Table";
+import {Order} from './Order';
+import {User} from './User';
+import {ItemsOnCart} from './ItemsOnCart';
+import {Subscriptions} from './Subscriptions';
+import {Table} from './Table';
 
 export class OrderDetail {
   order: Order;

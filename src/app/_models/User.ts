@@ -11,8 +11,8 @@ export class User {
   password: string;
 
   constructor(phNumber: string, email: string, role: Role) {
-    this.phNumber= phNumber;
-    this.email= email;
-    this.role= role;
+    this.phNumber = phNumber;
+    this.email = email;
+    this.role = role;
   }
 }

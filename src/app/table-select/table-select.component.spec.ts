@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
-import { TableSelectComponent } from './table-select.component';
+import {TableSelectComponent} from './table-select.component';
 
 describe('TableSelectComponent', () => {
   let component: TableSelectComponent;

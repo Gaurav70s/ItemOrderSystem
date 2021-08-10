@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {CounterServiceService} from '../_services/counter-service.service';
-import {Table} from "../_models/Table";
+import {Table} from '../_models/Table';
 
 @Component({
   selector: 'app-counter-view',

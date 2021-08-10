@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import {ItemCategory} from "../_models/ItemCategory";
-import {ItemService} from "../_services/item.service";
+import {ItemCategory} from '../_models/ItemCategory';
+import {ItemService} from '../_services/item.service';
+
 const ELEMENT_DATA: ItemCategory[] = [
   {categoryId: 1, categoryName: 'Hydrogen'},
   {categoryId: 2, categoryName: 'Helium'},

@@ -1,6 +1,6 @@
 import {Ingredient} from './Ingredient';
-import {ItemCategory} from "./ItemCategory";
-import {ItemAddOn} from "./ItemAddOn";
+import {ItemCategory} from './ItemCategory';
+import {ItemAddOn} from './ItemAddOn';
 
 export class Item {
   id: number;

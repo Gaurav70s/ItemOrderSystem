@@ -113,10 +113,6 @@
                       <td colspan="3" class="border-0 small text-muted text-right">{{component.name}} @{{component.value}}</td>
                       <td class="font-medium border-0 float-right small">{{component.calculatedValue | number : '1.2' }}</td>
                     </tr>
-                    <tr>
-                      <td colspan="3" class="text-muted border-0 small text-right">Discount @{{payment.invoiceDetails.discountDetails.discount}}</td>
-                      <td class="font-medium border-0 float-right small">{{payment.invoiceDetails.discountDetails.calculatedValue | number : '1.2' }}</td>
-                    </tr>
                     <tr *ngIf="subscription!=undefined && isOtpVerified">
                       <td colspan="3" class="text-muted border-0 small text-right">Points</td>
                       <td class="font-medium border-0 float-right small">{{getPoint() | number : '1.2' }}</td>

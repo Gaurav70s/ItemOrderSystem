@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
-import { SubscriptionModalComponent } from './subscription-modal.component';
+import {SubscriptionModalComponent} from './subscription-modal.component';
 
 describe('SunscriptionModalComponent', () => {
   let component: SubscriptionModalComponent;

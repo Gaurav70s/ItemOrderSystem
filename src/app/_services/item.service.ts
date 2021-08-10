@@ -4,8 +4,8 @@ import {Observable, of} from 'rxjs';
 import {Item} from '../_models/Item';
 import {catchError} from 'rxjs/operators';
 import {ItemsOnCart} from '../_models/ItemsOnCart';
-import {CategoryWiseItem} from "../_models/CategoryWiseItem";
-import {ItemCategory} from "../_models/ItemCategory";
+import {CategoryWiseItem} from '../_models/CategoryWiseItem';
+import {ItemCategory} from '../_models/ItemCategory';
 
 @Injectable({
   providedIn: 'root'

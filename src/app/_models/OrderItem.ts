@@ -1,5 +1,5 @@
-import {Order} from "./Order";
-import {Item} from "./Item";
+import {Order} from './Order';
+import {Item} from './Item';
 
 export class OrderItem{
   constructor(order: Order, item: Item) {

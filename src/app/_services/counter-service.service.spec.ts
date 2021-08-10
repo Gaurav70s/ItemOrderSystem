@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { CounterServiceService } from './counter-service.service';
+import {CounterServiceService} from './counter-service.service';
 
 describe('CounterServiceService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));

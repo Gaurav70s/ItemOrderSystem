@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
-import { OrderOnTableComponent } from './order-on-table.component';
+import {OrderOnTableComponent} from './order-on-table.component';
 
 describe('OrderOnTableComponent', () => {
   let component: OrderOnTableComponent;

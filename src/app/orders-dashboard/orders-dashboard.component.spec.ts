@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
-import { OrdersDashboardComponent } from './orders-dashboard.component';
+import {OrdersDashboardComponent} from './orders-dashboard.component';
 
 describe('OrdersDashboardComponent', () => {
   let component: OrdersDashboardComponent;

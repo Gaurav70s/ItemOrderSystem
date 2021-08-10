@@ -1,17 +1,16 @@
 import {Component, OnInit} from '@angular/core';
-import {ItemsOnCart} from "../_models/ItemsOnCart";
-import {OrderService} from "../_services/order.service";
-import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
-import {SubscriptionModalComponent} from "../subscription-modal/subscription-modal.component";
-import {Role} from "../_models/Role";
-import {Subscriptions} from "../_models/Subscriptions";
-import {User} from "../_models/User";
-import {Table} from "../_models/Table";
-import {OrderDetail} from "../_models/OrderDetails";
-import {Payment} from "../_models/Payment";
-import {Router} from "@angular/router";
-import {BillingDetails} from "../_models/BillingDetails";
-import {PaymentMethod} from "../_models/PaymentMethod";
+import {ItemsOnCart} from '../_models/ItemsOnCart';
+import {OrderService} from '../_services/order.service';
+import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import {SubscriptionModalComponent} from '../subscription-modal/subscription-modal.component';
+import {Role} from '../_models/Role';
+import {Subscriptions} from '../_models/Subscriptions';
+import {User} from '../_models/User';
+import {Table} from '../_models/Table';
+import {OrderDetail} from '../_models/OrderDetails';
+import {Payment} from '../_models/Payment';
+import {Router} from '@angular/router';
+import {PaymentMethod} from '../_models/PaymentMethod';
 
 interface DialogData {
   email: string;

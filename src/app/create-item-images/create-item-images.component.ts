@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import {IDropdownSettings} from "ng-multiselect-dropdown";
-import {ItemService} from "../_services/item.service";
-import {Item} from "../_models/Item";
+import {IDropdownSettings} from 'ng-multiselect-dropdown';
+import {ItemService} from '../_services/item.service';
+import {Item} from '../_models/Item';
 
 @Component({
   selector: 'app-create-item-images',

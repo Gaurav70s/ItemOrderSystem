@@ -5,11 +5,11 @@ import {Item} from '../_models/Item';
 import {catchError} from 'rxjs/operators';
 import {Order} from '../_models/Order';
 import {KotDashboard} from '../_models/KotDashboard';
-import {OrderDetail} from "../_models/OrderDetails";
-import {OrderItem} from "../_models/OrderItem";
-import {Subscriptions} from "../_models/Subscriptions";
-import {User} from "../_models/User";
-import {Payment} from "../_models/Payment";
+import {OrderDetail} from '../_models/OrderDetails';
+import {OrderItem} from '../_models/OrderItem';
+import {Subscriptions} from '../_models/Subscriptions';
+import {User} from '../_models/User';
+import {Payment} from '../_models/Payment';
 
 @Injectable({
   providedIn: 'root'

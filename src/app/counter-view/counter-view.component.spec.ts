@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
-import { CounterViewComponent } from './counter-view.component';
+import {CounterViewComponent} from './counter-view.component';
 
 describe('CounterViewComponent', () => {
   let component: CounterViewComponent;

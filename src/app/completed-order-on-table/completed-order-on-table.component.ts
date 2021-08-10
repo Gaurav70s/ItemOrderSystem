@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {ItemsOnCart} from "../_models/ItemsOnCart";
-import {OrderService} from "../_services/order.service";
-import {Table} from "../_models/Table";
-import {OrderDetail} from "../_models/OrderDetails";
+import {ItemsOnCart} from '../_models/ItemsOnCart';
+import {OrderService} from '../_services/order.service';
+import {Table} from '../_models/Table';
+import {OrderDetail} from '../_models/OrderDetails';
 
 
 @Component({

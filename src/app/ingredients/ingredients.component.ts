@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {IngredientService} from '../_services/ingredient.service';
-import {Ingredient} from "../_models/Ingredient";
+import {Ingredient} from '../_models/Ingredient';
 
 @Component({
   selector: 'app-ingredients',

@@ -5,5 +5,7 @@ export class BillingComponent{
   impact: string;
   calculatedValue: number;
   optional: boolean;
-  default_applicable: boolean;
+  billingValueType: string;
+  editable: boolean;
+  defaultApplicable: boolean;
 }

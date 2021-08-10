@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { AuthGuardPService } from './auth-guard-p.service';
+import {AuthGuardPService} from './auth-guard-p.service';
 
 describe('AuthGuardPService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));

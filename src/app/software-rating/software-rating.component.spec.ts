@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
-import { SoftwareRatingComponent } from './software-rating.component';
+import {SoftwareRatingComponent} from './software-rating.component';
 
 describe('SoftwareRatingComponent', () => {
   let component: SoftwareRatingComponent;

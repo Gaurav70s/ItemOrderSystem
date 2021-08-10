@@ -3,14 +3,14 @@ import {OrderService} from '../_services/order.service';
 import {Item} from '../_models/Item';
 import {ItemsOnCart} from '../_models/ItemsOnCart';
 import {Router} from '@angular/router';
-import {OrderDetail} from "../_models/OrderDetails";
-import {Table} from "../_models/Table";
-import {User} from "../_models/User";
-import {Role} from "../_models/Role";
+import {OrderDetail} from '../_models/OrderDetails';
+import {Table} from '../_models/Table';
+import {User} from '../_models/User';
+import {Role} from '../_models/Role';
 
-import {SubscriptionModalComponent} from "../subscription-modal/subscription-modal.component";
-import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
-import {Subscriptions} from "../_models/Subscriptions";
+import {SubscriptionModalComponent} from '../subscription-modal/subscription-modal.component';
+import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import {Subscriptions} from '../_models/Subscriptions';
 
 interface DialogData {
   email: string;

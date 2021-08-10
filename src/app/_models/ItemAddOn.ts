@@ -1,4 +1,4 @@
-import {AddOnOptions} from "./AddOnOptions";
+import {AddOnOptions} from './AddOnOptions';
 
 export class ItemAddOn {
  type: string;

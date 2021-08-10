@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef} from "@angular/material/bottom-sheet";
-import {KitchenOrderDisplayComponent} from "../kitchen-order-display/kitchen-order-display.component";
-import {OrderDetail} from "../_models/OrderDetails";
+import {MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef} from '@angular/material/bottom-sheet';
+import {KitchenOrderDisplayComponent} from '../kitchen-order-display/kitchen-order-display.component';
+import {OrderDetail} from '../_models/OrderDetails';
 
 @Component({
   selector: 'app-order.snackbar',

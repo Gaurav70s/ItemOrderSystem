@@ -1,12 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {Table} from "../_models/Table";
-import {OrderService} from "../_services/order.service";
-import {Payment} from "../_models/Payment";
-import {ItemsOnCart} from "../_models/ItemsOnCart";
-import {OrderStatus} from "../_models/OrderStatus";
-import {AddOnOptions} from "../_models/AddOnOptions";
-
-
+import {Table} from '../_models/Table';
+import {OrderService} from '../_services/order.service';
+import {Payment} from '../_models/Payment';
+import {ItemsOnCart} from '../_models/ItemsOnCart';
+import {OrderStatus} from '../_models/OrderStatus';
+import {AddOnOptions} from '../_models/AddOnOptions';
 
 
 @Component({
@@ -16,10 +14,10 @@ import {AddOnOptions} from "../_models/AddOnOptions";
 })
 export class OrderOnTableComponent implements OnInit {
 
-  paymentList : Payment[];
+  paymentList: Payment[];
   table: Table;
-  edit: boolean= false;
-  discount: number =0.00;
+  edit = false;
+  discount = 0.00;
 
   constructor(
     private orderService: OrderService
@@ -27,53 +25,55 @@ export class OrderOnTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.table = JSON.parse(localStorage.getItem('table'));
-    this.orderService.getPaymentsByTable(this.table.tableNo).subscribe(data => this.paymentList= data);
+    this.orderService.getPaymentsByTable(this.table.tableNo).subscribe(data => this.paymentList = data);
   }
 
   addComplementaryItem(item: ItemsOnCart) {
-    if(item.complimentaryQuantity < item.quantity){
+    if (item.complimentaryQuantity < item.quantity){
       item.complimentaryQuantity = item.complimentaryQuantity + 1;
     }
   }
 
   editPayment() {
-    this.edit= !this.edit
+    this.edit = !this.edit;
+    console.log('inside edit payment setting edit as ' + this.edit);
   }
 
   savePayment(payment: Payment) {
+    console.log(payment);
     this.edit = false;
-    payment.invoiceDetails.discountDetails.discount = this.discount;
-    //this.recalculateBilling(payment)
-    this.orderService.savePayment(payment).subscribe(data => this.orderService.getPaymentsByTable(this.table.tableNo).subscribe(data => this.paymentList= data))
+    this.orderService.savePayment(payment).subscribe(data => this.orderService.getPaymentsByTable(this.table.tableNo).subscribe(data => this.paymentList = data));
   }
-  /*recalculateBilling(payment: Payment) {
-    payment.billingDetails.totalAmount = payment.billingDetails.subTotal +
-      payment.billingDetails.stateGst + payment.billingDetails.centerGst
-
-  }*/
 
   removeComplementaryItem(item: ItemsOnCart) {
-    if(item.complimentaryQuantity > 0 ){
+    if (item.complimentaryQuantity > 0 ){
       item.complimentaryQuantity = item.complimentaryQuantity - 1;
     }
   }
 
   getOrderStatus(payment: Payment) {
-    return payment.orderDetails[0].order.orderStatus != OrderStatus.SETTLED && this.edit;
+    return payment.orderDetails[0].order.orderStatus !== OrderStatus.SETTLED && this.edit;
   }
 
   getOrderStatusForButton(payment: Payment) {
-    return payment.orderDetails[0].order.orderStatus != OrderStatus.SETTLED
-  }
-  calculateDiscount(){
 
+    return payment.orderDetails[0].order.orderStatus !== OrderStatus.SETTLED;
   }
 
   getOptions(selected: AddOnOptions[]): string {
     const options = [];
     selected.forEach(data => {
-      options.push(data.label)
-    })
+      options.push(data.label);
+    });
     return options.toString();
+  }
+
+  getSymbol(symbol: string) {
+    return symbol === 'PERCENT' ? '%' : '';
+
+  }
+
+  getEditState(isEditable: boolean) {
+    return this.edit && isEditable;
   }
 }

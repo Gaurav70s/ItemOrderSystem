@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
-import { AddOnPopupComponent } from './add-on-popup.component';
+import {AddOnPopupComponent} from './add-on-popup.component';
 
 describe('AddOnPopupComponent', () => {
   let component: AddOnPopupComponent;

@@ -42,7 +42,7 @@
 </header>-->
 
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<!--<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -59,5 +59,30 @@
         </ul>
       </li>
     </ul>
-  </div> <!-- navbar-collapse.// -->
-</nav>
+  </div> &lt;!&ndash; navbar-collapse.// &ndash;&gt;
+</nav>-->
+
+
+
+<ng-material-multilevel-menu [items]='appitems' [configuration]='config' (selectedItem)="selectedItem($event)">
+  <ng-template #listTemplate let-item="item" let-configuration="configuration">
+    <div class="my-cool-menu-item" [dir]="configuration.rtlLayout  ? 'rtl' : 'ltr'">
+      <div class="title-and-image">
+        <div class="icon-container">
+          <span [ngClass]="getClass(item)"></span>
+        </div>
+        <div class="label-container">
+          <span>{{item.label}}</span>
+        </div>
+      </div>
+      <div class="icon-arrow-container" *ngIf='item.hasChilden'>
+        <mat-icon *ngIf="!configuration.rtlLayout" [@ExpandedLTR]="item.expanded ? 'yes' : 'no'">
+          keyboard_arrow_down
+        </mat-icon>
+        <mat-icon *ngIf="configuration.rtlLayout" [@ExpandedRTL]="item.expanded ? 'yes' : 'no'">
+          keyboard_arrow_down
+        </mat-icon>
+      </div>
+    </div>
+  </ng-template>
+</ng-material-multilevel-menu>

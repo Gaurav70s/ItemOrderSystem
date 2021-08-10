@@ -1,7 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {ItemsOnCart} from "../_models/ItemsOnCart";
-import {ThemePalette} from '@angular/material/core';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {ItemsOnCart} from '../_models/ItemsOnCart';
 
 class DialogData {
 }

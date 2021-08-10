@@ -1,5 +1,5 @@
-import {Item} from "./Item";
-import {KotOrder} from "./KotOrder";
+import {Item} from './Item';
+import {KotOrder} from './KotOrder';
 
 export class ActiveOrder {
   item: Item;

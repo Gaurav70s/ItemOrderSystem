@@ -1,10 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import { CookieService } from 'ngx-cookie-service';
+import {CookieService} from 'ngx-cookie-service';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
-import {environment} from "../../environments/environment";
-import {LoginUser} from "../_models/LoginUser";
+import {LoginUser} from '../_models/LoginUser';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {

@@ -1,20 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import {KotDashboard} from "../_models/KotDashboard";
-import {ActiveOrder} from "../_models/ActiveOrder";
-import {OrderDetail} from "../_models/OrderDetails";
-import {OrderService} from "../_services/order.service";
-import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
-import {Order} from "../_models/Order";
-import {RejectPopupComponent} from "../reject-popup/reject-popup.component";
-import {OrderStatus} from "../_models/OrderStatus";
-import {KotOrder} from "../_models/KotOrder";
-import {Item} from "../_models/Item";
-import {OrderItem} from "../_models/OrderItem";
-import {ItemAddOn} from "../_models/ItemAddOn";
-import {Subscription, timer} from "rxjs";
-import {switchMap} from "rxjs/operators";
-import {ItemsOnCart} from "../_models/ItemsOnCart";
-import {AddOnOptions} from "../_models/AddOnOptions";
+import {Component, OnInit} from '@angular/core';
+import {KotDashboard} from '../_models/KotDashboard';
+import {ActiveOrder} from '../_models/ActiveOrder';
+import {OrderDetail} from '../_models/OrderDetails';
+import {OrderService} from '../_services/order.service';
+import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import {Order} from '../_models/Order';
+import {RejectPopupComponent} from '../reject-popup/reject-popup.component';
+import {OrderStatus} from '../_models/OrderStatus';
+import {KotOrder} from '../_models/KotOrder';
+import {OrderItem} from '../_models/OrderItem';
+import {Subscription, timer} from 'rxjs';
+import {switchMap} from 'rxjs/operators';
+import {ItemsOnCart} from '../_models/ItemsOnCart';
+import {AddOnOptions} from '../_models/AddOnOptions';
 
 interface RejectData {
   rejectMessage:string

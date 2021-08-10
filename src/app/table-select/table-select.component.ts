@@ -1,10 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {CounterServiceService} from "../_services/counter-service.service";
-import {Table} from "../_models/Table";
-import {Router} from "@angular/router";
-import {User} from "../_models/User";
-import {Role} from "../_models/Role";
-import {LoginUser} from "../_models/LoginUser";
+import {CounterServiceService} from '../_services/counter-service.service';
+import {Table} from '../_models/Table';
+import {Router} from '@angular/router';
+import {Role} from '../_models/Role';
+import {LoginUser} from '../_models/LoginUser';
 
 @Component({
   selector: 'app-table-select',

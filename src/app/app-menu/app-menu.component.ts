@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MenuServiceService} from '../_services/menu-service.service';
-import {Menu} from '../_models/Menu';
-import {AuthenticationService} from "../_services/authentication.service";
-import {Router} from "@angular/router";
+import {AuthenticationService} from '../_services/authentication.service';
+import {Router} from '@angular/router';
+import {MultilevelNodes} from 'ng-material-multilevel-menu';
 
 @Component({
   selector: 'app-menu',
@@ -10,7 +10,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./app-menu.component.scss']
 })
 export class AppMenuComponent implements OnInit {
-  menus: Menu[];
+  appitems: MultilevelNodes[];
   config = {
     paddingAtStart: true,
     interfaceWithRoute: true,
@@ -34,12 +34,12 @@ expandCollapseStatus = 'expand';
   }
 
   getMenu() {
-    this.menus = JSON.parse( localStorage.getItem("menus"))
-    console.log(this.menus)
+    this.appitems = JSON.parse( localStorage.getItem('menus'));
+    console.log(this.appitems);
   }
   logout(){
     this.authService.logout();
-    this.router.navigate(['/login'])
+    this.router.navigate(['/login']);
 
   }
 }

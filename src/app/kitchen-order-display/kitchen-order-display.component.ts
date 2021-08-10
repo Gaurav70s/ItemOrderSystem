@@ -3,13 +3,13 @@ import {OrderService} from '../_services/order.service';
 import {KotDashboard} from '../_models/KotDashboard';
 import {ActiveOrder} from '../_models/ActiveOrder';
 import {OrderDetail} from '../_models/OrderDetails';
-import {Order} from "../_models/Order";
-import {KotOrder} from "../_models/KotOrder";
-import {OrderStatus} from "../_models/OrderStatus";
-import {Item} from "../_models/Item";
-import {OrderItem} from "../_models/OrderItem";
-import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
-import {RejectPopupComponent} from "../reject-popup/reject-popup.component";
+import {Order} from '../_models/Order';
+import {KotOrder} from '../_models/KotOrder';
+import {OrderStatus} from '../_models/OrderStatus';
+import {Item} from '../_models/Item';
+import {OrderItem} from '../_models/OrderItem';
+import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import {RejectPopupComponent} from '../reject-popup/reject-popup.component';
 
 interface RejectData {
   rejectMessage:string

@@ -1,8 +1,7 @@
-import {Subscriptions} from "./Subscriptions";
-import {BillingDetails} from "./BillingDetails";
-import {OrderDetail} from "./OrderDetails";
-import {BillingComponent} from "./BillingComponent";
-import {InvoiceDetails} from "./InvoiceDetails";
+import {Subscriptions} from './Subscriptions';
+import {OrderDetail} from './OrderDetails';
+import {BillingComponent} from './BillingComponent';
+import {InvoiceDetails} from './InvoiceDetails';
 
 export class Payment{
   constructor(subscription: Subscriptions) {
@@ -10,7 +9,7 @@ export class Payment{
   }
 
   public setOrderDetails(orderDetails: OrderDetail[]){
-    this.orderDetails= orderDetails;
+    this.orderDetails = orderDetails;
   }
   orderDetails: OrderDetail[];
   subscription: Subscriptions;

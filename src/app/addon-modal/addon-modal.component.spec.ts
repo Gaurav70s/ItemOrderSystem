@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
-import { AddonModalComponent } from './addon-modal.component';
+import {AddonModalComponent} from './addon-modal.component';
 
 describe('AddonModalComponent', () => {
   let component: AddonModalComponent;

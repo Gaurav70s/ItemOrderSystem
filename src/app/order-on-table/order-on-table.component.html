@@ -63,15 +63,10 @@
                 <td class="font-medium border-0 float-right small" >{{payment.invoiceDetails.subTotal | number : '1.2' }}</td>
               </tr>
               <tr *ngFor="let billingComponent of payment.billingComponents">
-                <td colspan="3" class="text-muted border-0 small text-right">{{billingComponent.name}} @{{billingComponent.value}}</td>
-                <td class="small border-0"><input class="float-right" name="exampleRadios" type="checkbox" [checked]="billingComponent.default_applicable" [disabled]="!billingComponent.optional" (change)="billingComponent.default_applicable = !billingComponent.default_applicable"></td>
+                <td *ngIf="edit && billingComponent.editable; else elseBlock" colspan="3" class="text-muted border-0 small text-right">{{billingComponent.name}} @<input [value]="billingComponent.value | number : '1.2'" [(ngModel)]="billingComponent.value" class="border" type="number">{{getSymbol(billingComponent.billingValueType)}}</td>
+                <ng-template #elseBlock><td colspan="3" class="text-muted border-0 small text-right">{{billingComponent.name}} @{{billingComponent.value}}{{getSymbol(billingComponent.billingValueType)}}</td></ng-template>
+                <td class="small border-0"><input class="float-right" name="exampleRadios" type="checkbox" [checked]="billingComponent.defaultApplicable" [disabled]="!billingComponent.optional" (change)="billingComponent.defaultApplicable = !billingComponent.defaultApplicable"></td>
                 <td class="font-medium border-0 float-right small" >{{billingComponent.calculatedValue | number : '1.2' }}</td>
-              </tr>
-              <tr>
-                <td colspan="3" class="text-muted border-0 small text-right">Discount</td>
-                <td *ngIf="!getOrderStatus(payment)" class="font-medium border-0 float-right small">{{payment.invoiceDetails.discountDetails.discount | number : '1.2' }}</td>
-                <td *ngIf="getOrderStatus(payment)" class="font-medium border-0 float-right small"><input [value]="payment.invoiceDetails.discountDetails.discount | number : '1.2'" [(ngModel)]="discount" class="border" type="number"></td>
-                <td class="text-muted border-0 small text-right">{{payment.invoiceDetails.discountDetails.calculatedValue}}</td>
               </tr>
               <tr class="border-top">
                 <td colspan="3" class="border-0 text-right">Amount Payable</td>
@@ -81,7 +76,9 @@
               <tr class="border-top">
                 <td colspan="5">
                   <div class="button-group-area text-center">
-                    <a *ngIf="getOrderStatusForButton(payment)" class="genric-btn primary radius" (click)="editPayment()">Edit</a>
+                    <a *ngIf="getOrderStatusForButton(payment) && !edit" class="genric-btn primary radius" (click)="editPayment()">Edit</a>
+                    <a *ngIf="getOrderStatusForButton(payment) && edit" class="genric-btn primary radius" (click)="editPayment()">save</a>
+
                     <a class="genric-btn primary radius" (click)="savePayment(this.payment)">Save Payment</a>
                   </div>
                 </td>

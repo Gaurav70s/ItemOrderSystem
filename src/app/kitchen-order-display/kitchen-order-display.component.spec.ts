@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
-import { KitchenOrderDisplayComponent } from './kitchen-order-display.component';
+import {KitchenOrderDisplayComponent} from './kitchen-order-display.component';
 
 describe('KitchenOrderDisplayComponent', () => {
   let component: KitchenOrderDisplayComponent;

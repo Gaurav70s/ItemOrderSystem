@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
-import { KotDisplayComponent } from './kot-display.component';
+import {KotDisplayComponent} from './kot-display.component';
 
 describe('KotDisplayComponent', () => {
   let component: KotDisplayComponent;

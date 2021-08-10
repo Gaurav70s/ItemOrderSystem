@@ -1,5 +1,5 @@
-import {PaymentMethod} from "./PaymentMethod";
-import {DiscountDetails} from "./DiscountDetails";
+import {PaymentMethod} from './PaymentMethod';
+import {DiscountDetails} from './DiscountDetails';
 
 export class InvoiceDetails{
   invoiceId: string;

@@ -1,8 +1,8 @@
-import { Component, OnInit, Injectable } from '@angular/core';
-import {BillingServiceService} from "../billing-service.service";
-import {DateAdapter, MAT_DATE_FORMATS, NativeDateAdapter} from "@angular/material/core";
-import {DatePipe, formatDate} from "@angular/common";
-import {BillingDashboard} from "../_models/BillingDashboard";
+import {Component, Injectable, OnInit} from '@angular/core';
+import {BillingServiceService} from '../billing-service.service';
+import {DateAdapter, MAT_DATE_FORMATS, NativeDateAdapter} from '@angular/material/core';
+import {DatePipe, formatDate} from '@angular/common';
+import {BillingDashboard} from '../_models/BillingDashboard';
 
 export const PICK_FORMATS = {
   parse: {dateInput: {month: 'short', year: 'numeric', day: 'numeric'}},

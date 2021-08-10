@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {RatingService} from "../rating.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import {Component, OnInit} from '@angular/core';
+import {RatingService} from '../rating.service';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-software-rating',

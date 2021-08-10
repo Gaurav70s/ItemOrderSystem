@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
-import { CreateItemComponent } from './create-item.component';
+import {CreateItemComponent} from './create-item.component';
 
 describe('CreateItemComponent', () => {
   let component: CreateItemComponent;
